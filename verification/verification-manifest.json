@@ -72,15 +72,17 @@
   "publication": {
     "destination": "https://github.com/Stunspot/yammerknit",
     "authorized_visibility": "public",
-    "repository_state": "prepared, not yet observed",
+    "repository_state": "published and independently read back",
+    "release_commit": "224aaf2a8de4efaaf20e6fe590e192496aa40e23",
+    "release_tree_sha": "3b52170279d421dcb4b98881b13dc00fd49de20d",
+    "remote_zip_blob_sha": "c0a7e0dcbc347ad3308a719d53b5a526ee523902",
     "plugin_directory_state": "not submitted",
     "announcement_state": "not performed"
   },
   "known_limits": [
     "Claude live activation is not observed.",
     "Live YouTube subtitle acquisition is not observed because yt-dlp is absent.",
-    "Public GitHub visibility and remote commit remain to be read back after push.",
     "Public plugin-directory submission is a separate, unperformed launch action."
   ],
-  "decision": "PUBLIC_REPOSITORY_PREPARED"
+  "decision": "PUBLIC_REPOSITORY_PUBLISHED_VERIFIED"
 }
