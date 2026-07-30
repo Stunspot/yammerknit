@@ -1,0 +1,198 @@
+{
+  "schema": "yammerknit.customer-release.v1",
+  "product": "Yammerknit",
+  "version": "0.1.0",
+  "visibility": "public",
+  "public_submission": false,
+  "customer_object": "Yammerknit-v0.1.0.zip",
+  "top_level_directory": "yammerknit-v0.1.0",
+  "distributions": {
+    "codex_plugin": {
+      "path": "codex-plugin/yammerknit",
+      "file_count": 17,
+      "tree_sha256": "256f0e15013f6a5426895d7d3a53940ca428939acdb7e6ae92160a88efc346da"
+    },
+    "claude_skill": {
+      "path": "claude/yammerknit-v0.1.0.zip",
+      "bytes": 21729,
+      "sha256": "d7ae8e11bfdfb550ce736777ada410e294563d4a715ba9c91f528908521f1b23"
+    }
+  },
+  "files": [
+    {
+      "path": "assets/icon.png",
+      "bytes": 1072718,
+      "sha256": "fdedf2607c31ceb380c77bf0fd54bd964358216e08991a71ed61d161ef875351"
+    },
+    {
+      "path": "assets/Stunspot Icon.ico",
+      "bytes": 410598,
+      "sha256": "77b2ea3c2f18676867ac48bd048bed3bbb9ddad13c92c000493b1e1c37c598e1"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 597,
+      "sha256": "c9d45683c0cf0bfea638fdaed4c6145f1060e89a08cb93812a5f224fc4eb8cfa"
+    },
+    {
+      "path": "claude/yammerknit-v0.1.0.zip",
+      "bytes": 21729,
+      "sha256": "d7ae8e11bfdfb550ce736777ada410e294563d4a715ba9c91f528908521f1b23"
+    },
+    {
+      "path": "codex-plugin/yammerknit/.codex-plugin/plugin.json",
+      "bytes": 1582,
+      "sha256": "7b9e1538441976acc5b00506ccc0afd27b231864ddac2cd8a80da0b2e956ea8f"
+    },
+    {
+      "path": "codex-plugin/yammerknit/assets/icon.png",
+      "bytes": 1072718,
+      "sha256": "fdedf2607c31ceb380c77bf0fd54bd964358216e08991a71ed61d161ef875351"
+    },
+    {
+      "path": "codex-plugin/yammerknit/assets/Stunspot Icon.ico",
+      "bytes": 410598,
+      "sha256": "77b2ea3c2f18676867ac48bd048bed3bbb9ddad13c92c000493b1e1c37c598e1"
+    },
+    {
+      "path": "codex-plugin/yammerknit/CHANGELOG.md",
+      "bytes": 597,
+      "sha256": "c9d45683c0cf0bfea638fdaed4c6145f1060e89a08cb93812a5f224fc4eb8cfa"
+    },
+    {
+      "path": "codex-plugin/yammerknit/LICENSE.md",
+      "bytes": 559,
+      "sha256": "2b8d8ecae411b29afa293a4c21a20d94d91f2bbf76e3ad745bc6d782d3b18f8d"
+    },
+    {
+      "path": "codex-plugin/yammerknit/PRIVACY.md",
+      "bytes": 614,
+      "sha256": "d3c8f59c2d8686caf40fabfa8cbb4a45ef61e8939a38e097a36dfad5cbf1a1ec"
+    },
+    {
+      "path": "codex-plugin/yammerknit/README.md",
+      "bytes": 2322,
+      "sha256": "438cd456aed0f7a846f126f9f97c61b43b174d21dd3f45482488339c083816dd"
+    },
+    {
+      "path": "codex-plugin/yammerknit/skills/yammerknit/agents/openai.yaml",
+      "bytes": 239,
+      "sha256": "07f652cb984dabc0e3d17dacec865b79f76234cbb80c0196b8e1199068316ee6"
+    },
+    {
+      "path": "codex-plugin/yammerknit/skills/yammerknit/personas/canonical-rupert-giles-document-guardian.txt",
+      "bytes": 4287,
+      "sha256": "5406776d4daa44e58d9368ee3bd8c74f51ac5d41bf46364c33fcfec4a79d53dd"
+    },
+    {
+      "path": "codex-plugin/yammerknit/skills/yammerknit/references/canonical-sop.md",
+      "bytes": 9230,
+      "sha256": "3b35a55f35aedc848ea83425b5feacd6994059fd497103cae135ae826d5504dd"
+    },
+    {
+      "path": "codex-plugin/yammerknit/skills/yammerknit/references/data-handling.md",
+      "bytes": 2338,
+      "sha256": "5886998ccc936ffadebf736902bc3b2770c12bf7342595d4c2fd0962d75f2ca0"
+    },
+    {
+      "path": "codex-plugin/yammerknit/skills/yammerknit/references/stewardship-doctrine.md",
+      "bytes": 1841,
+      "sha256": "55090874d75baa1ea76a49a79e850d0ddb1c981c5c440d23f8a94cc3ed51822d"
+    },
+    {
+      "path": "codex-plugin/yammerknit/skills/yammerknit/references/youtube-transcripts.md",
+      "bytes": 1128,
+      "sha256": "6bdc814b6bdbdf2a19bf7eb31a4a2b5e11a7cb278c500da49045a1ded35f5bcb"
+    },
+    {
+      "path": "codex-plugin/yammerknit/skills/yammerknit/scripts/yammerknit_tool.py",
+      "bytes": 35434,
+      "sha256": "001dcc85f62eb9dc4ea08d978893192c86dccf84e9008de559dc192054b5a2dc"
+    },
+    {
+      "path": "codex-plugin/yammerknit/skills/yammerknit/SKILL.md",
+      "bytes": 3461,
+      "sha256": "0fe7c17711a684cb03f3ccd709ca69c5c6fa43426b39ae260b314fc15293bcb2"
+    },
+    {
+      "path": "codex-plugin/yammerknit/SUPPORT.md",
+      "bytes": 490,
+      "sha256": "f8754820b124db8068bb6ff8bd5efba701c9d3efe6f1c3c5d7ea25c8b3d343f7"
+    },
+    {
+      "path": "codex-plugin/yammerknit/TERMS.md",
+      "bytes": 589,
+      "sha256": "ed4bd910c2fcbe7d02980a588a38eff3977c0043805a75b882ede9058bea88c1"
+    },
+    {
+      "path": "docs/DATA-AND-PRIVACY.md",
+      "bytes": 1461,
+      "sha256": "a749bd700f70f77bc300da333d32694f4d17b675a394fdb165b7b408ffc576b3"
+    },
+    {
+      "path": "docs/INSTALLATION.md",
+      "bytes": 2351,
+      "sha256": "fe4554466a24cf104c9fd480eaa86173367c965b09c102600d358c0d84e90360"
+    },
+    {
+      "path": "docs/TROUBLESHOOTING.md",
+      "bytes": 1843,
+      "sha256": "38b4f417e7a3916fa5c2d7821d36b8a1f435fa2631d9f1502817d1a5eb6df724"
+    },
+    {
+      "path": "docs/USE-YAMMERKNIT.md",
+      "bytes": 2143,
+      "sha256": "054a6651314ffcdb374b6ff1f388c07f7996772047aef05562c1674d7e1d2472"
+    },
+    {
+      "path": "docs/VALIDATION-AND-LIMITS.md",
+      "bytes": 1435,
+      "sha256": "914aaf25b3467bbad9a4acd15d40a2b9fdc68577409e3d135bac70e410d14893"
+    },
+    {
+      "path": "HOST-MATRIX.md",
+      "bytes": 914,
+      "sha256": "b2e81969b66b232bcdd0a2c4b4fc84779622653c7491fc5fe078be55faa12146"
+    },
+    {
+      "path": "LICENSE.md",
+      "bytes": 559,
+      "sha256": "2b8d8ecae411b29afa293a4c21a20d94d91f2bbf76e3ad745bc6d782d3b18f8d"
+    },
+    {
+      "path": "PRIVACY.md",
+      "bytes": 614,
+      "sha256": "d3c8f59c2d8686caf40fabfa8cbb4a45ef61e8939a38e097a36dfad5cbf1a1ec"
+    },
+    {
+      "path": "PROVENANCE.md",
+      "bytes": 1081,
+      "sha256": "5ab1c0a034caf18d75d8dbb3a2956eca1c7e4f3b287b65ea7ffc4253f69f682b"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2322,
+      "sha256": "438cd456aed0f7a846f126f9f97c61b43b174d21dd3f45482488339c083816dd"
+    },
+    {
+      "path": "SHA256SUMS.txt",
+      "bytes": 186,
+      "sha256": "dce88bcb10d12141af4efb5eae04fc7569172a095b4f01a4524dc54df05a7bd5"
+    },
+    {
+      "path": "START-HERE.md",
+      "bytes": 1043,
+      "sha256": "f92a58336ca8a49ce87ef69019e807d7f13a0593e9b32ab3cffe58b046b077cf"
+    },
+    {
+      "path": "SUPPORT.md",
+      "bytes": 490,
+      "sha256": "f8754820b124db8068bb6ff8bd5efba701c9d3efe6f1c3c5d7ea25c8b3d343f7"
+    },
+    {
+      "path": "TERMS.md",
+      "bytes": 589,
+      "sha256": "ed4bd910c2fcbe7d02980a588a38eff3977c0043805a75b882ede9058bea88c1"
+    }
+  ]
+}

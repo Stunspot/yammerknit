@@ -1,0 +1,12 @@
+{
+  "schema_version": "cd-plugin-readiness-audit/v1",
+  "plugin_root": "yammerknit",
+  "name": "yammerknit",
+  "version": "0.1.0",
+  "skill_count": 1,
+  "issues": [],
+  "summary": {
+    "errors": 0,
+    "warnings": 0
+  }
+}

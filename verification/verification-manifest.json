@@ -1,0 +1,86 @@
+{
+  "schema": "yammerknit.verification.v3",
+  "product": {
+    "name": "Yammerknit",
+    "version": "0.1.0",
+    "visibility": "public",
+    "customer_object": "release/0.1.0/Yammerknit-v0.1.0.zip",
+    "customer_zip_sha256": "e5d3b4a50e7707f10d63f5cd80944fb0c118df7fa4f9e455e172cb0addeed3ea",
+    "customer_tree_file_count": 36,
+    "customer_tree_sha256": "a1678b0b344eff08c294cee0274f705274fa24c838723758c80f0aaebd536c71"
+  },
+  "contract": {
+    "one_augment": true,
+    "one_customer_zip": true,
+    "host_distributions": [
+      "Codex plugin",
+      "Claude skill ZIP"
+    ],
+    "governor": "Rupert Giles",
+    "canonical_method": "Sam Walker's Yammerknit SOP",
+    "vector_boundary": "Produces semantic meshes for later vector embedding and retrieval; does not include vector storage, embeddings, ingestion, or retrieval execution.",
+    "license": "Source-available proprietary; no open-source license granted."
+  },
+  "canonical_custody": {
+    "sop_sha256": "3b35a55f35aedc848ea83425b5feacd6994059fd497103cae135ae826d5504dd",
+    "giles_sha256": "5406776d4daa44e58d9368ee3bd8c74f51ac5d41bf46364c33fcfec4a79d53dd",
+    "icon_png_sha256": "fdedf2607c31ceb380c77bf0fd54bd964358216e08991a71ed61d161ef875351",
+    "icon_ico_sha256": "77b2ea3c2f18676867ac48bd048bed3bbb9ddad13c92c000493b1e1c37c598e1",
+    "result": "passed"
+  },
+  "executions": [
+    {
+      "id": "unit",
+      "command": "python -X utf8 -m unittest discover -s skills/yammerknit/tests -v",
+      "result": "15 passed"
+    },
+    {
+      "id": "release",
+      "command": "python -X utf8 -m unittest verification/test_release.py -v",
+      "result": "5 passed"
+    },
+    {
+      "id": "plugin-readiness",
+      "result": "passed",
+      "evidence": {
+        "errors": 0,
+        "warnings": 0,
+        "repository": "https://github.com/Stunspot/yammerknit",
+        "privacy": "https://github.com/Stunspot/yammerknit/blob/main/PRIVACY.md",
+        "terms": "https://github.com/Stunspot/yammerknit/blob/main/TERMS.md"
+      }
+    },
+    {
+      "id": "release-tree",
+      "result": "passed",
+      "evidence": {
+        "file_count": 36,
+        "tree_sha256": "a1678b0b344eff08c294cee0274f705274fa24c838723758c80f0aaebd536c71"
+      }
+    },
+    {
+      "id": "native-extraction-and-backup",
+      "result": "passed",
+      "evidence": {
+        "outer_files": 36,
+        "nested_claude_files": 7,
+        "canonical_sha256": "e5d3b4a50e7707f10d63f5cd80944fb0c118df7fa4f9e455e172cb0addeed3ea",
+        "latest_backup_sha256": "e5d3b4a50e7707f10d63f5cd80944fb0c118df7fa4f9e455e172cb0addeed3ea"
+      }
+    }
+  ],
+  "publication": {
+    "destination": "https://github.com/Stunspot/yammerknit",
+    "authorized_visibility": "public",
+    "repository_state": "prepared, not yet observed",
+    "plugin_directory_state": "not submitted",
+    "announcement_state": "not performed"
+  },
+  "known_limits": [
+    "Claude live activation is not observed.",
+    "Live YouTube subtitle acquisition is not observed because yt-dlp is absent.",
+    "Public GitHub visibility and remote commit remain to be read back after push.",
+    "Public plugin-directory submission is a separate, unperformed launch action."
+  ],
+  "decision": "PUBLIC_REPOSITORY_PREPARED"
+}

@@ -1,0 +1,45 @@
+{
+  "name": "yammerknit",
+  "version": "0.1.0",
+  "description": "Create, inspect, repair, and organize Yammerknit semantic meshes for vector RAG.",
+  "author": {
+    "name": "Stunspot Prompting",
+    "url": "https://stunspot.com"
+  },
+  "homepage": "https://stunspot.com",
+  "repository": "https://github.com/Stunspot/yammerknit",
+  "license": "LicenseRef-Proprietary",
+  "keywords": [
+    "yammerknit",
+    "semantic-mesh",
+    "vector-rag",
+    "knowledge-management",
+    "transcripts"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Yammerknit",
+    "shortDescription": "Semantic meshes for vector RAG",
+    "longDescription": "Create, inspect, repair, and organize source-grounded Yammerknits under Rupert Giles's knowledge stewardship.",
+    "developerName": "Stunspot Prompting",
+    "category": "Productivity",
+    "capabilities": [
+      "Create Yammerknits",
+      "Inspect and repair Yammerknits",
+      "Organize source and artifact records",
+      "Acquire YouTube subtitles when yt-dlp is available"
+    ],
+    "websiteURL": "https://stunspot.com",
+    "privacyPolicyURL": "https://github.com/Stunspot/yammerknit/blob/main/PRIVACY.md",
+    "termsOfServiceURL": "https://github.com/Stunspot/yammerknit/blob/main/TERMS.md",
+    "defaultPrompt": [
+      "Turn this transcript into a Yammerknit.",
+      "Inspect and repair this Yammerknit.",
+      "Organize these Yammerknit sources and artifacts."
+    ],
+    "brandColor": "#1887C9",
+    "composerIcon": "./assets/icon.png",
+    "logo": "./assets/icon.png",
+    "logoDark": "./assets/icon.png"
+  }
+}
