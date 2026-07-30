@@ -41,17 +41,21 @@
     },
     {
       "id": "documentation-site",
-      "result": "passed locally; live deployment pending",
+      "result": "passed locally and independently read back after publication",
       "evidence": {
         "site_tests": "5 passed",
-        "browser": "Playwright with system Microsoft Edge",
+        "browser": "Playwright with system Microsoft Edge, passed locally and against the live Pages site",
         "viewports": [
           "1440x1000",
           "390x844"
         ],
         "horizontal_overflow": 0,
         "sharecard": "1280x640 PNG under 1 MB",
-        "hesperos_review": "REVIEW_PASS_WITH_CONDITIONS"
+        "hesperos_review": "REVIEW_PASS",
+        "public_url": "https://stunspot.github.io/yammerknit/",
+        "deployment_run": "https://github.com/Stunspot/yammerknit/actions/runs/30561985966",
+        "live_routes": "6 of 6 returned HTTP 200",
+        "repository_social_preview": "installed and independently read back"
       }
     },
     {
@@ -91,6 +95,10 @@
     "release_commit": "224aaf2a8de4efaaf20e6fe590e192496aa40e23",
     "release_tree_sha": "3b52170279d421dcb4b98881b13dc00fd49de20d",
     "remote_zip_blob_sha": "c0a7e0dcbc347ad3308a719d53b5a526ee523902",
+    "documentation_site": "https://stunspot.github.io/yammerknit/",
+    "documentation_deployment_commit": "718d8e45b7389cbd9e310a9d9f07198da62aa997",
+    "documentation_state": "published and independently read back",
+    "repository_social_preview_state": "published and independently read back",
     "plugin_directory_state": "not submitted",
     "announcement_state": "not performed"
   },

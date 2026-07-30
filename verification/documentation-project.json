@@ -2,7 +2,7 @@
   "project_id": "YAMMERKNIT-DOCS-001",
   "title": "Yammerknit public documentation and customer journey",
   "product_version": "0.1.0",
-  "status": "accessibility-reviewed",
+  "status": "published",
   "audiences": [
     "Prompt engineers installing a distributed agent skill",
     "Codex users installing a personal plugin",
@@ -89,7 +89,11 @@
     },
     {
       "command": "node verification/browser_review.cjs http://127.0.0.1:8899/",
-      "result": "desktop and 390px mobile render, keyboard, images, overflow, and routes passed"
+      "result": "desktop and 390px mobile render, keyboard, images, overflow, and routes passed locally"
+    },
+    {
+      "command": "node verification/browser_review.cjs https://stunspot.github.io/yammerknit/",
+      "result": "desktop and 390px mobile render, keyboard, images, overflow, and routes passed against the published site"
     },
     {
       "command": "hesperos lint_accessible_markdown.py over maintained customer Markdown",
@@ -97,6 +101,5 @@
     }
   ],
   "owner": "Stunspot / Collaborative Dynamics",
-  "next_move": "Publish to GitHub Pages and independently read back the live HTML, assets, and Open Graph metadata."
+  "next_move": "Monitor customer feedback and preserve the current evidence boundary for future revisions."
 }
-

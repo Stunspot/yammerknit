@@ -2,11 +2,11 @@
 
 ## Decision
 
-`REVIEW_PASS_WITH_CONDITIONS` for publication. The local public site and
-packaged customer journey are coherent, accessible within the tested surface,
-and ready to deploy. Publication remains conditional on live GitHub Pages
-deployment and independent readback of the canonical URL, sharecard, metadata,
-and download path.
+`REVIEW_PASS`. The public site and packaged customer journey are coherent and
+accessible within the tested surface. GitHub Pages deployment, the canonical
+URL, all maintained routes, site metadata, the sharecard, the custom recovery
+page, and GitHub's repository social preview were independently read back after
+publication.
 
 ## Artifact, users, and benchmark
 
@@ -61,6 +61,17 @@ and download path.
 - Browser review: passed at 1440 and 390 pixels with zero horizontal overflow;
   all local images loaded; the skip link was the first visible keyboard target;
   all six secondary routes returned HTTP 200.
+- GitHub Actions run
+  [`30561985966`](https://github.com/Stunspot/yammerknit/actions/runs/30561985966)
+  completed successfully for commit `718d8e45b7389cbd9e310a9d9f07198da62aa997`.
+- Live readback on 2026-07-30: the canonical page and five maintained secondary
+  routes returned HTTP 200; the custom recovery page returned HTTP 404 with
+  Yammerknit's own content.
+- The full Playwright review passed again against the live Pages site at 1440
+  and 390 pixels; the resulting screenshots were visually inspected.
+- The live 1280 by 640 sharecard returned HTTP 200 as `image/png`, and GitHub's
+  repository Open Graph image returned the same 254,294-byte image with the
+  same SHA-256 digest.
 
 ## Claim limit
 
@@ -68,5 +79,4 @@ The review does not establish formal WCAG conformance, screen-reader usability,
 representative-user success, or behavior on every browser. The in-app browser
 channel could not start because its host executable binding was absent;
 Playwright with the installed Microsoft Edge browser supplied the rendered
-local evidence instead. Live GitHub Pages and repository social-preview state
-remain unverified until publication and readback.
+local and live-site evidence instead.

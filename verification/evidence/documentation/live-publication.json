@@ -1,0 +1,40 @@
+{
+  "observed_at_utc": "2026-07-30T16:35:05Z",
+  "repository": "https://github.com/Stunspot/yammerknit",
+  "deployment": {
+    "workflow_run_id": 30561985966,
+    "workflow_run_url": "https://github.com/Stunspot/yammerknit/actions/runs/30561985966",
+    "commit": "718d8e45b7389cbd9e310a9d9f07198da62aa997",
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "site": {
+    "canonical_url": "https://stunspot.github.io/yammerknit/",
+    "title": "Yammerknit — Retrieval-ready semantic meshes",
+    "routes_checked": 6,
+    "routes_returning_http_200": 6,
+    "custom_404_status": 404,
+    "custom_404_content_observed": true,
+    "open_graph_image": "https://stunspot.github.io/yammerknit/assets/yammerknit-sharecard.png",
+    "twitter_card": "summary_large_image"
+  },
+  "sharecard": {
+    "status": 200,
+    "content_type": "image/png",
+    "bytes": 254294,
+    "width": 1280,
+    "height": 640,
+    "sha256": "f5efc4cf11b62b67a9141872ea2319c752ea6db5b8227a2d01345e220a4734fa"
+  },
+  "repository_social_preview": {
+    "status": 200,
+    "source": "repository-images.githubusercontent.com",
+    "bytes": 254294,
+    "sha256": "f5efc4cf11b62b67a9141872ea2319c752ea6db5b8227a2d01345e220a4734fa",
+    "matches_uploaded_sharecard": true
+  },
+  "evidence_boundary": {
+    "pages_rest_endpoint_without_authentication": "HTTP 404; not used as publication evidence",
+    "publication_evidence": "successful GitHub Actions deployment plus independent public HTTP readback"
+  }
+}

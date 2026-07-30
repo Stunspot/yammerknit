@@ -1,6 +1,6 @@
 {
   "schema": "yammerknit.documentation-browser-review.v1",
-  "baseUrl": "http://127.0.0.1:8899/",
+  "baseUrl": "https://stunspot.github.io/yammerknit/",
   "engine": "Playwright with system Microsoft Edge",
   "desktop": {
     "viewport": {
