@@ -162,7 +162,15 @@ def build_release_manifest(customer_root: Path) -> dict[str, object]:
 
 def build_customer_tree(repo: Path, customer_root: Path) -> dict[str, object]:
     for name in ROOT_DOCUMENTS:
-        copy_file(repo / name, customer_root / name)
+        if name == "START-HERE.md":
+            start_here = (repo / name).read_text(encoding="utf-8")
+            (customer_root / name).write_text(
+                start_here.replace("customer-docs/", "docs/"),
+                encoding="utf-8",
+                newline="\n",
+            )
+        else:
+            copy_file(repo / name, customer_root / name)
     for path in files_beneath(repo / "customer-docs"):
         copy_file(
             path,

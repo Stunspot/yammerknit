@@ -4,8 +4,8 @@ Yammerknit turns a transcript or document into a structured semantic mesh that a
 
 Choose your host:
 
-- **Codex:** follow [Install the Codex plugin](docs/INSTALLATION.md#install-the-codex-plugin).
-- **Claude:** follow [Install the Claude skill](docs/INSTALLATION.md#install-the-claude-skill).
+- **Codex:** follow [Install the Codex plugin](customer-docs/INSTALLATION.md#install-the-codex-plugin).
+- **Claude:** follow [Install the Claude skill](customer-docs/INSTALLATION.md#install-the-claude-skill).
 - **Another agent:** give the host the complete `yammerknit` skill folder from
   either distribution. Keep `SKILL.md` and every sibling subfolder together.
 
@@ -23,7 +23,7 @@ Preserve the source and organize the result in <workspace>.
 
 Continue with:
 
-- [Use Yammerknit](docs/USE-YAMMERKNIT.md)
-- [Understand its files and data handling](docs/DATA-AND-PRIVACY.md)
-- [Recover from installation or transcript problems](docs/TROUBLESHOOTING.md)
-- [See what was and was not verified](docs/VALIDATION-AND-LIMITS.md)
+- [Use Yammerknit](customer-docs/USE-YAMMERKNIT.md)
+- [Understand its files and data handling](customer-docs/DATA-AND-PRIVACY.md)
+- [Recover from installation or transcript problems](customer-docs/TROUBLESHOOTING.md)
+- [See what was and was not verified](customer-docs/VALIDATION-AND-LIMITS.md)

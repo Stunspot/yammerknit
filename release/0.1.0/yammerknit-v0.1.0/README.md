@@ -2,7 +2,9 @@
 
 Yammerknit turns a transcript or document into a reusable semantic mesh for embedding and retrieval in a vector-RAG system. Rupert Giles governs source custody and document integrity; Sam Walker's canonical Yammerknit SOP governs the artifact itself.
 
-This is the public, source-available repository for Yammerknit. The ready-to-use product is one file: [Yammerknit-v0.1.0.zip](https://github.com/Stunspot/yammerknit/raw/refs/heads/main/release/0.1.0/Yammerknit-v0.1.0.zip).
+This is the public, source-available repository for Yammerknit. [Read the complete documentation](https://stunspot.github.io/yammerknit/) or download the ready-to-use product as one file: [Yammerknit-v0.1.0.zip](https://github.com/Stunspot/yammerknit/raw/refs/heads/main/release/0.1.0/Yammerknit-v0.1.0.zip).
+
+[![Yammerknit: turn source material into a retrieval-ready semantic mesh](https://stunspot.github.io/yammerknit/assets/yammerknit-sharecard.png)](https://stunspot.github.io/yammerknit/)
 
 ## What the customer kit contains
 
@@ -28,7 +30,8 @@ Yammerknit does not include a vector store, embedding model, or retrieval servic
 
 - `skills/yammerknit/` — the self-contained runtime skill.
 - `.codex-plugin/` and `assets/` — Codex plugin surfaces.
-- `customer-docs/` — source for the customer journey.
+- `customer-docs/` — source for the packaged customer journey.
+- `docs/` — the accessible public documentation site and sharecard.
 - `verification/` — build and verification machinery.
 - `release/0.1.0/` — the extracted customer kit and canonical customer ZIP.
 

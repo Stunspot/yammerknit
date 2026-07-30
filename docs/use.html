@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Use Yammerknit</title>
+  <meta name="description" content="Create, inspect, repair, and preserve Yammerknits.">
+  <link rel="canonical" href="https://stunspot.github.io/yammerknit/use.html">
+  <meta property="og:type" content="article"><meta property="og:title" content="Use Yammerknit"><meta property="og:description" content="Create, inspect, repair, and preserve retrieval-ready semantic meshes."><meta property="og:url" content="https://stunspot.github.io/yammerknit/use.html"><meta property="og:image" content="https://stunspot.github.io/yammerknit/assets/yammerknit-sharecard.png"><meta property="og:image:alt" content="Yammerknit, a Stunspot Augment."><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#041326">
+  <link rel="icon" href="assets/stunspot-icon.png"><link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header"><nav class="nav-shell" aria-label="Primary navigation"><a class="brand" href="./"><img src="assets/stunspot-icon.png" alt="">Yammerknit</a><ul class="nav-links"><li><a href="get-started.html">Get started</a></li><li><a href="use.html" aria-current="page">Use it</a></li><li><a href="data.html">Your data</a></li><li><a href="troubleshooting.html">Troubleshoot</a></li><li class="download-nav"><a class="button" href="https://github.com/Stunspot/yammerknit/raw/refs/heads/main/release/0.1.0/Yammerknit-v0.1.0.zip">Download 0.1.0</a></li></ul></nav></header>
+  <main id="main" class="shell">
+    <header class="doc-hero"><p class="eyebrow">Working guide</p><h1>Use Yammerknit</h1><p class="lede">Talk to the agent normally. Name a workspace only when you want durable source and revision records.</p></header>
+    <div class="doc-layout">
+      <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#create">Create</a></li><li><a href="#save">Save a record</a></li><li><a href="#inspect">Inspect or repair</a></li><li><a href="#youtube">YouTube subtitles</a></li><li><a href="#rag">Vector RAG boundary</a></li></ul></nav>
+      <article class="prose">
+        <section id="create"><h2>Create a Yammerknit</h2><p>Supply a transcript or document and ask for the complete artifact:</p><pre><code>Turn this transcript into a Yammerknit.
+Return the complete codefenced artifact.</code></pre><p>Yammerknit preserves supplied metadata, marks missing metadata <code>N/A</code>, follows semantic gravity rather than transcript order, and includes the full cluster mesh, relational bridges, prompt seeds, and sigil lexicon.</p></section>
+        <section id="save"><h2>Save an organized record</h2><pre><code>Turn this transcript into a Yammerknit.
+Preserve the source and organize the result in &lt;workspace&gt;\Yammerknits.</code></pre><p>The workspace keeps original source bytes, normalized UTF-8 text, the base artifact, later revisions, manifests, and validation receipts distinct.</p><p>To inspect a saved record without changing it:</p><pre><code>python scripts/yammerknit_tool.py inspect-record
+  --workspace &lt;PATH&gt;
+  --record-id "&lt;ID&gt;"</code></pre></section>
+        <section id="inspect"><h2>Inspect or repair an artifact</h2><pre><code>Inspect this Yammerknit against the canonical SOP.
+Explain every material defect.</code></pre><p>For a repair:</p><pre><code>Repair only the failed structure.
+Preserve sound content and sigil order.
+Save a new revision.</code></pre><p>A repair creates a revision. It does not overwrite the original artifact.</p></section>
+        <section id="youtube"><h2>Acquire public YouTube subtitles</h2><p>The optional helper requires a separately installed <code>yt-dlp</code>:</p><pre><code>python -m pip install -U yt-dlp</code></pre><p>Then ask:</p><pre><code>Acquire the subtitles from &lt;YouTube URL&gt;,
+preserve them in &lt;workspace&gt;,
+and create a Yammerknit.</code></pre><p>The helper requests accessible subtitles without downloading audiovisual media, opening browser cookies, or traversing playlists. If subtitles are unavailable, provide transcript text directly.</p></section>
+        <section id="rag"><h2>Prepare for vector RAG</h2><p>Yammerknits preserve semantically useful shards, relationships, sigils, and provenance before embedding. The artifact becomes part of an operating vector-RAG system only after a separate embedding and vector-storage pipeline ingests it.</p><div class="callout"><strong>No sleight of hand:</strong> Yammerknit does not include a vector store, embedding model, ingestion service, or retrieval execution.</div></section>
+        <nav class="next" aria-label="Next step"><strong>Next:</strong> <a href="data.html">Understand files, privacy, and source custody</a>.</nav>
+      </article>
+    </div>
+  </main>
+  <footer class="site-footer"><div class="shell footer-inner"><p>Yammerknit 0.1.0 · Built by <a href="https://stunspot.com/">Stunspot</a></p><p><a href="https://github.com/Stunspot/yammerknit">Repository</a> · <a href="https://github.com/Stunspot/yammerknit/blob/main/SUPPORT.md">Support</a></p></div></footer>
+</body>
+</html>

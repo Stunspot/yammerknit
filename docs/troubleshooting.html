@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Troubleshoot Yammerknit</title>
+  <meta name="description" content="Recover from Yammerknit installation, subtitle, validation, and workspace problems.">
+  <link rel="canonical" href="https://stunspot.github.io/yammerknit/troubleshooting.html">
+  <meta property="og:type" content="article"><meta property="og:title" content="Troubleshoot Yammerknit"><meta property="og:description" content="Symptom-based recovery for installation, transcripts, validation, and workspaces."><meta property="og:url" content="https://stunspot.github.io/yammerknit/troubleshooting.html"><meta property="og:image" content="https://stunspot.github.io/yammerknit/assets/yammerknit-sharecard.png"><meta property="og:image:alt" content="Yammerknit, a Stunspot Augment."><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#041326">
+  <link rel="icon" href="assets/stunspot-icon.png"><link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header"><nav class="nav-shell" aria-label="Primary navigation"><a class="brand" href="./"><img src="assets/stunspot-icon.png" alt="">Yammerknit</a><ul class="nav-links"><li><a href="get-started.html">Get started</a></li><li><a href="use.html">Use it</a></li><li><a href="data.html">Your data</a></li><li><a href="troubleshooting.html" aria-current="page">Troubleshoot</a></li><li class="download-nav"><a class="button" href="https://github.com/Stunspot/yammerknit/raw/refs/heads/main/release/0.1.0/Yammerknit-v0.1.0.zip">Download 0.1.0</a></li></ul></nav></header>
+  <main id="main" class="shell">
+    <header class="doc-hero"><p class="eyebrow">Recovery guide</p><h1>Troubleshoot Yammerknit</h1><p class="lede">Start from what you can observe. Preserve the source before changing a record.</p></header>
+    <div class="doc-layout">
+      <nav class="toc" aria-label="Symptoms"><p>Symptoms</p><ul><li><a href="#codex">Codex not installed</a></li><li><a href="#claude">Claude cannot find it</a></li><li><a href="#ytdlp">yt-dlp unavailable</a></li><li><a href="#subtitles">No subtitles</a></li><li><a href="#validation">Validation fails</a></li><li><a href="#overwrite">Overwrite refused</a></li><li><a href="#paths">Stale paths</a></li></ul></nav>
+      <article class="prose">
+        <section id="codex"><h2>Codex reports available, not installed</h2><ol><li>Run <code>codex plugin add yammerknit@personal</code>.</li><li>Run <code>codex plugin list</code>.</li><li>Confirm the marketplace entry points to <code>./plugins/yammerknit</code>.</li><li>Confirm that folder contains <code>.codex-plugin/plugin.json</code>.</li><li>Start a new task after the status becomes <code>installed, enabled</code>.</li></ol></section>
+        <section id="claude"><h2>Claude cannot find the skill</h2><p>Confirm the installed path ends in <code>yammerknit/SKILL.md</code>. An extra directory level prevents discovery. Restart the host when the skills directory was created after the current session began.</p></section>
+        <section id="ytdlp"><h2><code>yt-dlp is not available</code></h2><p>Install the optional dependency with <code>python -m pip install -U yt-dlp</code>. If installation is unavailable, provide transcript text directly. Core Yammerknit creation does not otherwise depend on <code>yt-dlp</code>.</p></section>
+        <section id="subtitles"><h2>No VTT subtitles were available</h2><p>The video may have no accessible human or automatic subtitles. Provide an authorized transcript or another source document. The helper does not fall back to downloading or transcribing audio.</p></section>
+        <section id="validation"><h2>The artifact fails validation</h2><ol><li>Read the <code>errors</code> array in <code>validation.json</code>.</li><li>Ask the agent to repair only those structural failures.</li><li>Validate the complete artifact again.</li><li>Have Giles inspect semantic clustering, source fidelity, bridge quality, and sigil intent.</li></ol><p>A structural pass does not prove semantic quality.</p></section>
+        <section id="overwrite"><h2>Yammerknit refuses to overwrite a record</h2><p>Keep the existing source and base artifact. Store the changed artifact as a revision, or create a distinct record when the source itself changed. The refusal is a custody safeguard.</p></section>
+        <section id="paths"><h2>A moved workspace contains stale absolute paths</h2><p>Preserve the files. Regenerate the manifests with the current helper rather than editing source or artifact bytes. Version 0.1.0 produces relative internal links.</p></section>
+        <nav class="next" aria-label="Support"><strong>Still blocked?</strong> Ask in the <a href="https://discord.gg/stunspot">Stunspot Prompting community</a> and include the version, host, exact error, and failure stage. Remove private source content first.</nav>
+      </article>
+    </div>
+  </main>
+  <footer class="site-footer"><div class="shell footer-inner"><p>Yammerknit 0.1.0 · Built by <a href="https://stunspot.com/">Stunspot</a></p><p><a href="https://github.com/Stunspot/yammerknit">Repository</a> · <a href="https://github.com/Stunspot/yammerknit/blob/main/SUPPORT.md">Support policy</a></p></div></footer>
+</body>
+</html>

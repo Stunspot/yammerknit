@@ -1,0 +1,102 @@
+{
+  "project_id": "YAMMERKNIT-DOCS-001",
+  "title": "Yammerknit public documentation and customer journey",
+  "product_version": "0.1.0",
+  "status": "accessibility-reviewed",
+  "audiences": [
+    "Prompt engineers installing a distributed agent skill",
+    "Codex users installing a personal plugin",
+    "Claude users uploading or installing a skill",
+    "Operators preserving sources for later vector-RAG ingestion"
+  ],
+  "top_tasks": [
+    "Understand what Yammerknit does and does not provide",
+    "Download the one complete customer kit",
+    "Install the correct host component",
+    "Create and preserve a Yammerknit",
+    "Recover from installation, transcript, validation, or workspace problems",
+    "Inspect validation evidence and current limits"
+  ],
+  "sources": [
+    {
+      "path": "skills/yammerknit/references/canonical-sop.md",
+      "status": "source-verified",
+      "use": "Artifact method and semantic structure"
+    },
+    {
+      "path": "skills/yammerknit/personas/canonical-rupert-giles-document-guardian.txt",
+      "status": "source-verified",
+      "use": "Knowledge custody and governing identity"
+    },
+    {
+      "path": "customer-docs/",
+      "status": "source-verified",
+      "use": "Existing supported installation, use, privacy, recovery, and validation claims"
+    },
+    {
+      "path": "verification/verification-manifest.json",
+      "status": "source-verified",
+      "use": "Release evidence and known limits"
+    }
+  ],
+  "topics": [
+    {
+      "path": "docs/index.html",
+      "contract": "orientation and shortest path to first value",
+      "status": "accessibility-reviewed"
+    },
+    {
+      "path": "docs/get-started.html",
+      "contract": "host-specific installation how-to",
+      "status": "accessibility-reviewed"
+    },
+    {
+      "path": "docs/use.html",
+      "contract": "normal use and optional transcript acquisition",
+      "status": "accessibility-reviewed"
+    },
+    {
+      "path": "docs/data.html",
+      "contract": "data handling, privacy, and workspace reference",
+      "status": "accessibility-reviewed"
+    },
+    {
+      "path": "docs/troubleshooting.html",
+      "contract": "symptom-led recovery",
+      "status": "accessibility-reviewed"
+    },
+    {
+      "path": "docs/validation.html",
+      "contract": "evidence boundary and current limits",
+      "status": "accessibility-reviewed"
+    }
+  ],
+  "accessibility_reviews": [
+    {
+      "path": "verification/documentation-review.md",
+      "standard": "WCAG 2.2 AA authoring practices, bounded static and browser review",
+      "status": "accessibility-reviewed"
+    }
+  ],
+  "verification": [
+    {
+      "command": "python -X utf8 -m unittest verification/test_site.py -v",
+      "result": "5 passed"
+    },
+    {
+      "command": "python -X utf8 -m unittest verification/test_release.py -v",
+      "result": "5 passed"
+    },
+    {
+      "command": "node verification/browser_review.cjs http://127.0.0.1:8899/",
+      "result": "desktop and 390px mobile render, keyboard, images, overflow, and routes passed"
+    },
+    {
+      "command": "hesperos lint_accessible_markdown.py over maintained customer Markdown",
+      "result": "passed"
+    }
+  ],
+  "owner": "Stunspot / Collaborative Dynamics",
+  "next_move": "Publish to GitHub Pages and independently read back the live HTML, assets, and Open Graph metadata."
+}
+

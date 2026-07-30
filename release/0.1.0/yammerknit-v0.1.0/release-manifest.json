@@ -10,7 +10,7 @@
     "codex_plugin": {
       "path": "codex-plugin/yammerknit",
       "file_count": 17,
-      "tree_sha256": "256f0e15013f6a5426895d7d3a53940ca428939acdb7e6ae92160a88efc346da"
+      "tree_sha256": "b5b8df45f3f0411f4d0e01e271258fd191a4ed0b24547b47f4ffc6434cd6ccab"
     },
     "claude_skill": {
       "path": "claude/yammerknit-v0.1.0.zip",
@@ -71,8 +71,8 @@
     },
     {
       "path": "codex-plugin/yammerknit/README.md",
-      "bytes": 2322,
-      "sha256": "438cd456aed0f7a846f126f9f97c61b43b174d21dd3f45482488339c083816dd"
+      "bytes": 2674,
+      "sha256": "4b0abaf7e0b3da203acb7588565d8f35271cbe9ff33dee546817678b160f744e"
     },
     {
       "path": "codex-plugin/yammerknit/skills/yammerknit/agents/openai.yaml",
@@ -171,13 +171,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 2322,
-      "sha256": "438cd456aed0f7a846f126f9f97c61b43b174d21dd3f45482488339c083816dd"
+      "bytes": 2674,
+      "sha256": "4b0abaf7e0b3da203acb7588565d8f35271cbe9ff33dee546817678b160f744e"
     },
     {
       "path": "SHA256SUMS.txt",
       "bytes": 186,
-      "sha256": "dce88bcb10d12141af4efb5eae04fc7569172a095b4f01a4524dc54df05a7bd5"
+      "sha256": "a938fee32a46a92769b26cd8f84e3d525ced74463b867106d608bf46cc38d6ae"
     },
     {
       "path": "START-HERE.md",

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yammerknit data and privacy</title>
+  <meta name="description" content="How Yammerknit preserves sources, artifacts, revisions, hashes, and privacy boundaries.">
+  <link rel="canonical" href="https://stunspot.github.io/yammerknit/data.html">
+  <meta property="og:type" content="article"><meta property="og:title" content="Yammerknit data and privacy"><meta property="og:description" content="Source custody, workspace structure, network behavior, and privacy boundaries."><meta property="og:url" content="https://stunspot.github.io/yammerknit/data.html"><meta property="og:image" content="https://stunspot.github.io/yammerknit/assets/yammerknit-sharecard.png"><meta property="og:image:alt" content="Yammerknit, a Stunspot Augment."><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#041326">
+  <link rel="icon" href="assets/stunspot-icon.png"><link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header"><nav class="nav-shell" aria-label="Primary navigation"><a class="brand" href="./"><img src="assets/stunspot-icon.png" alt="">Yammerknit</a><ul class="nav-links"><li><a href="get-started.html">Get started</a></li><li><a href="use.html">Use it</a></li><li><a href="data.html" aria-current="page">Your data</a></li><li><a href="troubleshooting.html">Troubleshoot</a></li><li class="download-nav"><a class="button" href="https://github.com/Stunspot/yammerknit/raw/refs/heads/main/release/0.1.0/Yammerknit-v0.1.0.zip">Download 0.1.0</a></li></ul></nav></header>
+  <main id="main" class="shell">
+    <header class="doc-hero"><p class="eyebrow">Source custody</p><h1>Your data stays legible</h1><p class="lede">Original evidence, normalized text, generated artifacts, and revisions remain distinct.</p></header>
+    <div class="doc-layout">
+      <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#layout">Workspace layout</a></li><li><a href="#defaults">Defaults</a></li><li><a href="#network">Network behavior</a></li><li><a href="#control">Your control</a></li></ul></nav>
+      <article class="prose">
+        <section id="layout"><h2>Workspace layout</h2><pre><code>&lt;workspace&gt;/
+  sources/&lt;record-id&gt;/
+    source.original.&lt;extension&gt;
+    source.txt
+    source-manifest.json
+  artifacts/&lt;record-id&gt;/
+    yammerknit.md
+    artifact-manifest.json
+    validation.json
+  revisions/&lt;record-id&gt;/&lt;revision-id&gt;/
+    yammerknit.md
+    revision-manifest.json
+    validation.json</code></pre><p>Manifests record relative filenames and hashes, so the complete workspace can move without breaking its internal references.</p></section>
+        <section id="defaults"><h2>Default data-handling habits</h2><ul><li>Existing records are not overwritten.</li><li>Original bytes remain distinct from normalized UTF-8 text.</li><li>Revisions identify their parent artifact.</li><li><code>inspect-record</code> determines the current artifact from immutable manifests.</li><li>Unknown metadata remains <code>N/A</code> or <code>null</code>.</li><li>Credentials, browser cookies, tokens, and unrelated page data are not collected.</li></ul></section>
+        <section id="network"><h2>Network behavior</h2><p>Core Yammerknit creation uses only the source supplied to the agent. The optional YouTube helper invokes the separately installed <code>yt-dlp</code> program and contacts YouTube for accessible subtitle data.</p><p>Yammerknit includes no telemetry service, cloud storage, embedding service, or vector database. The subtitle helper disables browser-cookie loading, playlist traversal, audiovisual download, and local <code>yt-dlp</code> configuration.</p></section>
+        <section id="control"><h2>You choose the destination</h2><p>You choose the workspace and any later transfer, embedding, backup, or publication destination. Installing Yammerknit does not upload existing records.</p><div class="callout"><strong>Before sharing support evidence:</strong> remove private source content, credentials, and unrelated personal data from logs and receipts.</div></section>
+        <nav class="next" aria-label="Next step"><strong>Need help?</strong> <a href="troubleshooting.html">Follow symptom-based recovery steps</a>.</nav>
+      </article>
+    </div>
+  </main>
+  <footer class="site-footer"><div class="shell footer-inner"><p>Yammerknit 0.1.0 · Built by <a href="https://stunspot.com/">Stunspot</a></p><p><a href="https://github.com/Stunspot/yammerknit/blob/main/PRIVACY.md">Privacy policy</a> · <a href="https://github.com/Stunspot/yammerknit/blob/main/SUPPORT.md">Support</a></p></div></footer>
+</body>
+</html>
+

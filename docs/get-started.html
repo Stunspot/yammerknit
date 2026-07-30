@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Install Yammerknit</title>
+  <meta name="description" content="Install Yammerknit for Codex, Claude, or another capable agent.">
+  <link rel="canonical" href="https://stunspot.github.io/yammerknit/get-started.html">
+  <meta property="og:type" content="article"><meta property="og:title" content="Install Yammerknit"><meta property="og:description" content="The shortest supported path from download to first Yammerknit."><meta property="og:url" content="https://stunspot.github.io/yammerknit/get-started.html"><meta property="og:image" content="https://stunspot.github.io/yammerknit/assets/yammerknit-sharecard.png"><meta property="og:image:alt" content="Yammerknit, a Stunspot Augment."><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#041326">
+  <link rel="icon" href="assets/stunspot-icon.png"><link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header"><nav class="nav-shell" aria-label="Primary navigation"><a class="brand" href="./"><img src="assets/stunspot-icon.png" alt="">Yammerknit</a><ul class="nav-links"><li><a href="get-started.html" aria-current="page">Get started</a></li><li><a href="use.html">Use it</a></li><li><a href="data.html">Your data</a></li><li><a href="troubleshooting.html">Troubleshoot</a></li><li class="download-nav"><a class="button" href="https://github.com/Stunspot/yammerknit/raw/refs/heads/main/release/0.1.0/Yammerknit-v0.1.0.zip">Download 0.1.0</a></li></ul></nav></header>
+  <main id="main" class="shell">
+    <header class="doc-hero"><p class="eyebrow">Get started</p><h1>Install Yammerknit</h1><p class="lede">Download one customer kit, then choose the package for your host.</p></header>
+    <div class="doc-layout">
+      <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#before">Before you begin</a></li><li><a href="#codex">Codex</a></li><li><a href="#claude">Claude</a></li><li><a href="#other">Other agents</a></li><li><a href="#first">First request</a></li><li><a href="#update">Update or remove</a></li></ul></nav>
+      <article class="prose">
+        <section id="before"><h2>Before you begin</h2><p>Download <a href="https://github.com/Stunspot/yammerknit/raw/refs/heads/main/release/0.1.0/Yammerknit-v0.1.0.zip">Yammerknit 0.1.0</a> and extract it. The resulting folder is <code>yammerknit-v0.1.0</code>. It contains both host distributions.</p></section>
+        <section id="codex"><h2>Install the Codex plugin</h2><p>You need Codex with plugin support and permission to add a local personal marketplace plugin.</p><ol><li>Copy <code>codex-plugin/yammerknit</code> to <code>%USERPROFILE%\plugins\yammerknit</code>.</li><li>Open <code>%USERPROFILE%\.agents\plugins\marketplace.json</code>.</li><li>Add Yammerknit to the existing <code>plugins</code> array without replacing unrelated entries.</li><li>Run <code>codex plugin add yammerknit@personal</code>.</li><li>Run <code>codex plugin list</code>.</li></ol><p>Installation is complete when Yammerknit reports <code>installed, enabled</code>. Start a new Codex task so its skill catalog refreshes.</p><div class="callout"><strong>Marketplace names can differ.</strong> If yours is not called <code>personal</code>, use its name after <code>@</code>.</div></section>
+        <section id="claude"><h2>Install the Claude skill</h2><p>Use <code>claude/yammerknit-v0.1.0.zip</code> from the customer kit.</p><h3>Claude Code</h3><p>Extract the ZIP’s single <code>yammerknit</code> folder into <code>~/.claude/skills/yammerknit/</code>. On Windows, use <code>%USERPROFILE%\.claude\skills\yammerknit\</code>. The installed folder must contain <code>SKILL.md</code> directly.</p><h3>Claude chat</h3><ol><li>Enable <strong>Code execution and file creation</strong>.</li><li>Open <strong>Customize → Skills</strong>.</li><li>Choose <strong>Create skill → Upload a skill</strong>.</li><li>Upload <code>yammerknit-v0.1.0.zip</code> without extracting it.</li><li>Enable Yammerknit in the skills list.</li></ol><p>Start a new conversation if the host does not refresh its skill catalog.</p></section>
+        <section id="other"><h2>Use another capable agent</h2><p>Give the host the complete <code>yammerknit</code> skill folder from either distribution. Keep <code>SKILL.md</code> and every sibling subfolder together. Persistence requires a host that can run Python.</p></section>
+        <section id="first"><h2>Make your first Yammerknit</h2><pre><code>Turn this transcript into a Yammerknit.
+Return the complete codefenced artifact.</code></pre><p>To save source and revision records, add:</p><pre><code>Preserve the source and organize the result in &lt;workspace&gt;.</code></pre><p>The job is done when the agent returns the complete artifact—or saves the source, manifests, artifact, and validation record in the workspace you named.</p></section>
+        <section id="update"><h2>Update or remove Yammerknit</h2><p>To update, preserve your workspaces and replace only the installed plugin or skill folder. Start a new task afterward.</p><p>To disable the Codex plugin, run <code>codex plugin remove yammerknit@personal</code>. Removing the package does not remove workspaces stored elsewhere.</p></section>
+        <nav class="next" aria-label="Next step"><strong>Next:</strong> <a href="use.html">Create, inspect, and repair Yammerknits</a>.</nav>
+      </article>
+    </div>
+  </main>
+  <footer class="site-footer"><div class="shell footer-inner"><p>Yammerknit 0.1.0 · Built by <a href="https://stunspot.com/">Stunspot</a></p><p><a href="https://github.com/Stunspot/yammerknit">Repository</a> · <a href="https://github.com/Stunspot/yammerknit/blob/main/SUPPORT.md">Support</a></p></div></footer>
+</body>
+</html>
+

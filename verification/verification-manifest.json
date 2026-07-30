@@ -5,9 +5,9 @@
     "version": "0.1.0",
     "visibility": "public",
     "customer_object": "release/0.1.0/Yammerknit-v0.1.0.zip",
-    "customer_zip_sha256": "e5d3b4a50e7707f10d63f5cd80944fb0c118df7fa4f9e455e172cb0addeed3ea",
+    "customer_zip_sha256": "bbbd081d6537af331a0483c40df048ac6220053a9a02a695d8449b9324d0b8ed",
     "customer_tree_file_count": 36,
-    "customer_tree_sha256": "a1678b0b344eff08c294cee0274f705274fa24c838723758c80f0aaebd536c71"
+    "customer_tree_sha256": "bdc4806331c9b4f0e3e78f5a8f0c4e140a88ce90c4443a38e6056185609dc311"
   },
   "contract": {
     "one_augment": true,
@@ -40,6 +40,21 @@
       "result": "5 passed"
     },
     {
+      "id": "documentation-site",
+      "result": "passed locally; live deployment pending",
+      "evidence": {
+        "site_tests": "5 passed",
+        "browser": "Playwright with system Microsoft Edge",
+        "viewports": [
+          "1440x1000",
+          "390x844"
+        ],
+        "horizontal_overflow": 0,
+        "sharecard": "1280x640 PNG under 1 MB",
+        "hesperos_review": "REVIEW_PASS_WITH_CONDITIONS"
+      }
+    },
+    {
       "id": "plugin-readiness",
       "result": "passed",
       "evidence": {
@@ -55,7 +70,7 @@
       "result": "passed",
       "evidence": {
         "file_count": 36,
-        "tree_sha256": "a1678b0b344eff08c294cee0274f705274fa24c838723758c80f0aaebd536c71"
+        "tree_sha256": "bdc4806331c9b4f0e3e78f5a8f0c4e140a88ce90c4443a38e6056185609dc311"
       }
     },
     {
@@ -64,8 +79,8 @@
       "evidence": {
         "outer_files": 36,
         "nested_claude_files": 7,
-        "canonical_sha256": "e5d3b4a50e7707f10d63f5cd80944fb0c118df7fa4f9e455e172cb0addeed3ea",
-        "latest_backup_sha256": "e5d3b4a50e7707f10d63f5cd80944fb0c118df7fa4f9e455e172cb0addeed3ea"
+        "canonical_sha256": "bbbd081d6537af331a0483c40df048ac6220053a9a02a695d8449b9324d0b8ed",
+        "latest_backup_sha256": "bbbd081d6537af331a0483c40df048ac6220053a9a02a695d8449b9324d0b8ed"
       }
     }
   ],
