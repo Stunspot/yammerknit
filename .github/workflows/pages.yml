@@ -1,5 +1,6 @@
 name: Deploy documentation to GitHub Pages
 
+# A workflow-file push also initializes the first deployment after Pages is enabled.
 on:
   push:
     branches:
