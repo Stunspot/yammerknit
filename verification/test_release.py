@@ -18,7 +18,7 @@ SPEC.loader.exec_module(builder)
 
 EXPECTED = {
     "canonical-sop.md": "3b35a55f35aedc848ea83425b5feacd6994059fd497103cae135ae826d5504dd",
-    "canonical-rupert-giles-document-guardian.txt": "5406776d4daa44e58d9368ee3bd8c74f51ac5d41bf46364c33fcfec4a79d53dd",
+    "canonical-rupert-giles-document-guardian.txt": "ed6eeb11f4602954506b26089d23c5da466f28d32a4ea2d2f3fdb69033033b41",
     "icon.png": "fdedf2607c31ceb380c77bf0fd54bd964358216e08991a71ed61d161ef875351",
     "Stunspot Icon.ico": "77b2ea3c2f18676867ac48bd048bed3bbb9ddad13c92c000493b1e1c37c598e1",
 }
