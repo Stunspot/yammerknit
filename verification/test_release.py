@@ -92,6 +92,7 @@ class PackageTests(unittest.TestCase):
                 "START-HERE.md",
                 "README.md",
                 "CHANGELOG.md",
+                "CONTRIBUTING.md",
                 "HOST-MATRIX.md",
                 "LICENSE.md",
                 "PRIVACY.md",
@@ -101,8 +102,10 @@ class PackageTests(unittest.TestCase):
                 "SHA256SUMS.txt",
                 "release-manifest.json",
                 "codex-plugin/yammerknit/.codex-plugin/plugin.json",
+                "codex-plugin/yammerknit/assets/yammerknit-readme-hero.png",
                 "codex-plugin/yammerknit/skills/yammerknit/SKILL.md",
                 f"claude/{builder.CLAUDE_ZIP}",
+                "assets/yammerknit-readme-hero.png",
                 "docs/INSTALLATION.md",
                 "docs/USE-YAMMERKNIT.md",
                 "docs/DATA-AND-PRIVACY.md",
@@ -193,6 +196,23 @@ class PackageTests(unittest.TestCase):
                         failures.append(f"{page.relative_to(root)} -> {target}")
             self.assertEqual(failures, [])
 
+    def test_frozen_extracted_tree_matches_customer_archive(self) -> None:
+        release_dir = REPO / "release" / builder.VERSION
+        customer_zip = release_dir / builder.CUSTOMER_ZIP
+        extracted = release_dir / builder.PRODUCT_ROOT
+        with zipfile.ZipFile(customer_zip) as archive:
+            names = [name for name in archive.namelist() if not name.endswith("/")]
+            prefix = builder.PRODUCT_ROOT + "/"
+            self.assertTrue(all(name.startswith(prefix) for name in names))
+            observed = {
+                path.relative_to(extracted).as_posix(): path
+                for path in extracted.rglob("*")
+                if path.is_file()
+            }
+            self.assertEqual({name[len(prefix):] for name in names}, set(observed))
+            for name in names:
+                relative = name[len(prefix):]
+                self.assertEqual(archive.read(name), observed[relative].read_bytes(), relative)
     def test_release_builder_refuses_overwrite(self) -> None:
         with tempfile.TemporaryDirectory() as temp:
             output = Path(temp) / "release"

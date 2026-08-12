@@ -2,7 +2,7 @@
 
 ## What was checked
 
-- Canonical SOP, Rupert Giles persona, PNG, and ICO custody by SHA-256.
+- Canonical SOP, Rupert Giles persona, PNG, and ICO custody by SHA-256. Current LF source and frozen v0.1.0 physical bytes are identified separately where line endings differ.
 - Source, artifact, and revision separation.
 - Physical-byte hash parity for stored artifacts.
 - Relative manifest links and explicit revision parents.

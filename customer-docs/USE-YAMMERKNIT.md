@@ -58,6 +58,20 @@ Acquire the subtitles from <YouTube URL>, preserve them in <workspace>, and crea
 
 The helper requests subtitles without downloading audiovisual media, opening browser cookies, or traversing playlists. If `yt-dlp` or accessible subtitles are unavailable, provide transcript text directly.
 
+## Configure and verify deterministic helpers
+
+Run helper commands from the complete `yammerknit` skill folder. For direct subtitle acquisition:
+
+```text
+python scripts/yammerknit_tool.py acquire-youtube --url <URL> --workspace <PATH> --languages "en" [--rights-basis "<USER-SUPPLIED NOTE>"] [--yt-dlp <PATH-OR-COMMAND>]
+```
+
+`--languages` defaults to `en`. `--rights-basis` records a note the user supplied; it is not a fabricated legal clearance. `--yt-dlp` selects a separately installed executable when it is not on `PATH`.
+
+Successful acquisition returns JSON with `status: created`, the `record_id`, source directory, manifest path, physical source SHA-256, and selected subtitle file. Validation returns `valid: true` only when every required structural check passes; it does not judge semantic excellence.
+
+Use `init-record` for an existing UTF-8 source file, `validate` for a completed artifact, `store-artifact` for the first governed artifact, `revise-artifact` for a non-destructive successor, and `inspect-record` to identify the current artifact. Run `python scripts/yammerknit_tool.py <COMMAND> --help` for exact arguments.
+
 ## Prepare for vector RAG
 
 Yammerknits are designed to preserve semantically useful shards, relationships, sigils, and provenance before embedding. A Yammerknit becomes part of an operating vector-RAG system only after a separate embedding and vector-storage pipeline ingests it.

@@ -4,7 +4,7 @@ Yammerknit turns a transcript or document into a reusable semantic mesh for embe
 
 This is the public, source-available repository for Yammerknit. [Read the complete documentation](https://stunspot.github.io/yammerknit/) or download the ready-to-use product as one file: [Yammerknit-v0.1.0.zip](https://github.com/Stunspot/yammerknit/raw/refs/heads/main/release/0.1.0/Yammerknit-v0.1.0.zip).
 
-[![Yammerknit: turn source material into a retrieval-ready semantic mesh](https://stunspot.github.io/yammerknit/assets/yammerknit-sharecard.png)](https://stunspot.github.io/yammerknit/)
+[![Yammerknit turns source material into a governed semantic mesh](assets/yammerknit-readme-hero.png)](https://stunspot.github.io/yammerknit/)
 
 ## What the customer kit contains
 
@@ -37,10 +37,17 @@ Yammerknit does not include a vector store, embedding model, or retrieval servic
 
 ## Build and verify
 
+Choose an empty output directory; the builder deliberately refuses to overwrite an existing release object.
+
 ```text
-python -X utf8 verification/build_release.py
+python -X utf8 verification/build_release.py --output-dir <EMPTY-DIRECTORY>
 python -X utf8 -m unittest discover -s skills/yammerknit/tests -v
 python -X utf8 -m unittest verification/test_release.py -v
+python -X utf8 -m unittest verification/test_site.py -v
 ```
 
 The repository and release are public. Marketplace submission and public announcements are separate launch actions and are not implied by repository publication.
+
+## Support and contribution
+
+Use [GitHub Issues](https://github.com/Stunspot/yammerknit/issues) for reproducible defects and documentation problems, or the [Stunspot Prompting Discord](https://discord.gg/stunspot) for usage help. Read [CONTRIBUTING.md](CONTRIBUTING.md) before proposing a change; the canonical SOP, Rupert Giles persona, and frozen release archives have stricter custody than ordinary derived files.

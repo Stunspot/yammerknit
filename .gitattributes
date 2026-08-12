@@ -20,3 +20,6 @@
 # Binary containers and media.
 *.webp binary
 *.mp4 binary
+
+# Frozen release byte-custody exception.
+release/0.1.0/yammerknit-v0.1.0/codex-plugin/yammerknit/skills/yammerknit/personas/canonical-rupert-giles-document-guardian.txt binary
