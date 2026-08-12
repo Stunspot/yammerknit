@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import re
 import struct
 import unittest
@@ -28,6 +29,7 @@ class PageParser(HTMLParser):
         self.titles = 0
         self.h1s = 0
         self.main_ids: set[str] = set()
+        self.ids: set[str] = set()
         self.links: list[str] = []
         self.images: list[dict[str, str]] = []
         self.metas: dict[tuple[str, str], str] = {}
@@ -36,6 +38,8 @@ class PageParser(HTMLParser):
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         values = {name: value or "" for name, value in attrs}
+        if values.get("id"):
+            self.ids.add(values["id"])
         if tag == "html":
             self.html_lang = values.get("lang")
         elif tag == "title":
@@ -73,6 +77,7 @@ class DocumentationSiteTests(unittest.TestCase):
             "assets/styles.css",
             "assets/stunspot-icon.png",
             "assets/semantic-mesh.webp",
+            "assets/yammerknit-pages-hero.png",
             "assets/yammerknit-sharecard.png",
             ".nojekyll",
         ):
@@ -112,6 +117,26 @@ class DocumentationSiteTests(unittest.TestCase):
                     failures.append(f"{page.name}: broken link {href}")
         self.assertEqual(failures, [])
 
+    def test_local_fragments_resolve(self) -> None:
+        pages: dict[Path, PageParser] = {}
+        for page in DOCS.glob("*.html"):
+            parser = PageParser()
+            parser.feed(page.read_text("utf-8"))
+            pages[page.resolve()] = parser
+        failures: list[str] = []
+        for page, parser in pages.items():
+            for href in parser.links:
+                parsed = urlparse(href)
+                if parsed.scheme or parsed.netloc or href.startswith("mailto:"):
+                    continue
+                target = page if not parsed.path else (page.parent / parsed.path).resolve()
+                if target.is_dir():
+                    target = target / "index.html"
+                if parsed.fragment:
+                    target_parser = pages.get(target.resolve())
+                    if target_parser is None or parsed.fragment not in target_parser.ids:
+                        failures.append(f"{page.name}: missing fragment {href}")
+        self.assertEqual(failures, [])
     def test_public_pages_have_share_metadata(self) -> None:
         failures: list[str] = []
         for page in sorted(DOCS.glob("*.html")):
@@ -145,6 +170,20 @@ class DocumentationSiteTests(unittest.TestCase):
         self.assertEqual(png_dimensions(card), (1280, 640))
         self.assertLess(card.stat().st_size, 1_000_000)
 
+    def test_visual_roles_are_distinct_and_wired(self) -> None:
+        readme_hero = REPO / "assets/yammerknit-readme-hero.png"
+        pages_hero = DOCS / "assets/yammerknit-pages-hero.png"
+        social = DOCS / "assets/yammerknit-sharecard.png"
+        self.assertEqual(png_dimensions(readme_hero), (1600, 640))
+        self.assertEqual(png_dimensions(pages_hero), (1200, 800))
+        self.assertEqual(png_dimensions(social), (1280, 640))
+        digests = {hashlib.sha256(path.read_bytes()).hexdigest() for path in (readme_hero, pages_hero, social)}
+        self.assertEqual(len(digests), 3)
+        readme = (REPO / "README.md").read_text("utf-8")
+        index = (DOCS / "index.html").read_text("utf-8")
+        self.assertIn("assets/yammerknit-readme-hero.png", readme)
+        self.assertIn("assets/yammerknit-pages-hero.png", index)
+        self.assertIn(SITE_URL + "assets/yammerknit-sharecard.png", index)
     def test_css_preserves_focus_and_reduced_motion(self) -> None:
         css = (DOCS / "assets/styles.css").read_text("utf-8")
         self.assertRegex(css, r":focus-visible\s*\{")

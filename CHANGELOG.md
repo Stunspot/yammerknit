@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Completed the public customer journey with exact host configuration, discovery verification, helper options, update/removal/data cleanup, contribution, and recovery guidance.
+- Added distinct README and Pages heroes while retaining the text-bearing social card.
+- Restored the extracted v0.1.0 Codex persona mirror to byte parity with the unchanged canonical customer ZIP and added a frozen archive-to-tree regression.
+
 ## 0.1.0 — 2026-07-29
 
 - First public, source-available Yammerknit release.

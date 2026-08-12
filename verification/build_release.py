@@ -24,6 +24,7 @@ ROOT_DOCUMENTS = (
     "START-HERE.md",
     "README.md",
     "CHANGELOG.md",
+    "CONTRIBUTING.md",
     "HOST-MATRIX.md",
     "LICENSE.md",
     "PRIVACY.md",
@@ -34,6 +35,7 @@ ROOT_DOCUMENTS = (
 PLUGIN_DOCUMENTS = (
     "README.md",
     "CHANGELOG.md",
+    "CONTRIBUTING.md",
     "LICENSE.md",
     "PRIVACY.md",
     "SUPPORT.md",
@@ -99,7 +101,7 @@ def build_codex_plugin(repo: Path, destination: Path) -> None:
         repo / ".codex-plugin" / "plugin.json",
         destination / ".codex-plugin" / "plugin.json",
     )
-    for name in ("icon.png", "Stunspot Icon.ico"):
+    for name in ("icon.png", "Stunspot Icon.ico", "yammerknit-readme-hero.png"):
         copy_file(repo / "assets" / name, destination / "assets" / name)
     for name in PLUGIN_DOCUMENTS:
         copy_file(repo / name, destination / name)
@@ -176,7 +178,7 @@ def build_customer_tree(repo: Path, customer_root: Path) -> dict[str, object]:
             path,
             customer_root / "docs" / path.relative_to(repo / "customer-docs"),
         )
-    for name in ("icon.png", "Stunspot Icon.ico"):
+    for name in ("icon.png", "Stunspot Icon.ico", "yammerknit-readme-hero.png"):
         copy_file(repo / "assets" / name, customer_root / "assets" / name)
 
     build_codex_plugin(repo, customer_root / "codex-plugin" / "yammerknit")

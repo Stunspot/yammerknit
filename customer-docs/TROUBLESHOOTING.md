@@ -21,6 +21,10 @@ yammerknit/SKILL.md
 
 An extra directory level prevents discovery. Restart the host when the skills directory was created after the current session began.
 
+## Python or the helper script is not available
+
+Core inline artifact creation is model work and can continue without Python. Persistence, validation, revision, inspection, and subtitle acquisition require Python plus the complete skill folder. Run helper commands from that folder, or use its absolute `scripts/yammerknit_tool.py` path. Do not call a similarly named script from an old extracted kit.
+
 ## `yt-dlp is not available`
 
 Install it separately:

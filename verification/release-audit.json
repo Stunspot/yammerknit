@@ -1,7 +1,7 @@
 {
   "schema_version": "cd-augment-release-audit/v1",
   "root": "yammerknit-v0.1.0",
-  "observed_at": "2026-07-30T15:41:00.828238+00:00",
+  "observed_at": "2026-08-12T12:54:13.673332+00:00",
   "file_count": 36,
   "tree_sha256": "bdc4806331c9b4f0e3e78f5a8f0c4e140a88ce90c4443a38e6056185609dc311",
   "manifest": [
