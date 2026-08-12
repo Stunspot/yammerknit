@@ -1,0 +1,24 @@
+{
+    "schema":  "portfolio-remediation-verification/v1",
+    "repository":  "https://github.com/Stunspot/yammerknit",
+    "reviewed_commit":  "ad64ec3fba2313b7bd0d452cbf07afef08cecd38",
+    "governed_fingerprint":  "8eafd06326db83a40f5b22aa30623fd03c3292e7958812b22a53f0fe168bf9d5",
+    "readme_content":  "PASS_LOCAL_CANDIDATE",
+    "pages_content":  "PASS_LOCAL_CANDIDATE",
+    "rendered_pages":  "LIVE_VERIFICATION_FAIL_SUPERSEDED_REMOTE",
+    "readme_hero":  "PASS_LOCAL_CANDIDATE_NOT_LIVE",
+    "pages_hero":  "PASS_LOCAL_CANDIDATE_LIVE_404",
+    "social_card_file":  "PASS_LOCAL_AND_LIVE_PAGES_ASSET",
+    "repository_social_card_wiring":  "NOT_TESTED_UI_REQUIRED",
+    "hesperos":  "PASS",
+    "accessibility":  "PASS_STATIC_DEPLOYED_NOT_TESTED",
+    "adversarial":  "PASS_LOCAL_PUBLICATION_BLOCKED",
+    "final_status":  "BLOCKED",
+    "blockers":  [
+                     "GitHub-hosted Actions capacity is user-reported exhausted; publication would trigger two hosted jobs and is not authorized.",
+                     "Main requires line-ending-policy under active ruleset 20252785, with no observed bypass actor.",
+                     "The candidate is not live; its Pages hero returns 404 and the live content is superseded.",
+                     "GitHub repository social-preview configuration is null and supported upload requires the excluded Settings UI.",
+                     "Rendered candidate and live accessibility behavior are therefore NOT TESTED."
+                 ]
+}
