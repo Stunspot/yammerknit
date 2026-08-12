@@ -1,24 +1,23 @@
 {
-    "schema":  "portfolio-remediation-verification/v1",
-    "repository":  "https://github.com/Stunspot/yammerknit",
-    "reviewed_commit":  "ad64ec3fba2313b7bd0d452cbf07afef08cecd38",
-    "governed_fingerprint":  "8eafd06326db83a40f5b22aa30623fd03c3292e7958812b22a53f0fe168bf9d5",
-    "readme_content":  "PASS_LOCAL_CANDIDATE",
-    "pages_content":  "PASS_LOCAL_CANDIDATE",
-    "rendered_pages":  "LIVE_VERIFICATION_FAIL_SUPERSEDED_REMOTE",
-    "readme_hero":  "PASS_LOCAL_CANDIDATE_NOT_LIVE",
-    "pages_hero":  "PASS_LOCAL_CANDIDATE_LIVE_404",
-    "social_card_file":  "PASS_LOCAL_AND_LIVE_PAGES_ASSET",
-    "repository_social_card_wiring":  "NOT_TESTED_UI_REQUIRED",
-    "hesperos":  "PASS",
-    "accessibility":  "PASS_STATIC_DEPLOYED_NOT_TESTED",
-    "adversarial":  "PASS_LOCAL_PUBLICATION_BLOCKED",
-    "final_status":  "BLOCKED",
-    "blockers":  [
-                     "GitHub-hosted Actions capacity is user-reported exhausted; publication would trigger two hosted jobs and is not authorized.",
-                     "Main requires line-ending-policy under active ruleset 20252785, with no observed bypass actor.",
-                     "The candidate is not live; its Pages hero returns 404 and the live content is superseded.",
-                     "GitHub repository social-preview configuration is null and supported upload requires the excluded Settings UI.",
-                     "Rendered candidate and live accessibility behavior are therefore NOT TESTED."
-                 ]
+  "schema": "portfolio-remediation-verification/v1",
+  "repository": "https://github.com/Stunspot/yammerknit",
+  "reviewed_commit": "ad64ec3fba2313b7bd0d452cbf07afef08cecd38",
+  "governed_fingerprint": "8eafd06326db83a40f5b22aa30623fd03c3292e7958812b22a53f0fe168bf9d5",
+  "readme_content": "PASS_LOCAL_CANDIDATE",
+  "pages_content": "PASS_LOCAL_CANDIDATE",
+  "rendered_pages": "NOT_TESTED_GUI",
+  "readme_hero": "PASS_PIXEL_REVIEWED",
+  "pages_hero": "PASS_PIXEL_REVIEWED",
+  "social_card_file": "PASS_PIXEL_REVIEWED_EXACT_TEXT",
+  "pages_social_card_wiring": "PASS_LOCAL_CANDIDATE",
+  "repository_social_card_wiring": "LIVE_VERIFICATION_FAIL_HTTP_403",
+  "hesperos": "PASS",
+  "accessibility": "PASS_STATIC_GUI_AND_AT_NOT_TESTED",
+  "adversarial": "REVIEW_PASS_WITH_EXTERNAL_SOCIAL_BLOCKER",
+  "final_status": "REMEDIATED_NOT_YET_LIVE",
+  "blockers": [
+    "GitHub repository Open Graph URL returns S3 403 AccessDenied; supported replacement requires the excluded repository Settings UI.",
+    "Protected merge, Pages deployment, and exact live-source verification remain to be executed.",
+    "GUI browser rendering and assistive-technology behavior remain NOT TESTED."
+  ]
 }

@@ -31,6 +31,6 @@ Receipt: `YAMMERKNIT-HESPEROS-ad64ec3-8eafd063-20260812`
 - Provenance, validation, and evidence state: PASS
 - Support, contribution, licensing, and terms: PASS
 - Local Pages content, routes, links, and fragments: PASS
-- Deployed candidate Pages: NOT TESTED - candidate is intentionally unpublished
+- Deployed final Pages source: pending publication and exact HTTP verification; GUI-rendered experience remains NOT TESTED
 
 Any change to a governed file or the reviewed content commit invalidates this receipt.
