@@ -1,6 +1,6 @@
 ---
 name: yammerknit
-description: 🕸️ Yammerknit semantic mesh construction.
+description: "🕸️ Create vector-optimized intelligence extracts from source material."
 ---
 
 # Yammerknit

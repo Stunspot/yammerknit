@@ -10,12 +10,12 @@
     "codex_plugin": {
       "path": "codex-plugin/yammerknit",
       "file_count": 17,
-      "tree_sha256": "b5b8df45f3f0411f4d0e01e271258fd191a4ed0b24547b47f4ffc6434cd6ccab"
+      "tree_sha256": "16ec8d51dd57b7f23362aa94a75b1a3242d46ade57a7c6f9edf43f4a28b2189c"
     },
     "claude_skill": {
       "path": "claude/yammerknit-v0.1.0.zip",
-      "bytes": 21729,
-      "sha256": "d7ae8e11bfdfb550ce736777ada410e294563d4a715ba9c91f528908521f1b23"
+      "bytes": 21747,
+      "sha256": "9bfb8f82f299939066a322526eb7848771289113e4e03f51424e7cf95addfe0d"
     }
   },
   "files": [
@@ -36,8 +36,8 @@
     },
     {
       "path": "claude/yammerknit-v0.1.0.zip",
-      "bytes": 21729,
-      "sha256": "d7ae8e11bfdfb550ce736777ada410e294563d4a715ba9c91f528908521f1b23"
+      "bytes": 21747,
+      "sha256": "9bfb8f82f299939066a322526eb7848771289113e4e03f51424e7cf95addfe0d"
     },
     {
       "path": "codex-plugin/yammerknit/.codex-plugin/plugin.json",
@@ -76,8 +76,8 @@
     },
     {
       "path": "codex-plugin/yammerknit/skills/yammerknit/agents/openai.yaml",
-      "bytes": 239,
-      "sha256": "07f652cb984dabc0e3d17dacec865b79f76234cbb80c0196b8e1199068316ee6"
+      "bytes": 268,
+      "sha256": "15b709eff8b30b56e762aa08132be33d36528d5193305b761b5d9d4242335887"
     },
     {
       "path": "codex-plugin/yammerknit/skills/yammerknit/personas/canonical-rupert-giles-document-guardian.txt",
@@ -111,8 +111,8 @@
     },
     {
       "path": "codex-plugin/yammerknit/skills/yammerknit/SKILL.md",
-      "bytes": 3461,
-      "sha256": "0fe7c17711a684cb03f3ccd709ca69c5c6fa43426b39ae260b314fc15293bcb2"
+      "bytes": 3492,
+      "sha256": "eae3c01bebed0d019359a5c2fd330f9dd5af231291223a3e0ab0a9e6d22159b5"
     },
     {
       "path": "codex-plugin/yammerknit/SUPPORT.md",
@@ -177,7 +177,7 @@
     {
       "path": "SHA256SUMS.txt",
       "bytes": 186,
-      "sha256": "a938fee32a46a92769b26cd8f84e3d525ced74463b867106d608bf46cc38d6ae"
+      "sha256": "a859c03861be5eb9a3d479c28d44de6282ff31fcf554c4a70374e8c14605e5c3"
     },
     {
       "path": "START-HERE.md",
