@@ -1,4 +1,4 @@
 interface:
   display_name: "Yammerknit"
-  short_description: "🕸️ Yammerknit semantic mesh construction."
+  short_description: "🕸️ Create vector-optimized intelligence extracts from source material."
   default_prompt: "Use $yammerknit to turn this source into a complete Yammerknit, preserving its provenance and semantic mesh."
