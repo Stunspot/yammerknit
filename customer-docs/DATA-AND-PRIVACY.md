@@ -1,38 +1,9 @@
-# Data handling and privacy
+# Data, portability and custody
 
-Yammerknit keeps source evidence separate from generated knowledge artifacts.
+Your workspace separates original source bytes, normalized text, authored artifacts, revisions and receipts. Read [the full layout and recovery contract](../skills/yammerknit/references/data-handling.md). Preserve the complete workspace when moving or backing it up; the installation is replaceable and should not contain user records.
 
-## Workspace layout
+Inspection checks actual hashes, receipt agreement and ancestry before naming a current artifact. It does not authenticate the source, prove authorship or resist coordinated alteration of content and manifests. A separately trusted backup or digest is needed for that stronger check. Older records missing historical source bindings are labeled explicitly; updating the helper does not invent those bindings.
 
-```text
-<workspace>/
-  sources/<record-id>/
-    source.original.<extension>
-    source.txt
-    source-manifest.json
-  artifacts/<record-id>/
-    yammerknit.md
-    artifact-manifest.json
-    validation.json
-  revisions/<record-id>/<revision-id>/
-    yammerknit.md
-    revision-manifest.json
-    validation.json
-```
+The core helper has no telemetry, cloud account or vector-storage service. Your agent host may send supplied content to its model/provider under its own configuration. Optional subtitle acquisition runs separately installed yt-dlp and contacts YouTube; a local command is not an offline operation merely because records are stored locally. Private source content and user-supplied metadata can themselves contain sensitive information. Minimize them before sharing support logs, publishing or using a remote embedding service.
 
-The source manifest records relative filenames and hashes. Artifact and revision manifests use relative links so the complete workspace can move without losing its internal references.
-
-## Default behavior
-
-- Existing records are not overwritten.
-- Original bytes remain distinct from normalized UTF-8 text.
-- Revisions identify their parent artifact.
-- `inspect-record` determines the current artifact from immutable manifests.
-- Unknown metadata remains `N/A` or `null`.
-- Credentials, browser cookies, tokens, and unrelated page data are not collected.
-
-## Network behavior
-
-Core Yammerknit creation uses only the source supplied to the agent. The optional YouTube helper invokes the separately installed `yt-dlp` program and contacts YouTube for accessible subtitle data. Yammerknit includes no telemetry service and no vector-storage service.
-
-The user chooses the workspace and any later transfer, embedding, backup, or publication destination. Package installation does not upload existing Yammerknit records.
+The helper rejects linked/reparse paths and preserves existing records on collision. It is intended for a user-controlled local workspace, not a hostile shared filesystem. Staging and record locks support recoverable writes. An interrupted lock needs a check for a still-running writer before removal. See [troubleshooting](TROUBLESHOOTING.md).

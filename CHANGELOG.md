@@ -1,6 +1,10 @@
 # Changelog
 
-## Unreleased
+## 0.1.0 restoration — 2026-10-07
+
+Restores source-grounded extraction and inspectable custody: complete worked source/artifact, useful return inventory, checked bytes and ancestry, staged writes, safe paths, speaker/range-preserving captions and exact acquisition identity. Repairs structure checks, customer recovery, atomic packaging, explicit audit CLI and reproducible customer source closure. Preserved SOP, persona, artwork and historical release remain unchanged. No new embedding service or retrieval-performance claim.
+
+## Prior maintenance
 
 - Completed the public customer journey with exact host configuration, discovery verification, helper options, update/removal/data cleanup, contribution, and recovery guidance.
 - Added distinct README and Pages heroes while retaining the text-bearing social card.

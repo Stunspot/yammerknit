@@ -2,3 +2,8 @@ __pycache__/
 *.py[cod]
 .staging/
 development/
+
+# Isolated estate qualification trees; archived ZIP evidence is retained separately.
+verification/estate-quality-20261007/checkout-r1/
+verification/estate-quality-20261007/native-r1/
+release-candidates/*/yammerknit-v0.1.0/

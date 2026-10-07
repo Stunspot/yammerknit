@@ -1,77 +1,37 @@
-# Use Yammerknit
+# Create a useful Yammerknit and return to it
 
-Talk to the agent normally. Yammerknit recognizes creation, inspection, repair, explanation, and source-organization work.
+A Yammerknit is an authored map of a source's claims and relationships. It helps you reuse meaning while keeping the evidence close. Its structured form does not establish that a claim is true or that a model will retrieve it better.
 
-## Create a Yammerknit
+## First task
 
-Supply a transcript or document:
+Start with [the complete cooling-pilot example](../skills/yammerknit/examples/README.md). It includes the actual fictional source, full artifact, a reusable chunk and exact native commands. Compare the source's “observed reduction with confounders” with the tempting but unsupported “the checklist caused a 20% reduction.” The distinction is the point of the exercise.
 
-```text
-Turn this transcript into a Yammerknit. Return the complete codefenced artifact.
-```
+For your own source, supply the document or transcript and ask: “Create a Yammerknit for later use in answering [my question]. Preserve qualifiers, exceptions and source locators, and label inferences and proposed transfers.” You can leave the question broad; the agent should inspect the available material before asking for more. A link it cannot read needs actual content before extraction.
 
-Yammerknit should preserve supplied metadata, mark missing metadata `N/A`, follow semantic gravity rather than transcript order, and include the full cluster mesh, relational bridges, prompt seeds, and sigil lexicon.
+Expect metadata, executive insight terrain, clusters, relationships, prompt seeds and a defined sigil lexicon. Read the ordinary-language claim in each cluster. Its limitation must travel with it when copied alone. Unknown facts stay unknown; a short source does not need invented complexity to fill a format.
 
-## Save an organized record
+## Save and revise
 
-Name a workspace when you want durable files:
+Ask the agent to preserve the source and organize the artifact in a named workspace outside the installation. Python 3.10+ supports the deterministic helpers; the agent performs semantic extraction. From the complete skill folder:
 
 ```text
-Turn this transcript into a Yammerknit. Preserve the source and organize the result in <workspace>\Yammerknits.
+python scripts/yammerknit_tool.py init-record --source "SOURCE.txt" --workspace "WORKSPACE" --title "Source title"
+python scripts/yammerknit_tool.py validate --artifact "DRAFT.md"
+python scripts/yammerknit_tool.py store-artifact --artifact "DRAFT.md" --workspace "WORKSPACE" --record-id "RETURNED-ID"
 ```
 
-The workspace keeps original source bytes, normalized text, the base artifact, later revisions, manifests, and validation receipts distinct.
+The first command preserves source bytes and returns the record ID. The second reports structural consistency; review the source claims separately. The third saves a complete base record. To correct the artifact, work in a new draft and use `revise-artifact` with the same arguments; the base remains intact and the new manifest identifies its parent. A changed source requires a distinct source record.
 
-Use the helper directly when needed:
+## Browse and return without knowing a query
 
 ```text
-python scripts/yammerknit_tool.py inspect-record --workspace <PATH> --record-id "<ID>"
+python scripts/yammerknit_tool.py inspect-record --workspace "WORKSPACE"
 ```
 
-The result identifies the base artifact, revision count, and current artifact without changing the record.
+Browse titles, channels, IDs, health and current artifact paths. A damaged record is shown as an error without hiding its healthy neighbors. Select an ID and add `--record-id "ID"` to inspect its chain before reopening the current artifact. This is a local record inventory, not a semantic search engine. Read cluster titles and follow source locators to explore within an artifact; sigils are memory aids, not secret navigation keys.
 
-## Inspect or repair an artifact
+`current: null` means only a source exists. `verified-present-bytes` means the stored bytes and manifests agree. No helper status establishes semantic truth, signed authenticity, authorship or successful embedding. Copy the entire workspace to move it; inspection at the new path verifies its relative custody links. See [recovery](TROUBLESHOOTING.md) for a mismatch or ambiguous revision chain.
 
-```text
-Inspect this Yammerknit against the canonical SOP. Explain every material defect.
-```
+## Optional subtitles and later retrieval
 
-```text
-Repair only the failed structure, preserve sound content and sigil order, and save a new revision.
-```
-
-A repair creates a revision. It does not overwrite the original artifact.
-
-## Acquire a YouTube transcript
-
-The optional helper requires `yt-dlp`:
-
-```text
-python -m pip install -U yt-dlp
-```
-
-Then ask:
-
-```text
-Acquire the subtitles from <YouTube URL>, preserve them in <workspace>, and create a Yammerknit.
-```
-
-The helper requests subtitles without downloading audiovisual media, opening browser cookies, or traversing playlists. If `yt-dlp` or accessible subtitles are unavailable, provide transcript text directly.
-
-## Configure and verify deterministic helpers
-
-Run helper commands from the complete `yammerknit` skill folder. For direct subtitle acquisition:
-
-```text
-python scripts/yammerknit_tool.py acquire-youtube --url <URL> --workspace <PATH> --languages "en" [--rights-basis "<USER-SUPPLIED NOTE>"] [--yt-dlp <PATH-OR-COMMAND>]
-```
-
-`--languages` defaults to `en`. `--rights-basis` records a note the user supplied; it is not a fabricated legal clearance. `--yt-dlp` selects a separately installed executable when it is not on `PATH`.
-
-Successful acquisition returns JSON with `status: created`, the `record_id`, source directory, manifest path, physical source SHA-256, and selected subtitle file. Validation returns `valid: true` only when every required structural check passes; it does not judge semantic excellence.
-
-Use `init-record` for an existing UTF-8 source file, `validate` for a completed artifact, `store-artifact` for the first governed artifact, `revise-artifact` for a non-destructive successor, and `inspect-record` to identify the current artifact. Run `python scripts/yammerknit_tool.py <COMMAND> --help` for exact arguments.
-
-## Prepare for vector RAG
-
-Yammerknits are designed to preserve semantically useful shards, relationships, sigils, and provenance before embedding. A Yammerknit becomes part of an operating vector-RAG system only after a separate embedding and vector-storage pipeline ingests it.
+Read [the subtitle guide](../skills/yammerknit/references/youtube-transcripts.md) only when you need the optional YouTube route. For later chunking, use [the source-grounding practice](../skills/yammerknit/references/source-grounding.md#reuse-a-cluster-alone). Keep plain-language terms, qualifiers and original provenance with each chunk. The separate target system must perform and verify embedding, storage and retrieval. A static mesh cannot certify that those operations occurred or improved results.

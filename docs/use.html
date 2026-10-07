@@ -10,29 +10,92 @@
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
-  <header class="site-header"><nav class="nav-shell" aria-label="Primary navigation"><a class="brand" href="./"><img src="assets/stunspot-icon.png" alt="">Yammerknit</a><ul class="nav-links"><li><a href="get-started.html">Get started</a></li><li><a href="use.html" aria-current="page">Use it</a></li><li><a href="data.html">Your data</a></li><li><a href="troubleshooting.html">Troubleshoot</a></li><li><a href="validation.html">Evidence</a></li><li class="download-nav"><a class="button" href="https://github.com/Stunspot/yammerknit/raw/refs/heads/main/release/0.1.0/Yammerknit-v0.1.0.zip">Download 0.1.0</a></li></ul></nav></header>
+  <header class="site-header"><nav class="nav-shell" aria-label="Primary navigation"><a class="brand" href="./"><img src="assets/stunspot-icon.png" alt="">Yammerknit</a><ul class="nav-links"><li><a href="get-started.html">Get started</a></li><li><a href="use.html" aria-current="page">Use it</a></li><li><a href="data.html">Your data</a></li><li><a href="troubleshooting.html">Troubleshoot</a></li><li><a href="validation.html">Evidence</a></li><li class="download-nav"><a class="button" href="https://github.com/Stunspot/yammerknit/raw/refs/heads/main/release/current/Yammerknit-v0.1.0.zip">Download 0.1.0</a></li></ul></nav></header>
   <main id="main" class="shell">
     <header class="doc-hero"><p class="eyebrow">Working guide</p><h1>Use Yammerknit</h1><p class="lede">Talk to the agent normally. Name a workspace only when you want durable source and revision records.</p></header>
     <div class="doc-layout">
-      <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#create">Create</a></li><li><a href="#save">Save a record</a></li><li><a href="#inspect">Inspect or repair</a></li><li><a href="#youtube">YouTube subtitles</a></li><li><a href="#helpers">Helper configuration</a></li><li><a href="#rag">Vector RAG boundary</a></li></ul></nav>
+      <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#create">Create</a></li><li><a href="#save">Save a record</a></li><li><a href="#inspect">Browse and return</a></li><li><a href="#youtube">YouTube subtitles</a></li><li><a href="#helpers">Helper configuration</a></li><li><a href="#rag">Vector RAG boundary</a></li></ul></nav>
       <article class="prose">
-        <section id="create"><h2>Create a Yammerknit</h2><p>Supply a transcript or document and ask for the complete artifact:</p><pre><code>Turn this transcript into a Yammerknit.
-Return the complete codefenced artifact.</code></pre><p>Yammerknit preserves supplied metadata, marks missing metadata <code>N/A</code>, follows semantic gravity rather than transcript order, and includes the full cluster mesh, relational bridges, prompt seeds, and sigil lexicon.</p></section>
-        <section id="save"><h2>Save an organized record</h2><pre><code>Turn this transcript into a Yammerknit.
-Preserve the source and organize the result in &lt;workspace&gt;\Yammerknits.</code></pre><p>The workspace keeps original source bytes, normalized UTF-8 text, the base artifact, later revisions, manifests, and validation receipts distinct.</p><p>To inspect a saved record without changing it:</p><pre><code>python scripts/yammerknit_tool.py inspect-record
-  --workspace &lt;PATH&gt;
-  --record-id "&lt;ID&gt;"</code></pre></section>
-        <section id="inspect"><h2>Inspect or repair an artifact</h2><pre><code>Inspect this Yammerknit against the canonical SOP.
-Explain every material defect.</code></pre><p>For a repair:</p><pre><code>Repair only the failed structure.
-Preserve sound content and sigil order.
-Save a new revision.</code></pre><p>A repair creates a revision. It does not overwrite the original artifact.</p></section>
-        <section id="youtube"><h2>Acquire public YouTube subtitles</h2><p>The optional helper requires a separately installed <code>yt-dlp</code>:</p><pre><code>python -m pip install -U yt-dlp</code></pre><p>Then ask:</p><pre><code>Acquire the subtitles from &lt;YouTube URL&gt;,
-preserve them in &lt;workspace&gt;,
-and create a Yammerknit.</code></pre><p>The helper requests accessible subtitles without downloading audiovisual media, opening browser cookies, or traversing playlists. If subtitles are unavailable, provide transcript text directly.</p></section>
-        <section id="helpers"><h2>Configure and verify deterministic helpers</h2><p>Run helper commands from the complete <code>yammerknit</code> skill folder. Direct subtitle acquisition accepts <code>--languages</code> (default <code>en</code>), an optional user-supplied <code>--rights-basis</code> note, and <code>--yt-dlp</code> for an executable not on <code>PATH</code>.</p><pre><code>python scripts/yammerknit_tool.py acquire-youtube
-  --url &lt;URL&gt;
-  --workspace &lt;PATH&gt;
-  --languages "en"</code></pre><p>Success returns JSON with <code>status: created</code>, record and manifest paths, physical source SHA-256, and the selected subtitle file. Structural validation returns <code>valid: true</code> only when every required check passes; Giles must still judge semantic quality.</p><p>Use <code>init-record</code>, <code>validate</code>, <code>store-artifact</code>, <code>revise-artifact</code>, and <code>inspect-record</code> for their named custody operations. Run <code>python scripts/yammerknit_tool.py &lt;COMMAND&gt; --help</code> for exact arguments.</p></section><section id="rag"><h2>Prepare for vector RAG</h2><p>Yammerknits preserve semantically useful shards, relationships, sigils, and provenance before embedding. The artifact becomes part of an operating vector-RAG system only after a separate embedding and vector-storage pipeline ingests it.</p><div class="callout"><strong>No sleight of hand:</strong> Yammerknit does not include a vector store, embedding model, ingestion service, or retrieval execution.</div></section>
+        <section id="create"><h2>Create: a complete worked example</h2><p>This fictional memo observes 15 damaged metal units out of 100, then 12 out of 100 after several simultaneous changes. The useful extraction preserves the difference between an observed reduction and an identified checklist effect.</p><details><summary>Read the fictional source</summary><pre><code># Cooling checklist pilot — fictional teaching source
+
+P1. This invented memo exists only to teach faithful extraction. No real organization, study or performance result is represented.
+
+P2. During the first week, the workshop recorded 15 damaged units among 100 inspected units. During the second week, after introducing a cooling checklist, it recorded 12 damaged units among 100 inspected units. These were different batches, not repeated measurements of the same units.
+
+P3. The second week also used a new supplier and fewer novice operators. There was no control group or randomized assignment. The memo cannot identify which change caused the difference.
+
+P4. The difference is 3 percentage points in observed damage rate (15% to 12%), or a 20% relative reduction from the first week&#x27;s rate. The memo does not provide uncertainty estimates or evidence of a sustained effect.
+
+P5. The checklist is a candidate for a controlled follow-up, not an approved universal instruction. In the workshop&#x27;s stated procedure, fragile glass units must not be cooled using this checklist until the separate glass protocol has been reviewed. The pilot used metal units only.
+
+P6. A manager&#x27;s slide repeats the same 15-to-12 comparison from this memo. The slide is not a second study. The memo contains no evidence about costs, other workshops or long-term failure rates.
+</code></pre></details><details><summary>Read the complete Yammerknit</summary><pre><code>````markdown
+# N-A - Fictional Workshop - Cooling Checklist Pilot
+
+Post Date: N/A
+Channel: Fictional Workshop
+Title: Cooling checklist pilot — fictional teaching source
+URL: N/A
+Views: N/A
+Desc: Authored teaching fixture; no real experiment or model trial. Source file pilot-source.txt; original SHA-256 7913bec2bd425d7d45e3a932b0ffeacee026af78162dfcdae08b4b232c1dae47.
+
+## Executive Insight Terrain
+
+This fictional memo reports a lower observed damage rate after several workshop changes. Damage fell from 15 of 100 metal units to 12 of 100 different metal units. The difference is 3 percentage points, or 20% relative to the first rate. Because the supplier and operator mix also changed and there was no control group, the memo cannot attribute the difference to the checklist. Glass units are explicitly outside the pilot and require separate protocol review. The repeated manager slide supplies no independent corroboration.
+
+Bridge Highlight: confounding limits what the observed reduction can justify.
+Bridge Highlight: the glass exception further bounds any proposed follow-up.
+
+## Insight Clusters
+
+### Cluster 1: An observed reduction without causal identification
+
+Cluster Title: An observed reduction without causal identification
+Sigil Stack: ⟨📉🔎⟩
+Semantic Shard: Source paraphrase — this fictional metal-unit pilot observed damage rates of 15/100 then 12/100 across different batches; concurrent supplier and staffing changes prevent attribution to the checklist.
+Timestamp / Anchor: pilot-source.txt P2–P4; original SHA-256 7913bec2bd425d7d45e3a932b0ffeacee026af78162dfcdae08b4b232c1dae47.
+Formatted Payload: 15% → 12% = 3 percentage points = 20% relative reduction; observational comparison, no control group, uncertainty unreported.
+Latent Function Summary: Intended use: distinguish an observed difference from an identified treatment effect.
+RAG Echo Shard: Cooling checklist pilot; observed metal-unit damage reduction; confounding; no causal conclusion and no sustained-effect evidence.
+Priming Worthiness: Ask what comparison would separate the checklist from supplier and staffing effects.
+
+### Cluster 2: The exception travels with the proposal
+
+Cluster Title: The exception travels with the proposal
+Sigil Stack: ⟨🧊⚠️⟩
+Semantic Shard: Source paraphrase — the fictional memo proposes controlled follow-up for metal units; it does not approve universal use, and fragile glass units require separate protocol review before this checklist can be used.
+Timestamp / Anchor: pilot-source.txt P5–P6; original SHA-256 7913bec2bd425d7d45e3a932b0ffeacee026af78162dfcdae08b4b232c1dae47.
+Formatted Payload: Pilot population: metal units. Glass: excluded, separate protocol required. Repeated manager slide: same evidence origin. Costs and long-term outcomes: unknown.
+Latent Function Summary: Intended use: keep the population and exception attached when a proposal is reused.
+RAG Echo Shard: Cooling checklist applicability; metal pilot only; glass exception; recommendation is not approval; copied slide is not corroboration.
+Priming Worthiness: Check the unit material and applicable protocol before interpreting this memo as work guidance.
+
+## Relational Mesh
+
+An observed reduction without causal identification ⇄ The exception travels with the proposal
+Bridge Type: Constraint
+Effect: Analyst inference — causal uncertainty and the explicit population boundary jointly limit what the pilot can justify.
+Strategic Value: Keeps a promising follow-up question from becoming an unsupported general instruction.
+
+## Prompt Seeding Kit
+
+- Which simultaneous changes prevent assigning the observed difference to the checklist, and what comparison would distinguish them?
+- Would a glass-unit recommendation be supported by this memo? Identify the exact exception and what remains unknown.
+- Proposed transfer: compare this inference problem with a website conversion change accompanied by a traffic-source change; do not claim the memo studied websites.
+
+## Sigil Lexicon
+
+- ⟨📉🔎⟩ — observed rate reduction examined for causal limits.
+- ⟨🧊⚠️⟩ — cooling proposal bounded by material and protocol exceptions.
+````
+</code></pre></details><p>The source supports 3 percentage points, or a 20% relative reduction. It does not identify the cause: supplier and operator mix also changed. Glass is explicitly excluded pending separate protocol review. A copied manager slide is the same origin, not another study. These are the exact distinctions a faithful artifact must retain.</p><p>In the kit, open <code>examples/README.md</code> within the complete skill folder for the native tutorial and reusable chunk. For your own source, ask: “Create a Yammerknit for answering my question; preserve qualifiers and locators, and label inferences and proposed transfers.” An inaccessible URL needs actual content before extraction.</p></section>
+        <section id="save"><h2>Save a record</h2><p>With Python 3.10 or later, run these one-line commands from the complete skill folder. Use a workspace outside the installation:</p><pre><code>python scripts/yammerknit_tool.py init-record --source &quot;SOURCE.txt&quot; --workspace &quot;WORKSPACE&quot; --title &quot;Source title&quot;
+python scripts/yammerknit_tool.py validate --artifact &quot;DRAFT.md&quot;
+python scripts/yammerknit_tool.py store-artifact --artifact &quot;DRAFT.md&quot; --workspace &quot;WORKSPACE&quot; --record-id &quot;RETURNED-ID&quot;</code></pre><p>Copy the ID returned by the first command. Source preservation is not artifact creation. A structural pass is not a source-fidelity review. Open the original locators and compare the consequential claims before reuse.</p></section>
+        <section id="inspect"><h2>Browse, return and revise</h2><p>Return without remembering a query or ID:</p><pre><code>python scripts/yammerknit_tool.py inspect-record --workspace &quot;WORKSPACE&quot;</code></pre><p>Browse titles, channels, record IDs, health and current artifact paths. A damaged neighbor remains visible as an error. Add <code>--record-id "ID"</code> to verify one complete chain and open its current artifact. <code>current: null</code> means no artifact has been stored. <code>verified-present-bytes</code> checks byte consistency, not source truth or authorship.</p><p>Work in a separate draft and use <code>revise-artifact</code> for a correction. Preserve the base and explain what changed. Changed source content belongs in a new source record. Copy the entire workspace to move it, then inspect at its new path. See <a href="troubleshooting.html#paths">integrity recovery</a> if inspection fails.</p></section>
+        <section id="youtube"><h2>Optional YouTube subtitles</h2><p>The helper needs separately installed <code>yt-dlp</code>. Supply one credential-free video URL and one exact language code, such as <code>en</code> or <code>en-US</code>. Playlist and channel URLs are rejected. It requests subtitles without ambient cookies or audiovisual download, then checks video and language identity.</p><p>Raw VTT remains original evidence. Readable text retains start/end ranges, voice labels and repeated distinct cues. Manual versus automatic origin stays unknown unless separately established. A transcript cannot prove unseen visual content or caption accuracy. If acquisition fails, supply transcript text; there is no audio-download fallback.</p></section>
+        <section id="helpers"><h2>Helper commands and success</h2><pre><code>python scripts/yammerknit_tool.py --help
+python scripts/yammerknit_tool.py acquire-youtube --url &quot;VIDEO-URL&quot; --workspace &quot;WORKSPACE&quot; --languages &quot;en&quot;</code></pre><p>Use an absolute script path if working elsewhere. Help performs no writes. New records return their ID and exact paths. Existing records are preserved on collision; source and artifact files are checked before a current artifact is named. A saved receipt describes the check actually performed, not a model trial.</p></section><section id="rag"><h2>Keep context when preparing for retrieval</h2><p>Each reusable unit needs ordinary search terms, a scoped claim, origin type, source identity and locator, and the qualifier that changes the answer. Include hashes only when computed from actual bytes. Read the unit alone: can it answer the intended question without borrowing a missing exception from the executive summary?</p><p>For the pilot, “Does this prove a checklist effect in glass?” must yield no: causality is unresolved and glass was excluded. “How much money does it save?” is unknown. These questions test the actual misunderstanding; merely matching a topic does not.</p><div class="callout">Yammerknit prepares an inspectable representation. A separate pipeline must execute embedding and retrieval, and compare actual outcomes before claiming improvement. Glyphs, a persona and structural validity supply no such measurement.</div></section>
         <nav class="next" aria-label="Next step"><strong>Next:</strong> <a href="data.html">Understand files, privacy, and source custody</a>.</nav>
       </article>
     </div>

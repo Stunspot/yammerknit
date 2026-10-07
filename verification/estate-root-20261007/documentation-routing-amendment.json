@@ -1,0 +1,39 @@
+{
+  "schema": "estate-documentation-routing-amendment/v1",
+  "authoring_receipt": "verification/estate-quality-20261007/authorship/documentation-authorship.json",
+  "scope": "Hesperos in-process source-verified download routing correction; no new prose, no reissued authorship claim. Prior authored content retained, with exactly one URL substitution in seven files.",
+  "old_url": "https://github.com/Stunspot/yammerknit/raw/refs/heads/main/release/0.1.0/Yammerknit-v0.1.0.zip",
+  "new_url": "https://github.com/Stunspot/yammerknit/raw/refs/heads/main/release/current/Yammerknit-v0.1.0.zip",
+  "files": {
+    "README.md": {
+      "before": "543a69edfb8757941f2d40e9e55b36cd0a9304ba3f247f2e524fd924acb8fd07",
+      "after": "e8a403943e50039bedd2f94179b7303642871dff97627ad86f4fbaef8bfd6847"
+    },
+    "docs/data.html": {
+      "before": "7af95147300ba29953192ff187cffe1c2b3c562eca25647c2d1304f64ba5b5b7",
+      "after": "c25b9dba50d7b4268423fa2fd5c19a884e25dcd95ffa2fa45336821f4671f32d"
+    },
+    "docs/get-started.html": {
+      "before": "9a1fd7bff08f1386a11f4ca533e2a1bf72cbe0b384c53493041b32ee0b4d4540",
+      "after": "466b3797162fcc08a1025a6c0698476ff82c96dd32e4e831a4acd561a89c2ce4"
+    },
+    "docs/index.html": {
+      "before": "db7ad1e4338ffd957289809424a30a0de4312734d2212eb35c7c72c50194064c",
+      "after": "8e86bdc192f38dbf19ff8440a464900366ae122da751eee7f20415f06b553e30"
+    },
+    "docs/troubleshooting.html": {
+      "before": "c6527b84b76636d5284ff930bfcda86c3349224d2d8725896be380245e9e2246",
+      "after": "d4b813d7519064b137422ea6cee029e84407aa286f124537bb39f55fadbd3a75"
+    },
+    "docs/use.html": {
+      "before": "2c6054e849f3ca30b17e910a160fd97d4ea388aebee730275a83032313c23d88",
+      "after": "ae1623d166122bfd67055fb3bce7662e3f3dc1be4343bbc2c766307544f18050"
+    },
+    "docs/validation.html": {
+      "before": "6015ca8def7197dbe3e78789acba1020cc4056c86af71350f4c9367bd0ba810c",
+      "after": "111ea588a320a0b3a9e44c9d4180be041cc6365e8c4655ffcfdce178fb8c0d48"
+    }
+  },
+  "unchanged_authored_files": 17,
+  "verification": "For every amended document, reversing exactly this substitution must recover the prior receipt hash."
+}

@@ -23,3 +23,7 @@
 
 # Frozen release byte-custody exception.
 release/0.1.0/yammerknit-v0.1.0/codex-plugin/yammerknit/skills/yammerknit/personas/canonical-rupert-giles-document-guardian.txt binary
+
+# Retained evidence bytes: exact authoring capability and pre-repair failing fixtures.
+verification/hesperos-capabilities/21606903702db1eae375cb8e05dcad821616d399a574488f0f1be738d6dab42f/SKILL.md binary
+verification/estate-quality-20261007/baseline-fixtures/** binary

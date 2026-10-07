@@ -1,0 +1,51 @@
+
+test_changed_original_and_normalized_rejected (test_estate_repairs.EstateCustodyTests.test_changed_original_and_normalized_rejected) ... ok
+test_cycle_rejected (test_estate_repairs.EstateCustodyTests.test_cycle_rejected) ... ok
+test_fork_rejected (test_estate_repairs.EstateCustodyTests.test_fork_rejected) ... ok
+test_identifiers_cannot_escape (test_estate_repairs.EstateCustodyTests.test_identifiers_cannot_escape) ... ok
+test_incomplete_stage_not_published (test_estate_repairs.EstateCustodyTests.test_incomplete_stage_not_published) ... ok
+test_inventory_and_portable_copy (test_estate_repairs.EstateCustodyTests.test_inventory_and_portable_copy) ... ok
+test_junction_rejected_before_canonicalization (test_estate_repairs.EstateCustodyTests.test_junction_rejected_before_canonicalization) ... ok
+test_legacy_source_binding_is_not_invented (test_estate_repairs.EstateCustodyTests.test_legacy_source_binding_is_not_invented) ... ok
+test_missing_current_artifact_rejected (test_estate_repairs.EstateCustodyTests.test_missing_current_artifact_rejected) ... ok
+test_parent_kind_and_base_alias_are_controlled (test_estate_repairs.EstateCustodyTests.test_parent_kind_and_base_alias_are_controlled) ... ok
+test_receipt_contradiction_and_wrong_hash_rejected (test_estate_repairs.EstateCustodyTests.test_receipt_contradiction_and_wrong_hash_rejected) ... ok
+test_single_snapshot_not_validate_then_reread (test_estate_repairs.EstateCustodyTests.test_single_snapshot_not_validate_then_reread) ... ok
+test_source_binding_catches_manifest_rewrite (test_estate_repairs.EstateCustodyTests.test_source_binding_catches_manifest_rewrite) ... ok
+test_strict_json_errors_are_controlled (test_estate_repairs.EstateCustodyTests.test_strict_json_errors_are_controlled) ... ok
+test_timestamp_sort_does_not_choose_current (test_estate_repairs.EstateCustodyTests.test_timestamp_sort_does_not_choose_current) ... ok
+test_unknown_parent_rejected (test_estate_repairs.EstateCustodyTests.test_unknown_parent_rejected) ... ok
+test_bad_timing_rejected_and_overlap_preserved (test_estate_repairs.EstateRepresentationTests.test_bad_timing_rejected_and_overlap_preserved) ... ok
+test_empty_lexicon_definition_rejected (test_estate_repairs.EstateRepresentationTests.test_empty_lexicon_definition_rejected) ... ok
+test_missing_effect_and_dangling_endpoints_rejected (test_estate_repairs.EstateRepresentationTests.test_missing_effect_and_dangling_endpoints_rejected) ... ok
+test_one_honest_cluster_does_not_require_invention (test_estate_repairs.EstateRepresentationTests.test_one_honest_cluster_does_not_require_invention) ... ok
+test_repeat_voice_range_retained (test_estate_repairs.EstateRepresentationTests.test_repeat_voice_range_retained) ... ok
+test_single_video_boundary (test_estate_repairs.EstateRepresentationTests.test_single_video_boundary) ... ok
+test_wrapper_with_inner_fence_requires_longer_outer (test_estate_repairs.EstateRepresentationTests.test_wrapper_with_inner_fence_requires_longer_outer) ... ok
+test_failure_does_not_echo_private_backend_text (test_native_journey.AcquisitionIdentityTests.test_failure_does_not_echo_private_backend_text) ... ok
+test_matching_identity_succeeds (test_native_journey.AcquisitionIdentityTests.test_matching_identity_succeeds) ... ok
+test_wrong_identity_language_or_media_rejected (test_native_journey.AcquisitionIdentityTests.test_wrong_identity_language_or_media_rejected) ... ok
+test_first_task_revision_portable_return_and_recovery (test_native_journey.NativeJourneyTests.test_first_task_revision_portable_return_and_recovery) ... ok
+test_help_is_read_only_and_malformed_state_controlled (test_native_journey.NativeJourneyTests.test_help_is_read_only_and_malformed_state_controlled) ... ok
+test_missing_vtt_separator_does_not_move_later_words (test_root_custody.RootCustodyRegressions.test_missing_vtt_separator_does_not_move_later_words) ... ok
+test_no_bridge_exception_cannot_hide_actual_bridge (test_root_custody.RootCustodyRegressions.test_no_bridge_exception_cannot_hide_actual_bridge) ... ok
+test_command_is_subtitle_only_and_credential_free (test_transcript_acquisition.TranscriptBoundaryTests.test_command_is_subtitle_only_and_credential_free) ... ok
+test_fake_backend_creates_governed_source_record (test_transcript_acquisition.TranscriptBoundaryTests.test_fake_backend_creates_governed_source_record) ... ok
+test_non_youtube_url_is_rejected (test_transcript_acquisition.TranscriptBoundaryTests.test_non_youtube_url_is_rejected) ... ok
+test_record_collision_never_overwrites (test_yammerknit_tool.CustodyTests.test_record_collision_never_overwrites) ... ok
+test_source_artifact_and_revision_remain_distinct (test_yammerknit_tool.CustodyTests.test_source_artifact_and_revision_remain_distinct) ... ok
+test_vtt_normalization_preserves_unicode_and_timestamps (test_yammerknit_tool.CustodyTests.test_vtt_normalization_preserves_unicode_and_timestamps) ... ok
+test_bold_fields_and_tables_pass (test_yammerknit_tool.ValidationTests.test_bold_fields_and_tables_pass) ... ok
+test_complete_yammerknit_passes (test_yammerknit_tool.ValidationTests.test_complete_yammerknit_passes) ... ok
+test_empty_scaffold_is_rejected (test_yammerknit_tool.ValidationTests.test_empty_scaffold_is_rejected) ... ok
+test_empty_tables_do_not_satisfy_required_values (test_yammerknit_tool.ValidationTests.test_empty_tables_do_not_satisfy_required_values) ... ok
+test_formatted_payload_may_be_a_following_block (test_yammerknit_tool.ValidationTests.test_formatted_payload_may_be_a_following_block) ... ok
+test_numbered_cluster_headings_pass (test_yammerknit_tool.ValidationTests.test_numbered_cluster_headings_pass) ... ok
+test_replacement_character_is_rejected (test_yammerknit_tool.ValidationTests.test_replacement_character_is_rejected) ... ok
+test_summary_shaped_output_is_rejected (test_yammerknit_tool.ValidationTests.test_summary_shaped_output_is_rejected) ... ok
+test_windows_invalid_header_is_rejected (test_yammerknit_tool.ValidationTests.test_windows_invalid_header_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 45 tests in 4.204s
+
+OK

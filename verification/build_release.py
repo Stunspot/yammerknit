@@ -6,8 +6,11 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import os
 import shutil
+import stat
+import re
 import tempfile
 import zipfile
 from pathlib import Path
@@ -43,6 +46,22 @@ PLUGIN_DOCUMENTS = (
 )
 
 
+def load_json(path: Path):
+    def pairs(items):
+        result = {}
+        for key, value in items:
+            if key in result:
+                raise ValueError(f"Duplicate JSON key: {key}")
+            result[key] = value
+        return result
+    def reject(value):
+        raise ValueError("Non-finite JSON number")
+    def floating(value):
+        number = float(value)
+        return number if math.isfinite(number) else reject(value)
+    return json.loads(safe_path(path).read_text("utf-8"), object_pairs_hook=pairs, parse_constant=reject, parse_float=floating)
+
+
 def sha256(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as handle:
@@ -59,11 +78,49 @@ def zip_bytes(archive: zipfile.ZipFile, source: Path, archive_name: str) -> None
     archive.writestr(info, source.read_bytes())
 
 
+def safe_path(path: Path) -> Path:
+    path = Path(os.path.abspath(path))
+    for part in (path, *path.parents):
+        try:
+            info = part.lstat()
+        except FileNotFoundError:
+            continue
+        if stat.S_ISLNK(info.st_mode) or getattr(info, "st_file_attributes", 0) & 0x400:
+            raise RuntimeError(f"Linked/reparse input is unsupported: {part}")
+    return path.resolve()
+
+
+def portable_tree(root: Path) -> None:
+    safe_path(root)
+    seen = set()
+    for directory, folders, files in os.walk(root, followlinks=False):
+        for name in folders + files:
+            target = Path(directory) / name
+            safe_path(target)
+            if (re.search(r'[<>:"/\\|?*\x00-\x1f]', name) or name.endswith((".", " "))
+                    or name.split(".", 1)[0].upper() in {"CON", "PRN", "AUX", "NUL", *(f"COM{i}" for i in range(1,10)), *(f"LPT{i}" for i in range(1,10))}):
+                raise RuntimeError(f"Nonportable source name: {name}")
+            key = target.relative_to(root).as_posix().casefold()
+            if key in seen:
+                raise RuntimeError(f"Case-colliding source name: {key}")
+            seen.add(key)
+
+
 def files_beneath(root: Path) -> list[Path]:
-    return sorted(
-        (path for path in root.rglob("*") if path.is_file()),
-        key=lambda path: path.relative_to(root).as_posix().lower(),
-    )
+    portable_tree(root)
+    return sorted((path for path in root.rglob("*") if path.is_file()), key=lambda path: path.relative_to(root).as_posix().lower())
+
+
+def source_inputs(repo: Path) -> list[Path]:
+    inputs = [repo / name for name in ROOT_DOCUMENTS] + [repo / ".gitattributes"]
+    for folder in ("skills", "assets", ".codex-plugin", "customer-docs"):
+        inputs.extend(p for p in files_beneath(repo / folder) if "__pycache__" not in p.parts)
+    inputs.extend(repo / "verification" / name for name in ("build_release.py", "audit_release.py"))
+    for path in inputs:
+        safe_path(path)
+        if not path.is_file():
+            raise RuntimeError(f"Required source input missing: {path}")
+    return sorted(set(inputs), key=lambda p: p.relative_to(repo).as_posix())
 
 
 def tree_digest(root: Path) -> str:
@@ -167,17 +224,16 @@ def build_customer_tree(repo: Path, customer_root: Path) -> dict[str, object]:
         if name == "START-HERE.md":
             start_here = (repo / name).read_text(encoding="utf-8")
             (customer_root / name).write_text(
-                start_here.replace("customer-docs/", "docs/"),
+                start_here.replace("customer-docs/", "docs/").replace("(skills/", "(codex-plugin/yammerknit/skills/"),
                 encoding="utf-8",
                 newline="\n",
             )
         else:
             copy_file(repo / name, customer_root / name)
     for path in files_beneath(repo / "customer-docs"):
-        copy_file(
-            path,
-            customer_root / "docs" / path.relative_to(repo / "customer-docs"),
-        )
+        destination = customer_root / "docs" / path.relative_to(repo / "customer-docs")
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_text(path.read_text("utf-8").replace("../skills/", "../codex-plugin/yammerknit/skills/"), encoding="utf-8", newline="\n")
     for name in ("icon.png", "Stunspot Icon.ico", "yammerknit-readme-hero.png"):
         copy_file(repo / "assets" / name, customer_root / "assets" / name)
 
@@ -185,6 +241,16 @@ def build_customer_tree(repo: Path, customer_root: Path) -> dict[str, object]:
     claude_dir = customer_root / "claude"
     claude_dir.mkdir(parents=True)
     build_claude_skill(repo, claude_dir / CLAUDE_ZIP)
+
+    # Include the exact bounded build closure, not local archives or user workspaces.
+    for source in source_inputs(repo):
+        copy_file(source, customer_root / "source" / source.relative_to(repo))
+    marketplace = {"name": "yammerknit-local", "interface": {"displayName": "Yammerknit Local"},
+                   "plugins": [{"name": "yammerknit", "source": {"source": "local", "path": "./codex-plugin/yammerknit"},
+                                "policy": {"installation": "AVAILABLE", "authentication": "ON_INSTALL"}, "category": "Productivity"}]}
+    market_path = customer_root / ".agents/plugins/marketplace.json"
+    market_path.parent.mkdir(parents=True)
+    market_path.write_text(json.dumps(marketplace, indent=2) + "\n", encoding="utf-8", newline="\n")
 
     checksum_text = (
         f"{sha256(claude_dir / CLAUDE_ZIP)}  claude/{CLAUDE_ZIP}\n"
@@ -211,57 +277,34 @@ def archive_customer_tree(customer_root: Path, destination: Path) -> None:
 
 
 def build(repo: Path, output_dir: Path) -> dict[str, object]:
-    plugin_manifest = json.loads(
-        (repo / ".codex-plugin" / "plugin.json").read_text(encoding="utf-8")
-    )
-    if plugin_manifest["version"] != VERSION:
-        raise RuntimeError(
-            f"Manifest version {plugin_manifest['version']} does not match builder {VERSION}."
-        )
-
-    output_dir.mkdir(parents=True, exist_ok=True)
-    final_root = output_dir / PRODUCT_ROOT
-    final_zip = output_dir / CUSTOMER_ZIP
-    final_sha = output_dir / CUSTOMER_SHA256
-    collisions = [path for path in (final_root, final_zip, final_sha) if path.exists()]
-    if collisions:
-        raise RuntimeError(
-            "Refusing to overwrite existing release objects: "
-            + ", ".join(str(path) for path in collisions)
-        )
-
-    with tempfile.TemporaryDirectory(
-        prefix="yammerknit-release-", dir=output_dir
-    ) as temp:
-        stage = Path(temp)
-        customer_root = stage / PRODUCT_ROOT
+    repo, output_dir = safe_path(repo), safe_path(output_dir)
+    source_inputs(repo)  # Reject links and nonportable names before any output publication.
+    plugin_manifest = load_json(repo / ".codex-plugin/plugin.json")
+    if not isinstance(plugin_manifest, dict) or plugin_manifest.get("version") != VERSION:
+        raise RuntimeError("Plugin and builder versions differ")
+    if output_dir.exists():
+        raise RuntimeError("Choose a new output directory; existing output is preserved")
+    if output_dir == repo or repo in output_dir.parents and output_dir.parts[len(repo.parts):len(repo.parts)+1] in [("skills",), ("customer-docs",), ("assets",), (".codex-plugin",)]:
+        raise RuntimeError("Output must not be inside a build input tree")
+    output_dir.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="yammerknit-build-", dir=output_dir.parent) as temp:
+        publish = Path(temp) / "bundle"
+        publish.mkdir()
+        customer_root = publish / PRODUCT_ROOT
         customer_root.mkdir()
         manifest = build_customer_tree(repo, customer_root)
-        archive = stage / CUSTOMER_ZIP
+        archive = publish / CUSTOMER_ZIP
         archive_customer_tree(customer_root, archive)
         customer_sha = sha256(archive)
-        checksum = stage / CUSTOMER_SHA256
-        checksum.write_text(
-            f"{customer_sha}  {CUSTOMER_ZIP}\n",
-            encoding="utf-8",
-            newline="\n",
-        )
-
-        os.replace(customer_root, final_root)
-        os.replace(archive, final_zip)
-        os.replace(checksum, final_sha)
-
-    return {
-        "schema": "yammerknit.public-release.v2",
-        "version": VERSION,
-        "visibility": "public",
-        "customer_zip": str(final_zip),
-        "customer_zip_sha256": sha256(final_zip),
-        "customer_root": str(final_root),
-        "customer_tree_sha256": tree_digest(final_root),
-        "customer_file_count": len(files_beneath(final_root)),
-        "manifest": manifest,
-    }
+        (publish / CUSTOMER_SHA256).write_text(f"{customer_sha}  {CUSTOMER_ZIP}\n", encoding="utf-8", newline="\n")
+        if output_dir.exists():
+            raise RuntimeError("Destination appeared during build; refusing overwrite")
+        os.rename(publish, output_dir)
+    final_root, final_zip = output_dir / PRODUCT_ROOT, output_dir / CUSTOMER_ZIP
+    return {"schema": "yammerknit.public-release.v2", "version": VERSION, "visibility": "public",
+            "customer_zip": str(final_zip), "customer_zip_sha256": customer_sha,
+            "customer_root": str(final_root), "customer_tree_sha256": tree_digest(final_root),
+            "customer_file_count": len(files_beneath(final_root)), "manifest": manifest}
 
 
 def main() -> int:
@@ -271,15 +314,18 @@ def main() -> int:
         type=Path,
         default=Path(__file__).resolve().parents[1],
     )
-    parser.add_argument("--output-dir", type=Path)
+    parser.add_argument("--output-dir", type=Path, required=True, help="New directory; never replaces an existing release.")
     args = parser.parse_args()
-    repo = args.repo.resolve()
+    repo = safe_path(args.repo)
     output = (
-        args.output_dir.resolve()
+        safe_path(args.output_dir)
         if args.output_dir
         else repo / "release" / VERSION
     )
-    result = build(repo, output)
+    try:
+        result = build(repo, output)
+    except (OSError, ValueError, RuntimeError) as exc:
+        parser.exit(2, f"Build failed: {exc}\n")
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 0
 

@@ -1,0 +1,32 @@
+{
+  "format": "cd-customer-documentation/v1",
+  "product": "Yammerknit",
+  "version": "0.1.0",
+  "customer_docs": [
+    "CHANGELOG.md",
+    "PRIVACY.md",
+    "README.md",
+    "START-HERE.md",
+    "customer-docs/DATA-AND-PRIVACY.md",
+    "customer-docs/INSTALLATION.md",
+    "customer-docs/TROUBLESHOOTING.md",
+    "customer-docs/USE-YAMMERKNIT.md",
+    "customer-docs/VALIDATION-AND-LIMITS.md",
+    "delivery-sidecars/estate-quality-20261007-r1/Yammerknit T-Free v0.1.0 Extra.md",
+    "delivery-sidecars/estate-quality-20261007-r1/Yammerknit T-Free v0.1.0.md",
+    "docs/data.html",
+    "docs/get-started.html",
+    "docs/index.html",
+    "docs/troubleshooting.html",
+    "docs/use.html",
+    "docs/validation.html",
+    "skills/yammerknit/SKILL.md",
+    "skills/yammerknit/examples/README.md",
+    "skills/yammerknit/examples/pilot-source.txt",
+    "skills/yammerknit/examples/pilot-yammerknit.md",
+    "skills/yammerknit/references/data-handling.md",
+    "skills/yammerknit/references/source-grounding.md",
+    "skills/yammerknit/references/youtube-transcripts.md"
+  ],
+  "scope": "New or materially revised active instruction and customer text; original seeds, retained history, artwork and formatting-only changes excluded."
+}

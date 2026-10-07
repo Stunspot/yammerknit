@@ -1,45 +1,19 @@
-# Yammerknit data handling
+# Record custody and recovery
 
-Giles keeps five objects distinct:
+Keep original bytes, normalized working text, authored artifact, immutable revisions and operation receipts distinct. A workspace contains `sources/ID/source.original.*`, `source.txt` and `source-manifest.json`; `artifacts/ID/` holds the base `yammerknit.md`, artifact manifest and structural receipt; `revisions/ID/REVISION/` holds each later artifact, manifest and receipt. Keep the entire workspace outside the installation and copy it as a unit when moving or backing it up.
 
-1. **Original source** — the exact supplied or acquired bytes.
-2. **Normalized source** — UTF-8 working text derived from the original.
-3. **Artifact** — the Yammerknit produced from that source.
-4. **Revision** — a new artifact version; never an overwrite.
-5. **Receipt** — provenance, hashes, validation, and tool evidence.
+The helper preserves original bytes before normalization. New artifacts bind the observed source manifest and original/normalized hashes; this records what bytes were present, not proof the author read them. Every revision binds its immediate parent's digest. Inspection verifies physical files, receipts, source binding and one complete ancestry chain. Timestamp strings never elect the current artifact. A fork, cycle, missing file or contradictory receipt prevents selection.
 
-## Default record layout
+`inspect-record --workspace "PATH"` lists record titles, IDs, health and current artifacts. Add `--record-id "ID"` for one record. `current: null` means source preserved, artifact not yet stored. `verified-present-bytes` means the current stored bytes agree with manifests and ancestry. It does not mean source truth, semantic fidelity, signed authenticity, model authorship or retrieval performance. Coordinated alteration of content and manifests cannot be detected without a separately trusted backup or digest. Legacy v1 records without source binding remain inspectable with an explicit warning; no historical binding or authorship is fabricated.
 
-```text
-<workspace>/
-  sources/<record-id>/
-    source.original.<extension>
-    source.txt
-    source-manifest.json
-  artifacts/<record-id>/
-    yammerknit.md
-    artifact-manifest.json
-    validation.json
-  revisions/<record-id>/
-    <revision-id>/
-      yammerknit.md
-      revision-manifest.json
-      validation.json
-```
+## Recover without rewriting history
 
-Use a stable, length-bounded, Windows-safe `record-id` derived from date, channel, cleaned title, and a short source hash. Preserve a safe original extension while the manifest retains the supplied filename. Use UTC timestamps in receipts. Record the source kind, origin, URL when supplied, acquisition method, a rights or usage note when the user supplies one, original filename, relative file names, hashes, transformations, and tool version. Mark unknown fields `null` or `N/A`; do not infer them.
+For a hash mismatch or missing file, preserve the damaged record, inspect the error's named path and restore that file only from a known matching backup. Inspect again before use. If the changed bytes are intentional new source material, create a distinct record with `init-record` and author a new derivative. If an artifact needs a content correction, revise from the verified base using `revise-artifact`. Never “repair” a mismatch by replacing the expected hash with the changed file's hash.
 
-## Custody rules
+For a fork, preserve both branches and compare their content and parent records. Work in a complete copied workspace; retain the rejected branch separately before removing it from the active copied chain, then create a reconciled revision after inspection succeeds. Do not arbitrarily select the newest timestamp. A cycle or unknown parent requires restoring known manifests or retaining the record as unverified; guessing ancestry is not recovery.
 
-- Preserve the original before normalization or analysis.
-- Write new paths only. On collision, stop or create a distinct revision.
-- Keep manifest links relative to the record so the workspace remains portable.
-- Give each revision its own directory, validation receipt, and explicit parent.
-- Use `inspect-record` to identify the current base or latest revision from immutable manifests.
-- Keep temporary acquisition files in a staging directory until verified.
-- Never store browser cookies, access tokens, passwords, or unrelated page data.
-- Treat indexes, chunks, embeddings, and vector-store entries as replaceable derivatives. The source and governed artifact remain canonical.
-- Do not claim backup, ingestion, publication, or deletion without a receipt from that operation.
-- If a source is sensitive, minimize copies and keep manifests free of unnecessary personal data.
+Writes serialize with a record lock under `.locks/`. A busy/interrupt error names the exact lock and records the owning process. First confirm that no writer for this workspace is still running; only then remove that one stale lock and retry inspection. `.staging/` may contain incomplete work after a crash. Preserve useful files for diagnosis; staging is never selected as current. Do not delete a running writer's temporary directory.
 
-Before completion, a reader should be able to answer: What was the source? Where did it come from? What transformed it? Which artifact is current? What changed? Did validation pass?
+Portable single-component IDs and filenames are required. Filesystem links and Windows reparse/junction paths are rejected before resolution; use the explicit physical directory or a complete ordinary copy. This reduces accidental path escapes but is not a sandbox against a hostile process concurrently replacing filesystem entries. Keep the workspace under the user's control.
+
+Sources can contain private data. Minimize copies and metadata to the task. The helper adds no credentials; it cannot remove credentials already present in a supplied document. Sharing sources, embedding them remotely, publication and destructive cleanup need their own task authority. Indices and embeddings remain replaceable derivatives, not source records.

@@ -1,0 +1,182 @@
+{
+  ".codex-plugin/plugin.json": {
+    "before": "7b9e1538441976acc5b00506ccc0afd27b231864ddac2cd8a80da0b2e956ea8f",
+    "after": "168675cd431f8e78ba16f78b6b2cfffdadab3a6e0514a60aec971b76d25904b9"
+  },
+  ".gitattributes": {
+    "before": "192e91eaa021674474be06f3ac258dd9d9a28985bd4648643a6b4d7a46575f53",
+    "after": "4e49335d323dd2e65a00d2609be5ffec53eb031d2970a1555c0b388d2070d620"
+  },
+  ".github/workflows/pages.yml": {
+    "before": "d7e10b4319819620e8e848d67e206fbfad8fafe2287b48331e2261b05368d06e",
+    "after": "c48d0b54b6c2288ec56d1ee1b3b587bdce2f1d64a5c46ce059ff6167cfe9c2bd"
+  },
+  "CHANGELOG.md": {
+    "before": "0e50f18f024d49258945a288473395aa06e622c167c06ed870fe09602aa34bd3",
+    "after": "c27676a2068345150940b974826c8325e5c61f0e2633c28355002d2252db4826"
+  },
+  "PRIVACY.md": {
+    "before": "d3c8f59c2d8686caf40fabfa8cbb4a45ef61e8939a38e097a36dfad5cbf1a1ec",
+    "after": "cf92ac00a83b14a6fd511cb07456864b9fc92f658c83c28fe9a8a986f5a6b575"
+  },
+  "README.md": {
+    "before": "670d7fd0531af132faced33c8921f32fc2be7d1074774af162576c8a64908cb2",
+    "after": "543a69edfb8757941f2d40e9e55b36cd0a9304ba3f247f2e524fd924acb8fd07"
+  },
+  "START-HERE.md": {
+    "before": "254373ee9e339a347c47c314d484772d2ae3622d119f14c32f06d935cc14092c",
+    "after": "6b58ae5b1ca23ed0a2a0cda2e32a86b31e17cae8bcdb7271c8b83aa6a949e38f"
+  },
+  "customer-docs/DATA-AND-PRIVACY.md": {
+    "before": "a749bd700f70f77bc300da333d32694f4d17b675a394fdb165b7b408ffc576b3",
+    "after": "0f97f8c9623dbacae3f5b896fe4aaefb973334cdbc43c3a20fdaa0dbb7aa48a3"
+  },
+  "customer-docs/INSTALLATION.md": {
+    "before": "c30bd9f4e13c89fa13e042c8ff2bf5bd578e6b01ba702fc3187a5b49fa4abbc8",
+    "after": "b7d594df7d83ff22ccbb8765023fb614d3fc7b99041e3d0f2fa26029cbbb47f4"
+  },
+  "customer-docs/TROUBLESHOOTING.md": {
+    "before": "e7f1b87e84acae2282fed97183c1632e5578fd89a29f5148bf4d671204b9808b",
+    "after": "e7dc171ae04cd997a01fdfa43e9a15dc044ac484fe4a96ffab7f4685eb0e4e02"
+  },
+  "customer-docs/USE-YAMMERKNIT.md": {
+    "before": "2602ee395324cdf8c376f304dcb087f2ece7c0ea02d72d5e6bb8949fc792ad7c",
+    "after": "fd98955f879bbffcbbc5829a7a2f75bba28bf2548f78ab319a7914ab1365e718"
+  },
+  "customer-docs/VALIDATION-AND-LIMITS.md": {
+    "before": "55ea32ef3004ae450ff6b8bf77f44fbb8f818219199886ae6bb6b90ccf18ffab",
+    "after": "531acdbfeaebb675acdf5e4026a213ba6f4d48ad221fc5c143abb2fb58f76ff9"
+  },
+  "delivery-sidecars/estate-quality-20261007-r1/Yammerknit T-Free v0.1.0 Extra.md": {
+    "before": null,
+    "after": "7eceee32436d713e5031778224bae0fedb9b3eee0618f8a2b795e8e5179e8090"
+  },
+  "delivery-sidecars/estate-quality-20261007-r1/Yammerknit T-Free v0.1.0.md": {
+    "before": null,
+    "after": "257241e78dfc4c8eae0a8347e7afc9d9bc2d375eaa0f140a11d1b4f22012e80f"
+  },
+  "delivery-sidecars/estate-quality-20261007-r1/Yammerknit.png": {
+    "before": null,
+    "after": "a4730e26657ae09ccdd071dca79f562ea6c1c502107e17ec2d59b9d38a3006fc"
+  },
+  "docs/data.html": {
+    "before": "0f864aa5520b4d798f23bc1c671d736679defe6c638af170a87b9ae2deddf00f",
+    "after": "7af95147300ba29953192ff187cffe1c2b3c562eca25647c2d1304f64ba5b5b7"
+  },
+  "docs/get-started.html": {
+    "before": "d10791965a08172c7b8fb3829fef9ddf0f6a3625f4612d1f2672c6a87644bb2b",
+    "after": "9a1fd7bff08f1386a11f4ca533e2a1bf72cbe0b384c53493041b32ee0b4d4540"
+  },
+  "docs/index.html": {
+    "before": "70f6658e02ed103afe1e05dc46d367a6fc874844cccc86eaed4ab207629e0874",
+    "after": "db7ad1e4338ffd957289809424a30a0de4312734d2212eb35c7c72c50194064c"
+  },
+  "docs/troubleshooting.html": {
+    "before": "2111eeb7aacc4beced6456d0f93b595e767e3cbd61646146ece016e1d2a5147c",
+    "after": "c6527b84b76636d5284ff930bfcda86c3349224d2d8725896be380245e9e2246"
+  },
+  "docs/use.html": {
+    "before": "14fccd5a13bc66a5eb602da78fffd9e2785febf44ad64ba9999a649146112b92",
+    "after": "2c6054e849f3ca30b17e910a160fd97d4ea388aebee730275a83032313c23d88"
+  },
+  "docs/validation.html": {
+    "before": "88fbd92359ee05c770bb285873c2d0c806349006c29ba13b986613fde3d22ddf",
+    "after": "6015ca8def7197dbe3e78789acba1020cc4056c86af71350f4c9367bd0ba810c"
+  },
+  "skills/yammerknit/SKILL.md": {
+    "before": "eae3c01bebed0d019359a5c2fd330f9dd5af231291223a3e0ab0a9e6d22159b5",
+    "after": "ddbf355a25f9758933f77ef8c3b9e1e74af22c081be159231fb4562b1cef8220"
+  },
+  "skills/yammerknit/agents/openai.yaml": {
+    "before": "15b709eff8b30b56e762aa08132be33d36528d5193305b761b5d9d4242335887",
+    "after": "e23e6afe6bfe99fc87546de511ad3d33d89e0230bcbb0088cbc103cc4280a02b"
+  },
+  "skills/yammerknit/examples/README.md": {
+    "before": null,
+    "after": "b5fc7ff2ca393841815b3770860169de81982ebb5ac8f9897eba0283393aa0cb"
+  },
+  "skills/yammerknit/examples/pilot-source.txt": {
+    "before": null,
+    "after": "7913bec2bd425d7d45e3a932b0ffeacee026af78162dfcdae08b4b232c1dae47"
+  },
+  "skills/yammerknit/examples/pilot-yammerknit.md": {
+    "before": null,
+    "after": "22e2d798ca04ec8b5135ad5e1c9217e0a7d395d66eb9752465c5f375a123f92d"
+  },
+  "skills/yammerknit/references/data-handling.md": {
+    "before": "5886998ccc936ffadebf736902bc3b2770c12bf7342595d4c2fd0962d75f2ca0",
+    "after": "260158a5bfece07cc026d7e09102c74afec0dfdd095ad4d34ca4c3f374ccc2bc"
+  },
+  "skills/yammerknit/references/source-grounding.md": {
+    "before": null,
+    "after": "f5f6ff677663227189eca00bff5652440932a05f2c4573973259a09fb2304c23"
+  },
+  "skills/yammerknit/references/youtube-transcripts.md": {
+    "before": "6bdc814b6bdbdf2a19bf7eb31a4a2b5e11a7cb278c500da49045a1ded35f5bcb",
+    "after": "a83d6db5a0311dbaa702a12b19f5513030bcc0cd3d79d7b685a691390d44a1d4"
+  },
+  "skills/yammerknit/scripts/yammerknit_tool.py": {
+    "before": "001dcc85f62eb9dc4ea08d978893192c86dccf84e9008de559dc192054b5a2dc",
+    "after": "d94e0a66f5d59da209ec6e582afe6d18fcfec57046b64bcf3e1b1fe5da514f69"
+  },
+  "skills/yammerknit/tests/test_estate_repairs.py": {
+    "before": null,
+    "after": "7c73eae4c04ebb08281cfdc291383ce00b2252ccf17d2362faf7fbbcfd84a3a0"
+  },
+  "skills/yammerknit/tests/test_native_journey.py": {
+    "before": null,
+    "after": "840216d9010f00018533205e8c1d0a2171cb188f9aba7cb8992b25308ecb9e51"
+  },
+  "skills/yammerknit/tests/test_transcript_acquisition.py": {
+    "before": "ddbc34bef86711368b76ced59f1a33e84554ee8db3a0899ffd0b4086d5dc854b",
+    "after": "2cd5d6f58ed563f082e96d02533a9dc77052e1ae1f7f5822494e52e32e3ffe5f"
+  },
+  "skills/yammerknit/tests/test_yammerknit_tool.py": {
+    "before": "99f0066ad179563f7a6ce60582116bb14446d92067001c6f075c080c4ab3ec7b",
+    "after": "961ef9c7158788f8cc8707d1f66c8a4e3d00909276d865beb3c388fc4be93570"
+  },
+  "verification/audit_release.py": {
+    "before": "6e39c38411d22c5663e1942de19477da1df8bdab7b7c128c1bf7d5b324c124ec",
+    "after": "9d93c0a0378abc8d439b59e43d6b7f2e3fb42700570937d8947804e52adea5b4"
+  },
+  "verification/browser_review.cjs": {
+    "before": "b8f2cc4ddde3daba9689dd40bcfdeadea4deda3f564944b5dc80574e11180a83",
+    "after": "e4ab572896f2219dc501607629b053d1ff845ad46ab1e5294ee243b79c804be8"
+  },
+  "verification/build_release.py": {
+    "before": "59fe076cea8d5d902e6469fb364f8f4432399f85846aa41e886b365f5a6409de",
+    "after": "b5fcbd915d498a804b460b357debb940e7b8dfa20afb71f7df19d0051c4bb34c"
+  },
+  "verification/estate-quality-20261007/authorship/authoring-response.md": {
+    "before": null,
+    "after": "0b3b2480ee86b5515f1658dd862fe8c997f4c30916e3fa6a4869dfd878dcbbaf"
+  },
+  "verification/estate-quality-20261007/authorship/documentation-authorship.json": {
+    "before": null,
+    "after": "e3dbebb4c8cdf2d067ce787b00c44e31627396233fd72b5baad672460d2df386"
+  },
+  "verification/estate-quality-20261007/authorship/documentation-manifest.json": {
+    "before": null,
+    "after": "559894df69f2b3507a9fb15e20ec2305e6724c3d4f27a00e3413d9fc7ae2bf69"
+  },
+  "verification/estate-quality-20261007/authorship/evidence-packet.json": {
+    "before": null,
+    "after": "190d4c71652ad5458b34e0b85b0252a9c2f6c2cce1815c8b71106bd4dab22fea"
+  },
+  "verification/estate-quality-20261007/authorship/execution.md": {
+    "before": null,
+    "after": "e7991916414356a64e3e5944dea45aa8843d34279d5ed85a2bf1a63b8fb9f797"
+  },
+  "verification/hesperos-capabilities/21606903702db1eae375cb8e05dcad821616d399a574488f0f1be738d6dab42f/SKILL.md": {
+    "before": null,
+    "after": "21606903702db1eae375cb8e05dcad821616d399a574488f0f1be738d6dab42f"
+  },
+  "verification/render_site_assets.cjs": {
+    "before": "6420d3c3806d3c2bd14a60b91be4343e01f485888f7f05ff0c5d95f469d91cf6",
+    "after": "0a5226a250ccb8401bdd5ce372974b280a4bc2dedcbefb6c3fb361e2bd9651eb"
+  },
+  "verification/test_estate_release.py": {
+    "before": null,
+    "after": "21d1028832778f89c4179f31b7adb5935e787ad5dbc82ce4e91003825e047067"
+  }
+}

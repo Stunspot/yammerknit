@@ -1,0 +1,5 @@
+# In-process documentation authorship
+
+The worker read and applied Hesperos entry, preserved persona, integrated practitioner and usability verification guidance, and Promptcraft's complete design reference. It reconstructed product truth from canonical source, retained baseline failure probes, package topology, CLI help and exact native behavior. The new active adapter, complete fictional teaching source/artifact, specific source-to-shard contrasts, entry, browse/return, custody recovery and package reproduction instructions were composed in this execution. The public site was materially revised to carry the same actual journey.
+
+The authored source fixture is explicitly fictional and its digest is computed from the exact shipped bytes. Neither that authored example nor expert continuations represent an executed model trial. Current native runtime and actual browser navigation are separate evidence. The author preserved canonical SOP/persona, original art and historical verification; unchanged and formatting-only documents are excluded. Root's independent review follows the frozen candidate and is not impersonated here.

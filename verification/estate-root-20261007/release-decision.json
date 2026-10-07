@@ -1,0 +1,10 @@
+{
+  "product": "yammerknit",
+  "accepted_version": "0.1.0",
+  "candidate_version": "0.1.0",
+  "treatment": "edit",
+  "baseline_sha256": "a75eccaccff81ac5558fc79a1e62f728464b76c680e997242bd824864cfc0dd4",
+  "reason": "Restores accepted source-grounded creation, custody, record organization, usable standalone delivery and honest retrieval boundary; no new embedding service or supported host.",
+  "historical_preservation": "release/0.1.0 and accepted-shelf.zip immutable",
+  "decision_recorded_before_source_edits": true
+}

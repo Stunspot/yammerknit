@@ -1,0 +1,18 @@
+E:\Github\yammerknit\CHANGELOG.md: PASS (bounded source checks)
+E:\Github\yammerknit\PRIVACY.md: PASS (bounded source checks)
+E:\Github\yammerknit\README.md: PASS (bounded source checks)
+E:\Github\yammerknit\START-HERE.md: PASS (bounded source checks)
+E:\Github\yammerknit\customer-docs\DATA-AND-PRIVACY.md: PASS (bounded source checks)
+E:\Github\yammerknit\customer-docs\INSTALLATION.md: PASS (bounded source checks)
+E:\Github\yammerknit\customer-docs\TROUBLESHOOTING.md: PASS (bounded source checks)
+E:\Github\yammerknit\customer-docs\USE-YAMMERKNIT.md: PASS (bounded source checks)
+E:\Github\yammerknit\customer-docs\VALIDATION-AND-LIMITS.md: PASS (bounded source checks)
+E:\Github\yammerknit\delivery-sidecars\estate-quality-20261007-r1\Yammerknit T-Free v0.1.0 Extra.md: PASS (bounded source checks)
+E:\Github\yammerknit\delivery-sidecars\estate-quality-20261007-r1\Yammerknit T-Free v0.1.0.md: PASS (bounded source checks)
+E:\Github\yammerknit\skills\yammerknit\SKILL.md: PASS (bounded source checks)
+E:\Github\yammerknit\skills\yammerknit\examples\README.md: 
+26: directional reference may not survive reflow
+E:\Github\yammerknit\skills\yammerknit\examples\pilot-yammerknit.md: PASS (bounded source checks)
+E:\Github\yammerknit\skills\yammerknit\references\data-handling.md: PASS (bounded source checks)
+E:\Github\yammerknit\skills\yammerknit\references\source-grounding.md: PASS (bounded source checks)
+E:\Github\yammerknit\skills\yammerknit\references\youtube-transcripts.md: PASS (bounded source checks)

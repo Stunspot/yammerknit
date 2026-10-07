@@ -1,0 +1,27 @@
+{
+  "schema": "yammerknit.source-manifest.v1",
+  "record_id": "2026-10-07 - Fixture - validation-race - 51453ae518",
+  "created_at": "2026-10-07T06:54:43+00:00",
+  "source_kind": "text",
+  "origin": "isolated test",
+  "url": null,
+  "acquisition_method": "supplied",
+  "rights_basis": null,
+  "original_filename": "source.txt",
+  "files": {
+    "original": "source.original.txt",
+    "normalized": "source.txt"
+  },
+  "post_date": "2026-10-07",
+  "channel": "Fixture",
+  "title": "validation-race",
+  "transformations": [],
+  "hashes": {
+    "source.original.txt": "51453ae518dd942f76c65630e9c2c9ab3fbdb01cb253d7cc2f8ad19551cc6576",
+    "source.txt": "51453ae518dd942f76c65630e9c2c9ab3fbdb01cb253d7cc2f8ad19551cc6576"
+  },
+  "tool": {
+    "name": "yammerknit_tool",
+    "version": "0.1.0"
+  }
+}

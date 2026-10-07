@@ -1,0 +1,214 @@
+{
+  "product": "yammerknit",
+  "version": "0.1.0",
+  "head": "05375215754ad24c0b64e7eb35af0aa44abaa5df",
+  "git_status": "?? verification/estate-quality-20261007/\n",
+  "source_inventory": {
+    ".codex-plugin/plugin.json": "7b9e1538441976acc5b00506ccc0afd27b231864ddac2cd8a80da0b2e956ea8f",
+    ".editorconfig": "3f98ae7d1a00751db3e32bdb4b2b3f53df8417d08946469bae79db6fb6e15334",
+    ".gitattributes": "192e91eaa021674474be06f3ac258dd9d9a28985bd4648643a6b4d7a46575f53",
+    ".github/workflows/line-ending-policy.yml": "e83c4eddac5481c74238432bfde5b07e1f5e0aeb74a8cbc634e505fdbfb61d3b",
+    ".github/workflows/pages.yml": "d7e10b4319819620e8e848d67e206fbfad8fafe2287b48331e2261b05368d06e",
+    ".gitignore": "b6f71716c85b1b3cc44c1a191470dd41e4a78dffe5c38fedc1875a054632ba00",
+    "CHANGELOG.md": "0e50f18f024d49258945a288473395aa06e622c167c06ed870fe09602aa34bd3",
+    "CONTRIBUTING.md": "a1ee6071a3ad4d2e80ce927769d763cc49e369312943bd6ac38468cbed21f6fa",
+    "HOST-MATRIX.md": "b2e81969b66b232bcdd0a2c4b4fc84779622653c7491fc5fe078be55faa12146",
+    "LICENSE.md": "2b8d8ecae411b29afa293a4c21a20d94d91f2bbf76e3ad745bc6d782d3b18f8d",
+    "PRIVACY.md": "d3c8f59c2d8686caf40fabfa8cbb4a45ef61e8939a38e097a36dfad5cbf1a1ec",
+    "PROVENANCE.md": "968392b14bae4efed7998ec7d39fcf80f230d3b7cb31d490bdbc11a88100625c",
+    "README.md": "670d7fd0531af132faced33c8921f32fc2be7d1074774af162576c8a64908cb2",
+    "START-HERE.md": "254373ee9e339a347c47c314d484772d2ae3622d119f14c32f06d935cc14092c",
+    "SUPPORT.md": "53745894572eba332def1430c5fc18fc741c176eb60bd5b936cdb68ef66a6f66",
+    "TERMS.md": "ed4bd910c2fcbe7d02980a588a38eff3977c0043805a75b882ede9058bea88c1",
+    "assets/Stunspot Icon.ico": "77b2ea3c2f18676867ac48bd048bed3bbb9ddad13c92c000493b1e1c37c598e1",
+    "assets/icon.png": "fdedf2607c31ceb380c77bf0fd54bd964358216e08991a71ed61d161ef875351",
+    "assets/yammerknit-readme-hero.png": "675315a6eb2974019d20daf157c8a352a8265e11e67e54fbdf1b1f08c02f4b36",
+    "customer-docs/DATA-AND-PRIVACY.md": "a749bd700f70f77bc300da333d32694f4d17b675a394fdb165b7b408ffc576b3",
+    "customer-docs/INSTALLATION.md": "c30bd9f4e13c89fa13e042c8ff2bf5bd578e6b01ba702fc3187a5b49fa4abbc8",
+    "customer-docs/TROUBLESHOOTING.md": "e7f1b87e84acae2282fed97183c1632e5578fd89a29f5148bf4d671204b9808b",
+    "customer-docs/USE-YAMMERKNIT.md": "2602ee395324cdf8c376f304dcb087f2ece7c0ea02d72d5e6bb8949fc792ad7c",
+    "customer-docs/VALIDATION-AND-LIMITS.md": "55ea32ef3004ae450ff6b8bf77f44fbb8f818219199886ae6bb6b90ccf18ffab",
+    "docs/.nojekyll": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "docs/404.html": "c2089d786333d9ba8bc6a066d85ca82d28f4a752d106a8af64393f3150ce1395",
+    "docs/assets/semantic-mesh.webp": "ed8516222c0822cbe6d0d4f57013207437f259e124a9dea2fbae4717019c4de1",
+    "docs/assets/stunspot-icon.png": "bed708396e3014a800cdf5c5e54e4272824ce7de47287a23aeaafa6191e30fed",
+    "docs/assets/styles.css": "a879412b546374f282b88f9bdfc4d57fd31891757f39241136bad05e517d3949",
+    "docs/assets/yammerknit-pages-hero.png": "25ba3911279aeb0ae28b95f382ad04f96ace6a6027c5905a50bc87436075dbd4",
+    "docs/assets/yammerknit-sharecard.png": "f5efc4cf11b62b67a9141872ea2319c752ea6db5b8227a2d01345e220a4734fa",
+    "docs/data.html": "0f864aa5520b4d798f23bc1c671d736679defe6c638af170a87b9ae2deddf00f",
+    "docs/get-started.html": "d10791965a08172c7b8fb3829fef9ddf0f6a3625f4612d1f2672c6a87644bb2b",
+    "docs/index.html": "70f6658e02ed103afe1e05dc46d367a6fc874844cccc86eaed4ab207629e0874",
+    "docs/troubleshooting.html": "2111eeb7aacc4beced6456d0f93b595e767e3cbd61646146ece016e1d2a5147c",
+    "docs/use.html": "14fccd5a13bc66a5eb602da78fffd9e2785febf44ad64ba9999a649146112b92",
+    "docs/validation.html": "88fbd92359ee05c770bb285873c2d0c806349006c29ba13b986613fde3d22ddf",
+    "skills/yammerknit/SKILL.md": "eae3c01bebed0d019359a5c2fd330f9dd5af231291223a3e0ab0a9e6d22159b5",
+    "skills/yammerknit/agents/openai.yaml": "15b709eff8b30b56e762aa08132be33d36528d5193305b761b5d9d4242335887",
+    "skills/yammerknit/personas/canonical-rupert-giles-document-guardian.txt": "ed6eeb11f4602954506b26089d23c5da466f28d32a4ea2d2f3fdb69033033b41",
+    "skills/yammerknit/references/canonical-sop.md": "3b35a55f35aedc848ea83425b5feacd6994059fd497103cae135ae826d5504dd",
+    "skills/yammerknit/references/data-handling.md": "5886998ccc936ffadebf736902bc3b2770c12bf7342595d4c2fd0962d75f2ca0",
+    "skills/yammerknit/references/stewardship-doctrine.md": "55090874d75baa1ea76a49a79e850d0ddb1c981c5c440d23f8a94cc3ed51822d",
+    "skills/yammerknit/references/youtube-transcripts.md": "6bdc814b6bdbdf2a19bf7eb31a4a2b5e11a7cb278c500da49045a1ded35f5bcb",
+    "skills/yammerknit/scripts/yammerknit_tool.py": "001dcc85f62eb9dc4ea08d978893192c86dccf84e9008de559dc192054b5a2dc",
+    "skills/yammerknit/tests/test_transcript_acquisition.py": "ddbc34bef86711368b76ced59f1a33e84554ee8db3a0899ffd0b4086d5dc854b",
+    "skills/yammerknit/tests/test_yammerknit_tool.py": "99f0066ad179563f7a6ce60582116bb14446d92067001c6f075c080c4ab3ec7b",
+    "verification/audit_release.py": "6e39c38411d22c5663e1942de19477da1df8bdab7b7c128c1bf7d5b324c124ec",
+    "verification/browser_review.cjs": "b8f2cc4ddde3daba9689dd40bcfdeadea4deda3f564944b5dc80574e11180a83",
+    "verification/build_release.py": "59fe076cea8d5d902e6469fb364f8f4432399f85846aa41e886b365f5a6409de",
+    "verification/documentation-project.json": "587c2ed46fc127b82792ae541d4da2f141bc2dbd4f5903d9bd4647c72625ccbe",
+    "verification/documentation-review.md": "bf9da2d24b3a554c5e986c1924b10490fe3c5a829adec0c9c08ac1b582808b2b",
+    "verification/evidence/documentation/browser-review.json": "f9e8659b6d89bca886a2ce18c9af6ec410450048c32f1761b666a3067fc685b1",
+    "verification/evidence/documentation/desktop-1440.png": "dc6508975918e34fd91330f218ae804526398a1559697e5bf624aec92ec152f3",
+    "verification/evidence/documentation/live-publication.json": "3dee2baf2dd773d2a33e63de43379ead80d2837aa53bde9ffed92b6710fb2f5f",
+    "verification/evidence/documentation/mobile-390.png": "e72cc6831ddfcd5bc746b391b307b449030e2595c29a67322c43c99b6d4e56ca",
+    "verification/final-live-canary.json": "aea73b30b1d7064eb045e5f936baf42cfd4ece37636bddd77fc7e2f66205286f",
+    "verification/live-invocation-output.md": "c146660d53513aa169fb535ea5fe0b51919ce308d663bbfec323253e94fed851",
+    "verification/live-invocation-receipt.json": "c581cc6d9d936a16ca9d88a217cf791da95d22f5f3e3c8a3054b39bb4fe55892",
+    "verification/plugin-readiness.json": "7be9b82c84dbb345cf83b5d96f7babd0da61c85815fb6ae7d6eea656942b9fc6",
+    "verification/release-audit.json": "b476080e89d0ff281588122a92c3aec0f2d6d59cef25460712cb168431ef748a",
+    "verification/remediation-2026-08-12/accessibility-review.md": "0103cd216fd977c920f57758243dd457601a21986cefb610578fca3865b63779",
+    "verification/remediation-2026-08-12/adversarial-review.md": "374d57241571a896206983d17b6c180b0734d94a53a3621dfda0833d5abdafad",
+    "verification/remediation-2026-08-12/governed-fingerprint.json": "dd0198f1bbb4a9b9d99b05b4951cd0a5b41d103d90695750b22272dc1d7dd0ef",
+    "verification/remediation-2026-08-12/hesperos-review.md": "5649723a6636d2b397ec6f5811431aa405249900e7a3b1f4f21c4a9992e8d810",
+    "verification/remediation-2026-08-12/local-verification.md": "a6bb1030116712e24ec4c622ae96e03d54e0dd92ffa8ef1b66a3dde036f5bdd4",
+    "verification/remediation-2026-08-12/publication-preflight.md": "578157dc55136ae361f6f5f533c6f7530c51c59307896dc9df33a7027c7a06b2",
+    "verification/remediation-2026-08-12/verification-manifest.json": "e1e83c9ff08ada8782bc376f0ed50f3c7d28c45fbd7a6939687e5a2775abef99",
+    "verification/remediation-2026-08-12/visual-review.md": "f595bac3a01f6864930172ccbaa36617f713e24ecad3577ecee490ca27822941",
+    "verification/render_site_assets.cjs": "6420d3c3806d3c2bd14a60b91be4343e01f485888f7f05ff0c5d95f469d91cf6",
+    "verification/test_release.py": "f0d3fee23b44604459e3ade6125eec896d91b55447d02fc825f81b2b88ed8492",
+    "verification/test_site.py": "5de6b0c8d970e35ca108582e8f1dc68f3f5ade63b6d892ace8170c9dfd404bbf",
+    "verification/verification-manifest.json": "9d905180dbd132db9fc25c5e25a6de3dc46a2000b2764971f0c0cc3fc7b89eb0"
+  },
+  "baseline_snapshot_sha256": "2662cf1d967a06e0063446ea794eeb15b04884db3109f514e2dce2e8b14849bd",
+  "accepted_shelf": "E:\\Indranet\\Augments\\0 Free\\Yammerknit v0.1.0.zip",
+  "accepted_shelf_sha256": "a75eccaccff81ac5558fc79a1e62f728464b76c680e997242bd824864cfc0dd4",
+  "repo_release_sha256": "a75eccaccff81ac5558fc79a1e62f728464b76c680e997242bd824864cfc0dd4",
+  "ownership": {
+    "id": "yammerknit",
+    "title": "Yammerknit",
+    "baseline_version": "0.1.0",
+    "shelf": "0 Free",
+    "shelf_zip": "E:\\Indranet\\Augments\\0 Free\\Yammerknit v0.1.0.zip",
+    "source_zip": "E:\\Indranet\\Augment-Custody\\Legacy Distribution Estate 2026-08-22\\0 Free\\Yammerknit T-Free v0.1.0.zip",
+    "canonical_repository": null,
+    "embedded_skill_paths": [
+      "yammerknit-v0.1.0/codex-plugin/yammerknit/skills/yammerknit/SKILL.md"
+    ],
+    "nested_archives": [
+      "yammerknit-v0.1.0/claude/yammerknit-v0.1.0.zip"
+    ],
+    "read_error": null,
+    "included_in": [],
+    "status": "pending_audit",
+    "report": null,
+    "findings": [],
+    "delivery_status": "pending",
+    "packaged_skill_names": [
+      "yammerknit"
+    ],
+    "candidate_repositories": {
+      "E:\\Github\\yammerknit": [
+        "E:\\Github\\yammerknit\\skills\\yammerknit\\SKILL.md"
+      ],
+      "E:\\Github\\.portfolio-remediation-019ff22b": [
+        "E:\\Github\\.portfolio-remediation-019ff22b\\yammerknit-final\\skills\\yammerknit\\SKILL.md",
+        "E:\\Github\\.portfolio-remediation-019ff22b\\yammerknit\\skills\\yammerknit\\SKILL.md"
+      ],
+      "E:\\Github\\nova-emergent": [
+        "E:\\Github\\nova-emergent\\working\\codex\\nova-emergent\\skills\\yammerknit\\SKILL.md",
+        "E:\\Github\\nova-emergent\\working\\claude\\skills\\yammerknit\\SKILL.md"
+      ]
+    },
+    "source_resolution": "pending owner verification",
+    "ownership": {
+      "id": "yammerknit",
+      "title": "Yammerknit",
+      "baseline_version": "0.1.0",
+      "shelf": "0 Free",
+      "shelf_zip": "E:\\Indranet\\Augments\\0 Free\\Yammerknit v0.1.0.zip",
+      "source_zip": "E:\\Indranet\\Augment-Custody\\Legacy Distribution Estate 2026-08-22\\0 Free\\Yammerknit T-Free v0.1.0.zip",
+      "included_in": [],
+      "canonical_repository": "E:\\Github\\yammerknit",
+      "canonical_source_root": "E:\\Github\\yammerknit",
+      "source_root_exists": true,
+      "ownership_evidence": [
+        "E:\\Indranet\\Augment-Custody\\Active Shelf Control\\sidecar-source-matrix.json#yammerknit"
+      ],
+      "source_selection": [
+        {
+          "name": "yammerknit",
+          "path": "E:\\Github\\yammerknit\\skills\\yammerknit\\SKILL.md",
+          "selection_basis": "declared owner repository and current source layout; accepted package equality independently recorded",
+          "matches_accepted_skill_bytes": true,
+          "sha256": "eae3c01bebed0d019359a5c2fd330f9dd5af231291223a3e0ab0a9e6d22159b5",
+          "alternatives": [],
+          "path_exists": true
+        }
+      ],
+      "observations": [],
+      "source_resolution_status": "source_owner_resolved",
+      "declared_consumers": [],
+      "observed_consumers": []
+    }
+  },
+  "shelf_manifest_record": {
+    "id": "yammerknit",
+    "catalog_title": "Yammerknit",
+    "shelf_title": "Yammerknit",
+    "state": "shelved",
+    "shelf": "0 Free",
+    "version": "0.1.0",
+    "source_path": "E:\\Indranet\\Augment-Custody\\Legacy Distribution Estate 2026-08-22\\0 Free\\Yammerknit T-Free v0.1.0.zip",
+    "source_name": "Yammerknit T-Free v0.1.0.zip",
+    "target_path": "0 Free\\Yammerknit v0.1.0.zip",
+    "bytes": 2289266,
+    "sha256": "a75eccaccff81ac5558fc79a1e62f728464b76c680e997242bd824864cfc0dd4",
+    "transformation": "byte-identical copy; human-readable shelf filename only",
+    "sidecars": {
+      "avatar": {
+        "source_path": "E:\\Indranet\\Augment-Custody\\Active Shelf Control\\authored-sidecars\\bloomfield-labels-20260929-repair\\yammerknit\\Yammerknit.png",
+        "source_name": "Yammerknit.png",
+        "target_path": "0 Free\\Yammerknit.png",
+        "bytes": 1791925,
+        "sha256": "a4730e26657ae09ccdd071dca79f562ea6c1c502107e17ec2d59b9d38a3006fc",
+        "transformation": "Bloomfield product-specific exact 16:9 label; repaired 2026-09-29; same-version presentation edit."
+      },
+      "prompt": {
+        "source_path": "E:\\Indranet\\Augment-Custody\\Legacy Distribution Estate 2026-08-22\\0 Free\\Yammerknit T-Free v0.1.0.md",
+        "source_name": "Yammerknit T-Free v0.1.0.md",
+        "target_path": "0 Free\\Yammerknit T-Free v0.1.0.md",
+        "bytes": 2622,
+        "sha256": "f117d38b06615118917f50cd06183683a594a24bba6a9eb37ef1c907eae836c0",
+        "transformation": "byte-identical restoration from legacy custody"
+      },
+      "extra": {
+        "source_path": "E:\\Indranet\\Augment-Custody\\Legacy Distribution Estate 2026-08-22\\0 Free\\Yammerknit T-Free v0.1.0 Extra.md",
+        "source_name": "Yammerknit T-Free v0.1.0 Extra.md",
+        "target_path": "0 Free\\Yammerknit T-Free v0.1.0 Extra.md",
+        "bytes": 1544,
+        "sha256": "6caa5e94d45cfda13780849b812edb08ffccb1eafc81ec67a535ae8c7cc81b9d",
+        "transformation": "byte-identical restoration from legacy custody"
+      }
+    },
+    "bundle_state": "complete",
+    "bundle_fingerprint": "sha256:ace0c09032fa413592ab67a8a6641bac9380317b417567e1044a5e1c61307508",
+    "distribution_channels": [
+      "discord"
+    ],
+    "discord_policy": "tier",
+    "discord_policy_reason": "discord-tier",
+    "included_in": [],
+    "release_decision": {
+      "schema": "cd-release-decision/v1",
+      "kind": "edit",
+      "effect": "presentation",
+      "baseline_version": "0.1.0",
+      "baseline_bundle_fingerprint": "sha256:ff401bcd17065fe852cd4cc3a9fd96dac83eed99fe7d26764bc472b0ec0cff5b",
+      "target_version": "0.1.0",
+      "target_bundle_fingerprint": "sha256:ace0c09032fa413592ab67a8a6641bac9380317b417567e1044a5e1c61307508",
+      "reason": "Replace the repeated template with a distinct product-specific Bloomfield label. No capability, documentation, or ZIP payload change.",
+      "evidence": "E:\\Indranet\\Augment-Custody\\Release Work\\bloomfield-label-pass-20260929\\repair-design-record.json",
+      "reviewed_at": "2026-09-29T13:40:49.794617-05:00"
+    }
+  },
+  "preserve": "Source canonical SOP/persona and artwork exact; frozen release/ and all history immutable; no live corpus or user workspace read or written."
+}

@@ -1,0 +1,30 @@
+{
+  "scope": "Read-only current inspection of retained original failure fixtures; no fixture mutation",
+  "cases": [
+    {
+      "case": "source-tamper",
+      "rejected": true,
+      "reason": "Missing or changed file: E:\\Github\\yammerknit\\verification\\estate-quality-20261007\\baseline-fixtures\\source-tamper\\sources\\2026-10-07 - Fixture - source-tamper - 51453ae518\\source.original.txt"
+    },
+    {
+      "case": "missing-revision",
+      "rejected": true,
+      "reason": "Missing or changed file: E:\\Github\\yammerknit\\verification\\estate-quality-20261007\\baseline-fixtures\\missing-revision\\revisions\\2026-10-07 - Fixture - missing-revision - 51453ae518\\20261007T065443Z-a1447138f0\\yammerknit.md"
+    },
+    {
+      "case": "wrong-parent",
+      "rejected": true,
+      "reason": "Missing or mismatched revision parent"
+    },
+    {
+      "case": "validation-race",
+      "rejected": true,
+      "reason": "Validation receipt contradicts or does not bind the stored artifact"
+    },
+    {
+      "case": "record_id_traversal",
+      "rejected": true,
+      "reason": "Expected a portable single-component record or file name."
+    }
+  ]
+}

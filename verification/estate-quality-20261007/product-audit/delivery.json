@@ -1,0 +1,64 @@
+{
+  "product": "yammerknit",
+  "version": "0.1.0",
+  "classification": "same-version restoration edit",
+  "candidate": "E:\\Github\\yammerknit\\release-candidates\\estate-quality-20261007-r1\\Yammerknit-v0.1.0.zip",
+  "candidate_sha256": "97ad4f45dfa6443dd9aa8d73bc6dbf4c31e424b068c6de58b0ae963359c67d75",
+  "customer_root": "E:\\Github\\yammerknit\\release-candidates\\estate-quality-20261007-r1\\yammerknit-v0.1.0",
+  "source_root": "E:\\Github\\yammerknit",
+  "canonical_skill": "E:\\Github\\yammerknit\\skills\\yammerknit\\SKILL.md",
+  "source_freeze": "E:\\Github\\yammerknit\\verification\\estate-quality-20261007\\SOURCE-FREEZE.json",
+  "source_freeze_sha256": "84e57b767d93b1237db64dfaa5be1dbb5f9cf470fce1656d7d9ef3ebedbea6d7",
+  "source_inventory_count": 89,
+  "runtime_file_count": 12,
+  "sidecars": {
+    "Yammerknit T-Free v0.1.0 Extra.md": {
+      "path": "E:\\Github\\yammerknit\\delivery-sidecars\\estate-quality-20261007-r1\\Yammerknit T-Free v0.1.0 Extra.md",
+      "sha256": "7eceee32436d713e5031778224bae0fedb9b3eee0618f8a2b795e8e5179e8090"
+    },
+    "Yammerknit T-Free v0.1.0.md": {
+      "path": "E:\\Github\\yammerknit\\delivery-sidecars\\estate-quality-20261007-r1\\Yammerknit T-Free v0.1.0.md",
+      "sha256": "257241e78dfc4c8eae0a8347e7afc9d9bc2d375eaa0f140a11d1b4f22012e80f"
+    },
+    "Yammerknit.png": {
+      "path": "E:\\Github\\yammerknit\\delivery-sidecars\\estate-quality-20261007-r1\\Yammerknit.png",
+      "sha256": "a4730e26657ae09ccdd071dca79f562ea6c1c502107e17ec2d59b9d38a3006fc"
+    }
+  },
+  "report_root": "E:\\Github\\yammerknit\\verification\\estate-quality-20261007\\product-audit",
+  "authorship_receipt": "E:\\Github\\yammerknit\\verification\\estate-quality-20261007\\authorship\\documentation-authorship.json",
+  "evidence": {
+    "runtime": "43/43 from fresh native extraction",
+    "package_site": "19 PASS, 1 platform fixture skip",
+    "native_audit": "83 files, 0 issues",
+    "browser": "desktop/mobile and actual first-task/reentry/recovery navigation PASS",
+    "rebuild": "exact from customer source and fresh Git checkout",
+    "git": "89 maintained inputs exact",
+    "model_trials": 0,
+    "participant_trials": 0
+  },
+  "consumers": {
+    "declared": [],
+    "observed": [],
+    "installed_standalone_lead": "C:\\Users\\user\\.codex\\plugins\\cache\\personal\\yammerknit\\0.1.0\\skills\\yammerknit",
+    "historical_discovery_only": [
+      "E:\\Github\\nova-emergent\\working\\codex\\nova-emergent\\skills\\yammerknit",
+      "E:\\Github\\nova-emergent\\working\\claude\\skills\\yammerknit"
+    ],
+    "instruction": "Apply current ownership inventory. Older working mirrors alone do not establish a current edition consumer; root resolves any later evidence."
+  },
+  "root_actions": [
+    "Independently challenge frozen candidate and source",
+    "Accept complete ZIP plus source-owned prompt/Extra and unchanged governed avatar",
+    "Update applicable standalone installation, existing repository/release surfaces, shelf and Library under root transaction",
+    "Keep frozen accepted release history; publish/promote repaired same-version bytes through the existing current delivery surface without erasing history",
+    "Carry current documentation authorship and exact source cutoff into remote custody"
+  ],
+  "currentness_boundary": "Candidate frozen, not yet accepted or installed by this worker. Existing historical verification records remain historical; repair evidence is in this dated directory.",
+  "residual_limits": [
+    "No fresh host-model trial or Claude activation",
+    "No live YouTube acquisition or retrieval benchmark",
+    "No participant study or assistive-technology conformance claim",
+    "Hash consistency is not signed authenticity or hostile-filesystem protection"
+  ]
+}

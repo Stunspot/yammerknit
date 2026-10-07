@@ -1,0 +1,14 @@
+{
+  "state": "pass",
+  "candidate": "E:\\Github\\yammerknit\\release-candidates\\estate-quality-20261007-r2\\Yammerknit-v0.1.0.zip",
+  "candidate_sha256": "a8806464e0db17dcfaf6c3641fd2547c6d51c629f7bec0948e0e10385c39c007",
+  "runtime_native_tests": 45,
+  "source_package_site": "19 pass, 1 Windows-inapplicable fixture skip",
+  "independent_cli_outcomes": 16,
+  "native_member_files": 84,
+  "same_runtime_exact_rebuild": true,
+  "python": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+  "zlib_runtime": "1.3.1.zlib-ng",
+  "source_root": "E:\\Github\\yammerknit",
+  "native_root": "E:\\Indranet\\Nova\\projects\\project-records\\projects\\augment-estate-quality-repair\\records\\product-audits\\yammerknit\\root-review-r2\\native-extraction\\yammerknit-v0.1.0"
+}

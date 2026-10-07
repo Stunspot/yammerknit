@@ -1,0 +1,35 @@
+{
+  "product": "Yammerknit",
+  "version": "0.1.0",
+  "audience": "Source owner, unfamiliar reader, source-grounded author, RAG preparer, installer and maintainer",
+  "top_tasks": [
+    "Create a faithful useful mesh from an available source",
+    "Reuse a chunk with its evidence and qualifiers intact",
+    "Preserve and revise source-linked artifacts",
+    "Return without knowing a record ID",
+    "Recover corrupt records without rewriting history",
+    "Install and reproduce the customer kit"
+  ],
+  "sources": [
+    "verification/estate-quality-20261007/product-audit/critique.md",
+    "verification/estate-quality-20261007/baseline-probes.json",
+    "verification/estate-quality-20261007/browser-r1/browser-review.json",
+    "skills/yammerknit/examples/pilot-source.txt",
+    "skills/yammerknit/scripts/yammerknit_tool.py"
+  ],
+  "external_references": [
+    {
+      "url": "https://support.claude.com/en/articles/12512180-use-skills-in-claude",
+      "use": "Current upload labels checked by primary documentation; not live activation."
+    },
+    {
+      "url": "https://code.claude.com/docs/en/skills",
+      "use": "Current skill-folder reference."
+    },
+    {
+      "url": "https://www.w3.org/TR/webvtt1/",
+      "use": "Subtitle timing/voice representation context; helper is not full renderer."
+    }
+  ],
+  "limits": "In-process expert authorship, synthetic native cases and real local browser documentation journey; no model or participant trial, live acquisition or private corpus mutation."
+}
