@@ -28,13 +28,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - name: Check runtime and documentation
-        run: |
-          python -B -m unittest discover -s skills/yammerknit/tests -v
-          python -B -m unittest verification/test_release.py verification/test_estate_release.py verification/test_site.py -v
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload documentation

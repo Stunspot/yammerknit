@@ -1,9 +1,0 @@
-# Independent review additions before repair
-
-YK18 (high): every current README and site download still resolves to the preserved, defective historical release/0.1.0 kit. Source inspection finds ten current hrefs and the release asset itself still identifies the accepted historical SHA a75eccaccff81ac5558fc79a1e62f728464b76c680e997242bd824864cfc0dd4. Repair the current delivery route, retain the historical tree, and verify the actual deployed download hash. Current docs describing repaired behavior must lead to the repaired kit.
-
-YK19 (high): a one-cluster artifact with an explicit no-bridge sentence passes validation even when it also contains a bridge between two undeclared clusters. Independent native CLI probe returned valid true with no errors. The single-cluster exception must apply only when there are no actual bridge entries; retain a positive single-cluster neighbor and valid two-cluster example.
-
-YK20 (high): a missing blank separator between timestamped VTT cues silently merges Bob's later disagreement into Alice's earlier time range. The native projection returned [00:00:01.000 --> 00:00:02.000] [Alice] Yes. 00:00:03.000 --> 00:00:04.000 [Bob] No. Reject the malformed boundary before output, preserve the original, and show a controlled recovery error. A properly separated pair must keep distinct speakers and time ranges. This repairs evidence custody, not just cosmetic formatting.
-
-Method disposition: the frozen candidate and CPython 3.14 rebuild have identical outer member payloads except the nested archive and its derived hash records. Every nested member is also byte-identical; compressed stream sizes differ. This is a compressor/runtime difference, not changed product content. Preserve the failed cross-runtime assertion, bind exact-byte rebuild claims to the producing runtime, and qualify the root-built replacement from its actual shipped source. No claim of byte-identical archives across compressor implementations.

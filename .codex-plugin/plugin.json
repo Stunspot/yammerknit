@@ -19,8 +19,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Yammerknit",
-    "shortDescription": "🕸️ Source-grounded semantic extracts, relationships, and reusable context.",
-    "longDescription": "Create, inspect, repair and organize source-grounded Yammerknits with preserved evidence and honest retrieval limits.",
+    "shortDescription": "Semantic meshes for vector RAG",
+    "longDescription": "Create, inspect, repair, and organize source-grounded Yammerknits under Rupert Giles's knowledge stewardship.",
     "developerName": "Stunspot Prompting",
     "category": "Productivity",
     "capabilities": [

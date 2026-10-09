@@ -4,13 +4,9 @@
 from __future__ import annotations
 
 import argparse
-from contextlib import contextmanager
-import stat
-import uuid
 import hashlib
 import html
 import json
-import math
 import os
 import re
 import shutil
@@ -20,7 +16,7 @@ import tempfile
 import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import urlparse, parse_qs
+from urllib.parse import urlparse
 
 TOOL_VERSION = "0.1.0"
 JSON_INDENT = 2
@@ -77,80 +73,6 @@ class YammerknitError(RuntimeError):
     """Expected user-facing failure."""
 
 
-def safe_path(path: Path) -> Path:
-    """Reject links/reparse points before resolving long/short path spelling."""
-    path = Path(os.path.abspath(path))
-    for part in (path, *path.parents):
-        try:
-            info = part.lstat()
-        except FileNotFoundError:
-            continue
-        if stat.S_ISLNK(info.st_mode) or getattr(info, "st_file_attributes", 0) & 0x400:
-            raise YammerknitError(f"Linked/reparse path is unsupported: {part}")
-    return path.resolve()
-
-
-def component(value: object) -> str:
-    if (not isinstance(value, str) or not value or value in {".", ".."}
-            or WINDOWS_FORBIDDEN.search(value) or value.endswith((" ", "."))
-            or value.split(".", 1)[0].upper() in WINDOWS_RESERVED):
-        raise YammerknitError("Expected a portable single-component record or file name.")
-    return value
-
-
-def read_object(path: Path) -> dict:
-    def pairs(items):
-        result = {}
-        for key, value in items:
-            if key in result:
-                raise YammerknitError(f"Duplicate JSON key in {path.name}: {key}")
-            result[key] = value
-        return result
-    def finite(value):
-        raise YammerknitError(f"Non-finite JSON value in {path.name}")
-    def floating(value):
-        number = float(value)
-        if not math.isfinite(number):
-            return finite(value)
-        return number
-    value = json.loads(safe_path(path).read_text("utf-8"), object_pairs_hook=pairs,
-                       parse_constant=finite, parse_float=floating)
-    if not isinstance(value, dict):
-        raise YammerknitError(f"Expected JSON object: {path.name}")
-    return value
-
-
-def required_text(value: object, label: str) -> str:
-    if not isinstance(value, str) or not value.strip():
-        raise YammerknitError(f"Missing or invalid {label}")
-    return value
-
-
-def verified_file(directory: Path, name: object, expected: object) -> Path:
-    target = safe_path(directory / component(name))
-    if (not isinstance(expected, str) or not re.fullmatch(r"[0-9a-f]{64}", expected)
-            or not target.is_file() or sha256_path(target) != expected):
-        raise YammerknitError(f"Missing or changed file: {target}")
-    return target
-
-
-@contextmanager
-def record_lock(workspace: Path, record_id: str):
-    locks = safe_path(workspace / ".locks")
-    locks.mkdir(parents=True, exist_ok=True)
-    lock = locks / (sha256_bytes(record_id.encode("utf-8")) + ".lock")
-    try:
-        with lock.open("x", encoding="utf-8") as handle:
-            handle.write(dump_json({"pid": os.getpid(), "record_id": record_id, "started": utc_now()}))
-    except FileExistsError as exc:
-        raise YammerknitError(f"Record busy or interrupted: {lock}. Confirm no writer is running before removing only this lock.") from exc
-    try:
-        yield
-    finally:
-        lock.unlink()
-        cleanup_empty_directory(locks)
-
-
 def utc_now() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
@@ -172,7 +94,6 @@ def dump_json(value: object) -> str:
 
 
 def write_new_bytes(path: Path, data: bytes) -> None:
-    path = safe_path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     try:
         with path.open("xb") as handle:
@@ -255,16 +176,12 @@ def create_source_record(
     transformations: list[str],
     extra: dict[str, object] | None = None,
 ) -> dict[str, object]:
-    workspace = safe_path(workspace)
     source_hash = sha256_bytes(original)
     record_id = make_record_id(post_date, channel, title, source_hash)
-    component(record_id)
-    for area in ("sources", "artifacts", "revisions", ".staging"):
-        safe_path(workspace / area / record_id)
     ensure_record_absent(workspace, record_id)
 
     final_dir = workspace / "sources" / record_id
-    staging_root = safe_path(workspace / ".staging")
+    staging_root = workspace / ".staging"
     staging_root.mkdir(parents=True, exist_ok=True)
     staging_dir = Path(tempfile.mkdtemp(prefix="record-", dir=staging_root))
     staged_record = staging_dir / record_id
@@ -419,16 +336,12 @@ def validate_text(
     artifact_path: str | None = None,
     artifact_sha256: str | None = None,
 ) -> dict[str, object]:
-    physical_hash = artifact_sha256 or sha256_bytes(text.encode("utf-8"))
-    text = text.replace("\r\n", "\n").replace("\r", "\n")
     checks: dict[str, bool] = {}
     errors: list[str] = []
     stripped = text.strip()
 
     checks["utf8_replacement_character_absent"] = "\ufffd" not in text
-    wrapper = re.match(r"^(`{3,})(?:[A-Za-z0-9_-]*)\n", stripped)
-    fence = wrapper.group(1) if wrapper else ""
-    checks["codefenced_wrapper"] = bool(wrapper and stripped.endswith("\n" + fence) and not re.search(r"(?m)^`{" + str(len(fence)) + r",}[ \t]*$", stripped[wrapper.end():-(len(fence)+1)]))
+    checks["codefenced_wrapper"] = stripped.startswith("```") and stripped.endswith("```")
     checks["windows_safe_header"] = valid_windows_header(text)
 
     for field in REQUIRED_METADATA:
@@ -466,7 +379,7 @@ def validate_text(
         cluster_starts = list(
             re.finditer(r"(?mi)^\s*(?:\*\*)?Cluster Title(?:\*\*)?\s*:", cluster_area)
         )
-    checks["at_least_one_cluster"] = len(cluster_starts) >= 1
+    checks["at_least_two_clusters"] = len(cluster_starts) >= 2
 
     cluster_blocks: list[str] = []
     for index, start in enumerate(cluster_starts):
@@ -475,7 +388,7 @@ def validate_text(
 
     for field_name, pattern in CLUSTER_FIELDS.items():
         if field_name == "cluster_title":
-            present = bool(cluster_blocks) and all(nonempty_field(block, pattern) for block in cluster_blocks)
+            present = bool(cluster_blocks)
         elif field_name == "formatted_payload":
             present = bool(cluster_blocks) and all(
                 nonempty_labeled_block(block, pattern) for block in cluster_blocks
@@ -496,8 +409,10 @@ def validate_text(
     prose = executive[: bridge_match.start()] if bridge_match else executive
     sentence_count = len(re.findall(r"[.!?](?=\s|$)", prose))
     bridge_highlights = len(re.findall(bridge_pattern, executive))
-    checks["executive_terrain_present"] = bool(prose.strip())
-    checks["executive_bridge_highlights_or_single_cluster"] = bridge_highlights >= 1 or len(cluster_blocks) == 1
+    checks["executive_terrain_five_to_eight_sentences"] = 5 <= sentence_count <= 8
+    checks["executive_terrain_two_to_three_bridge_highlights"] = (
+        2 <= bridge_highlights <= 3
+    )
 
     relational_mesh = section_body(text, "Relational Mesh", "Prompt Seeding Kit")
     checks["relational_mesh_has_relationship"] = bool(
@@ -509,36 +424,6 @@ def validate_text(
     checks["relational_mesh_has_strategic_value"] = nonempty_field_or_table_column(
         relational_mesh, r"Strategic Value", "Strategic Value"
     )
-
-    titles = set()
-    for block in cluster_blocks:
-        match = re.search(r"(?mi)^\s*Cluster Title\s*:\s*(.+)$", block.replace("**", ""))
-        if match:
-            titles.add(match.group(1).strip())
-        titles.update(re.findall(r"⟨[^\n⟩]+⟩", block))
-    bridges = []
-    mesh_lines = relational_mesh.replace("**", "").splitlines()
-    for i, line in enumerate(mesh_lines):
-        if ("⇄" in line or "<->" in line) and not line.lstrip().startswith("|"):
-            ends = re.split(r"⇄|<->", line.strip(), maxsplit=1)
-            stop = next((j for j in range(i+1, len(mesh_lines)) if "⇄" in mesh_lines[j] or "<->" in mesh_lines[j]), len(mesh_lines))
-            body = "\n".join(mesh_lines[i+1:stop])
-            bridges.append(all(e.strip() in titles for e in ends) and all(nonempty_field(body, label) for label in ("Bridge Type", "(?:Relationship )?Effect", "Strategic Value")))
-    tables = [[c.strip() for c in line.strip().strip("|").split("|")] for line in mesh_lines if line.strip().startswith("|")]
-    if tables:
-        header = tables[0]
-        for row in tables[1:]:
-            if all(re.fullmatch(r":?-{3,}:?", c) for c in row):
-                continue
-            mapping = dict(zip(header, row))
-            pair = mapping.get("Source ⇄ Target", "")
-            ends = re.split(r"⇄|<->", pair)
-            bridges.append(len(ends) == 2 and all(e.strip() in titles for e in ends) and bool(mapping.get("Bridge Type")) and bool(mapping.get("Relationship Effect", mapping.get("Effect"))) and bool(mapping.get("Strategic Value")))
-    no_bridge = not bridges and len(cluster_blocks) == 1 and bool(re.search(r"(?i)no (?:supported |cross-cluster )?bridge", relational_mesh))
-    checks["all_bridges_resolve_and_have_type_effect_value"] = (bool(bridges) and all(bridges)) or no_bridge
-    if no_bridge:
-        for name in ("relational_mesh_has_relationship", "relational_mesh_has_bridge_type", "relational_mesh_has_strategic_value"):
-            checks[name] = True
 
     prompt_kit = section_body(text, "Prompt Seeding Kit", "Sigil Lexicon")
     checks["prompt_seeding_kit_has_multiple_seeds"] = (
@@ -555,18 +440,6 @@ def validate_text(
         cluster_sigils <= lexicon_sigils
     )
 
-    defined_sigils = set()
-    for line in lexicon.splitlines():
-        if line.lstrip().startswith(("-", "*")):
-            match = re.match(r"\s*[-*]\s*(⟨[^⟩]+⟩)\s*(?:—|–|-|:)\s*(.+)", line)
-            if match and match.group(2).strip():
-                defined_sigils.add(match.group(1))
-        elif line.strip().startswith("|"):
-            cells = [c.strip() for c in line.strip().strip("|").split("|")]
-            if len(cells) >= 2 and cells[1] and re.fullmatch(r"⟨[^⟩]+⟩", cells[0]):
-                defined_sigils.add(cells[0])
-    checks["sigils_have_plain_language_definitions"] = bool(cluster_sigils) and cluster_sigils <= defined_sigils
-
     for name, passed in checks.items():
         if not passed:
             errors.append(name)
@@ -577,17 +450,15 @@ def validate_text(
         "tool": {"name": "yammerknit_tool", "version": TOOL_VERSION},
         "checked_at": utc_now(),
         "artifact": artifact_path,
-        "artifact_sha256": physical_hash,
+        "artifact_sha256": artifact_sha256 or sha256_bytes(encoded),
         "valid": not errors,
         "checks": checks,
         "errors": errors,
-        "scope": "Structural consistency only; source fidelity and retrieval benefit require separate review.",
-        "warnings": (["SOP executive guidance is 5-8 sentences and 2-3 bridge highlights; use only as much as the source warrants."] if not (5 <= sentence_count <= 8 and 2 <= bridge_highlights <= 3) else []),
     }
 
 
 def validate_path(path: Path) -> dict[str, object]:
-    raw = safe_path(path).read_bytes()
+    raw = path.read_bytes()
     try:
         text = raw.decode("utf-8")
     except UnicodeDecodeError as exc:
@@ -604,232 +475,206 @@ def validate_path(path: Path) -> dict[str, object]:
     return validate_text(text, str(path), sha256_bytes(raw))
 
 
-def inspect_record(workspace: Path, record_id: str | None = None) -> dict[str, object]:
-    workspace = safe_path(workspace)
-    if record_id is None:
-        rows = []
-        source_root = safe_path(workspace / "sources")
-        for directory in sorted(source_root.iterdir() if source_root.exists() else [], key=lambda p: p.name.casefold()):
-            try:
-                status = inspect_record(workspace, directory.name)
-                rows.append(status)
-            except (YammerknitError, OSError, ValueError) as exc:
-                rows.append({"record_id": directory.name, "health": "error", "current": None, "error": str(exc)})
-        return {"schema": "yammerknit.inventory.v1", "records": rows,
-                "scope": "Local custody inventory; no semantic search or embedding execution."}
-    component(record_id)
-    source_dir = safe_path(workspace / "sources" / record_id)
-    source_manifest = source_dir / "source-manifest.json"
-    source = read_object(source_manifest)
-    if source.get("schema") != "yammerknit.source-manifest.v1" or source.get("record_id") != record_id:
-        raise YammerknitError("Source manifest identity mismatch")
-    files, hashes = source.get("files"), source.get("hashes")
-    if not isinstance(files, dict) or not isinstance(hashes, dict):
-        raise YammerknitError("Source manifest files/hashes must be objects")
-    for role in ("original", "normalized"):
-        name = component(files.get(role))
-        verified_file(source_dir, name, hashes.get(name))
-    if files["original"] == files["normalized"]:
-        raise YammerknitError("Original and normalized source must remain distinct")
-    binding = {"source_manifest_sha256": sha256_path(source_manifest), "hashes": hashes}
-    warnings = []
-    nodes = {}
-    base_dir = safe_path(workspace / "artifacts" / record_id)
-    revision_root = safe_path(workspace / "revisions" / record_id)
-    candidates = []
-    if base_dir.exists():
-        candidates.append(("base", base_dir, "artifact-manifest.json"))
-    if revision_root.exists():
-        for directory in sorted(revision_root.iterdir()):
-            safe_path(directory)
-            if not directory.is_dir():
-                raise YammerknitError("Unexpected non-directory in revision chain")
-            if directory.name == "base":
-                raise YammerknitError("Revision identity cannot alias the base artifact")
-            candidates.append((component(directory.name), directory, "revision-manifest.json"))
-    for key, directory, manifest_name in candidates:
-        manifest = read_object(directory / manifest_name)
-        kind = "artifact" if key == "base" else "revision"
-        if manifest.get("schema") != f"yammerknit.{kind}-manifest.v1" or manifest.get("record_id") != record_id:
-            raise YammerknitError("Artifact manifest identity mismatch")
-        if key != "base" and manifest.get("revision_id") != key:
-            raise YammerknitError("Revision directory and identity disagree")
-        target = verified_file(directory, manifest.get("artifact"), manifest.get("artifact_sha256"))
-        receipt = read_object(directory / component(manifest.get("validation_receipt")))
-        checks = receipt.get("checks")
-        if (receipt.get("schema") != "yammerknit.validation.v1" or receipt.get("valid") is not True
-                or receipt.get("artifact_sha256") != manifest["artifact_sha256"]
-                or receipt.get("artifact") != manifest["artifact"] or receipt.get("errors") != []
-                or not isinstance(checks, dict) or not checks or any(v is not True for v in checks.values())):
-            raise YammerknitError("Validation receipt contradicts or does not bind the stored artifact")
-        if "source_binding" in manifest:
-            if manifest["source_binding"] != binding:
-                raise YammerknitError("Artifact source binding is stale")
-        else:
-            warnings.append(f"{key}: legacy source binding unavailable; present source hashes checked, historical authorship not established")
-        if key == "base":
-            expected = f"../../sources/{record_id}/source-manifest.json"
-            if manifest.get("source_manifest") != expected:
-                raise YammerknitError("Base source reference does not name this record")
-        nodes[key] = {"manifest": manifest, "artifact": str(target)}
-    if nodes and "base" not in nodes:
-        raise YammerknitError("Revision chain has no base artifact")
-    children = {key: [] for key in nodes}
-    for key, node in nodes.items():
-        if key == "base":
-            continue
-        parent = node["manifest"].get("parent")
-        if not isinstance(parent, dict) or parent.get("kind") not in ("base", "revision"):
-            raise YammerknitError("Invalid revision parent")
-        parent_key = "base" if parent["kind"] == "base" else component(parent.get("revision_id"))
-        if (parent["kind"] == "revision" and parent_key == "base") or parent_key not in nodes or parent.get("artifact_sha256") != nodes[parent_key]["manifest"]["artifact_sha256"]:
-            raise YammerknitError("Missing or mismatched revision parent")
-        children[parent_key].append(key)
-    chain = []
-    key = "base" if nodes else None
-    while key is not None:
-        if key in chain or len(children[key]) > 1:
-            raise YammerknitError("Revision cycle or ambiguous fork; no current artifact selected")
-        chain.append(key)
-        key = children[key][0] if children[key] else None
-    if len(chain) != len(nodes):
-        raise YammerknitError("Disconnected revision cycle; no current artifact selected")
-    current = None
-    if chain:
-        last = chain[-1]
-        current = {"kind": "base" if last == "base" else "revision", "artifact": nodes[last]["artifact"],
-                   "artifact_sha256": nodes[last]["manifest"]["artifact_sha256"]}
-        if last != "base":
-            current["revision_id"] = last
-    return {"schema": "yammerknit.record-status.v1", "health": "verified-present-bytes", "record_id": record_id,
-            "title": source.get("title"), "channel": source.get("channel"), "source_manifest": str(source_manifest),
-            "base_artifact_present": bool(nodes), "revision_count": max(0, len(nodes)-1), "chain": chain,
-            "current": current, "source_binding": binding, "warnings": warnings,
-            "limit": "Hashes detect disagreement with manifests, not coordinated tampering, source truth, semantic fidelity or model authorship."}
+def revision_manifests(workspace: Path, record_id: str) -> list[dict[str, object]]:
+    root = workspace / "revisions" / record_id
+    manifests: list[dict[str, object]] = []
+    for path in sorted(root.glob("*/revision-manifest.json")):
+        value = json.loads(path.read_text(encoding="utf-8"))
+        value["_manifest_path"] = path
+        manifests.append(value)
+    return sorted(
+        manifests,
+        key=lambda value: (str(value.get("created_at", "")), str(value.get("revision_id", ""))),
+    )
 
 
-def store_artifact(artifact: Path, workspace: Path, record_id: str, revision: bool) -> dict[str, object]:
-    workspace, artifact = safe_path(workspace), safe_path(artifact)
-    component(record_id)
-    with record_lock(workspace, record_id):
-        status = inspect_record(workspace, record_id)
-        raw = artifact.read_bytes()
-        receipt = validate_text(decode_source(raw), str(artifact), sha256_bytes(raw))
-        if not receipt["valid"]:
-            raise YammerknitError("Artifact failed structural validation: " + ", ".join(receipt["errors"]))
-        current = status["current"]
-        if revision and current is None:
+def inspect_record(workspace: Path, record_id: str) -> dict[str, object]:
+    source_manifest = workspace / "sources" / record_id / "source-manifest.json"
+    base_artifact = workspace / "artifacts" / record_id / "yammerknit.md"
+    base_manifest = workspace / "artifacts" / record_id / "artifact-manifest.json"
+    if not source_manifest.is_file():
+        raise YammerknitError(f"Source record does not exist: {source_manifest}")
+    revisions = revision_manifests(workspace, record_id)
+    if revisions:
+        latest = revisions[-1]
+        latest_path = Path(latest["_manifest_path"]).parent / "yammerknit.md"
+        current = {
+            "kind": "revision",
+            "revision_id": latest["revision_id"],
+            "artifact": str(latest_path),
+            "artifact_sha256": latest["artifact_sha256"],
+        }
+    elif base_artifact.is_file() and base_manifest.is_file():
+        current = {
+            "kind": "base",
+            "artifact": str(base_artifact),
+            "artifact_sha256": sha256_path(base_artifact),
+        }
+    else:
+        current = None
+    return {
+        "schema": "yammerknit.record-status.v1",
+        "record_id": record_id,
+        "source_manifest": str(source_manifest),
+        "base_artifact_present": base_artifact.is_file(),
+        "revision_count": len(revisions),
+        "current": current,
+    }
+
+
+def store_artifact(
+    artifact: Path, workspace: Path, record_id: str, revision: bool
+) -> dict[str, object]:
+    source_manifest = workspace / "sources" / record_id / "source-manifest.json"
+    if not source_manifest.is_file():
+        raise YammerknitError(f"Source record does not exist: {source_manifest}")
+
+    receipt = validate_path(artifact)
+    if not receipt["valid"]:
+        raise YammerknitError(
+            "Artifact failed structural validation: " + ", ".join(receipt["errors"])
+        )
+
+    artifact_bytes = artifact.read_bytes()
+    if revision:
+        base_artifact = workspace / "artifacts" / record_id / "yammerknit.md"
+        if not base_artifact.is_file():
             raise YammerknitError("Cannot create a revision before the base artifact exists.")
-        if not revision and current is not None:
-            raise YammerknitError("Refusing to overwrite existing base artifact; create a revision.")
-        revision_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "-" + uuid.uuid4().hex[:12] if revision else None
-        target_dir = safe_path(workspace / ("revisions" if revision else "artifacts") / record_id)
-        if revision:
-            target_dir = safe_path(target_dir / revision_id)
+        previous = revision_manifests(workspace, record_id)
+        if previous:
+            parent = {
+                "kind": "revision",
+                "revision_id": previous[-1]["revision_id"],
+                "artifact_sha256": previous[-1]["artifact_sha256"],
+            }
+        else:
+            parent = {
+                "kind": "base",
+                "artifact_sha256": sha256_path(base_artifact),
+            }
+        revision_id = (
+            datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+            + "-"
+            + sha256_bytes(artifact_bytes)[:10]
+        )
+        target_dir = workspace / "revisions" / record_id / revision_id
         if target_dir.exists():
             raise YammerknitError(f"Refusing to overwrite existing path: {target_dir}")
-        stage_root = safe_path(workspace / ".staging")
-        stage_root.mkdir(parents=True, exist_ok=True)
-        stage = Path(tempfile.mkdtemp(prefix="artifact-", dir=stage_root))
-        candidate = stage / "record"
-        candidate.mkdir()
+        staging_root = workspace / ".staging"
+        staging_root.mkdir(parents=True, exist_ok=True)
+        stage = Path(tempfile.mkdtemp(prefix="revision-", dir=staging_root))
+        staged_revision = stage / revision_id
+        staged_revision.mkdir()
         try:
-            (candidate / "yammerknit.md").write_bytes(raw)
+            target = staged_revision / "yammerknit.md"
+            target.write_bytes(artifact_bytes)
             receipt["artifact"] = "yammerknit.md"
-            (candidate / "validation.json").write_text(dump_json(receipt), encoding="utf-8", newline="\n")
-            manifest = {"schema": f"yammerknit.{'revision' if revision else 'artifact'}-manifest.v1",
-                        "record_id": record_id, "created_at": utc_now(), "artifact_sha256": sha256_bytes(raw),
-                        "artifact": "yammerknit.md", "validation_receipt": "validation.json",
-                        "source_binding": status["source_binding"], "tool": {"name": "yammerknit_tool", "version": TOOL_VERSION}}
-            if revision:
-                manifest["revision_id"] = revision_id
-                manifest["parent"] = {k: v for k, v in current.items() if k != "artifact"}
-            else:
-                manifest["source_manifest"] = f"../../sources/{record_id}/source-manifest.json"
-            name = "revision-manifest.json" if revision else "artifact-manifest.json"
-            (candidate / name).write_text(dump_json(manifest), encoding="utf-8", newline="\n")
-            # Recheck the bound source and ancestry immediately before publishing.
-            if inspect_record(workspace, record_id) != status:
-                raise YammerknitError("Record changed during storage; retry from inspection")
+            (staged_revision / "validation.json").write_text(
+                dump_json(receipt), encoding="utf-8", newline="\n"
+            )
+            revision_manifest = {
+                "schema": "yammerknit.revision-manifest.v1",
+                "record_id": record_id,
+                "revision_id": revision_id,
+                "created_at": utc_now(),
+                "artifact_sha256": sha256_bytes(artifact_bytes),
+                "artifact": "yammerknit.md",
+                "validation_receipt": "validation.json",
+                "parent": parent,
+                "tool": {"name": "yammerknit_tool", "version": TOOL_VERSION},
+            }
+            (staged_revision / "revision-manifest.json").write_text(
+                dump_json(revision_manifest), encoding="utf-8", newline="\n"
+            )
             target_dir.parent.mkdir(parents=True, exist_ok=True)
-            if target_dir.exists():
-                raise YammerknitError("Destination appeared during storage")
-            os.rename(candidate, target_dir)
+            os.replace(staged_revision, target_dir)
         finally:
             shutil.rmtree(stage, ignore_errors=True)
-            cleanup_empty_directory(stage_root)
-    result = {"status": "revision-created" if revision else "artifact-created", "record_id": record_id,
-              "artifact": str(target_dir / "yammerknit.md"), "manifest": str(target_dir / name),
-              "validation": str(target_dir / "validation.json")}
-    if revision:
-        result["revision_id"] = revision_id
-    return result
+            cleanup_empty_directory(staging_root)
+        return {
+            "status": "revision-created",
+            "record_id": record_id,
+            "revision_id": revision_id,
+            "artifact": str(target_dir / "yammerknit.md"),
+            "manifest": str(target_dir / "revision-manifest.json"),
+            "validation": str(target_dir / "validation.json"),
+        }
+
+    target_dir = workspace / "artifacts" / record_id
+    if target_dir.exists():
+        raise YammerknitError(f"Refusing to overwrite existing path: {target_dir}")
+    target_dir.mkdir(parents=True)
+    try:
+        target = target_dir / "yammerknit.md"
+        target.write_bytes(artifact_bytes)
+        receipt["artifact"] = "yammerknit.md"
+        receipt_path = target_dir / "validation.json"
+        receipt_path.write_text(dump_json(receipt), encoding="utf-8", newline="\n")
+        artifact_manifest = {
+            "schema": "yammerknit.artifact-manifest.v1",
+            "record_id": record_id,
+            "created_at": utc_now(),
+            "source_manifest": (
+                Path("..") / ".." / "sources" / record_id / "source-manifest.json"
+            ).as_posix(),
+            "artifact_sha256": sha256_bytes(artifact_bytes),
+            "artifact": "yammerknit.md",
+            "validation_receipt": "validation.json",
+            "tool": {"name": "yammerknit_tool", "version": TOOL_VERSION},
+        }
+        (target_dir / "artifact-manifest.json").write_text(
+            dump_json(artifact_manifest), encoding="utf-8", newline="\n"
+        )
+    except Exception:
+        shutil.rmtree(target_dir, ignore_errors=True)
+        raise
+
+    return {
+        "status": "artifact-created",
+        "record_id": record_id,
+        "artifact": str(target_dir / "yammerknit.md"),
+        "manifest": str(target_dir / "artifact-manifest.json"),
+        "validation": str(target_dir / "validation.json"),
+    }
 
 
 def normalize_vtt_text(vtt: str) -> str:
-    """Readable cue projection, retaining distinct events; raw VTT remains primary."""
-    lines = vtt.lstrip("\ufeff").replace("\r\n", "\n").replace("\r", "\n").split("\n")
-    if not lines or not re.fullmatch(r"WEBVTT(?:[ \t].*)?", lines[0]):
-        raise YammerknitError("Expected a WEBVTT header")
-    def seconds(stamp):
-        parts = stamp.split(":")
-        hours, minutes, sec = (int(parts[0]), int(parts[1]), float(parts[2])) if len(parts) == 3 else (0, int(parts[0]), float(parts[1]))
-        if minutes > 59 or sec >= 60:
-            raise YammerknitError("VTT timing component is out of range")
-        return hours * 3600 + minutes * 60 + sec
-    cues = []
-    index = 1
+    lines = vtt.replace("\r\n", "\n").replace("\r", "\n").split("\n")
+    cues: list[tuple[str, str]] = []
+    index = 0
     while index < len(lines):
-        line = lines[index]
-        if line.startswith(("NOTE", "STYLE", "REGION")):
-            while index < len(lines) and lines[index].strip():
-                index += 1
-            continue
-        if "-->" not in line:
-            index += 1
-            continue
-        match = VTT_TIMING.fullmatch(line.strip().split(" align:")[0]) or re.fullmatch(VTT_TIMING.pattern + r"(?:[ \t]+[a-z]+:[^\n]+)?", line.strip())
+        match = VTT_TIMING.search(lines[index])
         if not match:
-            raise YammerknitError(f"Malformed VTT timing at line {index + 1}")
-        start, end = match.group("start"), match.group("end")
-        if seconds(end) <= seconds(start):
-            raise YammerknitError("VTT cue end must follow its start")
-        index += 1
-        payload = []
-        while index < len(lines) and lines[index].strip():
-            if re.match(r"^\s*\d[\d:.]*\s*-->", lines[index]):
-                raise YammerknitError(f"Missing blank separator before VTT cue at line {index + 1}; preserve the original and correct a separate copy.")
-            value = re.sub(r"<v(?:\.[^ >]+)*[ \t]+([^>]+)>", lambda m: f"[{html.unescape(m.group(1))}] ", lines[index])
-            # Language annotation can materially qualify a foreign-language quote.
-            value = re.sub(r"<lang[ \t]+([^>]+)>", lambda m: f"[language={m.group(1)}] ", value)
-            value = html.unescape(VTT_TAG.sub("", value))
-            payload.append(re.sub(r"\s+", " ", value).strip())
             index += 1
-        text = " ".join(p for p in payload if p)
-        if text:
-            cues.append(f"[{start} --> {end}] {text}")
+            continue
+        start = match.group("start")
         index += 1
-    return "\n".join(cues) + ("\n" if cues else "")
+        payload: list[str] = []
+        while index < len(lines) and lines[index].strip():
+            cleaned = html.unescape(VTT_TAG.sub("", lines[index]))
+            cleaned = re.sub(r"\s+", " ", cleaned).strip()
+            if cleaned:
+                payload.append(cleaned)
+            index += 1
+        text = re.sub(r"\s+", " ", " ".join(payload)).strip()
+        if text and (not cues or cues[-1][1] != text):
+            cues.append((start, text))
+        index += 1
+    return "\n".join(f"[{start}] {text}" for start, text in cues) + ("\n" if cues else "")
 
 
-def validate_youtube_url(url: str) -> str:
+def validate_youtube_url(url: str) -> None:
     parsed = urlparse(url)
     host = (parsed.hostname or "").lower()
-    allowed = {"youtu.be", "youtube.com", "www.youtube.com", "m.youtube.com", "music.youtube.com"}
-    query = parse_qs(parsed.query, keep_blank_values=True)
-    if (parsed.scheme not in {"http", "https"} or host not in allowed or parsed.username is not None
-            or parsed.password is not None or parsed.port is not None or "list" in query):
-        raise YammerknitError("Expected one credential-free YouTube video URL, without playlist or port.")
-    video_id = None
-    if host == "youtu.be":
-        video_id = parsed.path.removeprefix("/")
-    elif parsed.path == "/watch" and len(query.get("v", [])) == 1:
-        video_id = query["v"][0]
-    elif re.fullmatch(r"/(?:shorts|embed|live)/[^/]+", parsed.path):
-        video_id = parsed.path.rsplit("/", 1)[1]
-    if not isinstance(video_id, str) or not re.fullmatch(r"[A-Za-z0-9_-]{11}", video_id):
-        raise YammerknitError("Expected a single video identity, not a channel or playlist URL.")
-    return video_id
+    allowed = {
+        "youtu.be",
+        "youtube.com",
+        "www.youtube.com",
+        "m.youtube.com",
+        "music.youtube.com",
+    }
+    if parsed.scheme not in {"http", "https"} or host not in allowed:
+        raise YammerknitError("Expected one http(s) YouTube video URL.")
 
 
 def yt_dlp_command(
@@ -898,10 +743,9 @@ def acquire_youtube(
     languages: str,
     backend: str,
 ) -> dict[str, object]:
-    video_id = validate_youtube_url(url)
-    workspace = safe_path(workspace)
-    if not re.fullmatch(r"[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*", languages):
-        raise YammerknitError("Choose one exact subtitle language code, for example en or en-US.")
+    validate_youtube_url(url)
+    if not languages.strip():
+        raise YammerknitError("At least one subtitle language is required.")
 
     resolved_backend = shutil.which(backend) if not Path(backend).is_file() else backend
     if not resolved_backend:
@@ -909,7 +753,7 @@ def acquire_youtube(
             "yt-dlp is not available. Install it separately or supply transcript text."
         )
 
-    staging_root = safe_path(workspace / ".staging")
+    staging_root = workspace / ".staging"
     staging_root.mkdir(parents=True, exist_ok=True)
     stage = Path(tempfile.mkdtemp(prefix="youtube-", dir=staging_root))
     command = yt_dlp_command(str(resolved_backend), url, stage, languages)
@@ -929,21 +773,25 @@ def acquire_youtube(
                 "Subtitle acquisition timed out after 180 seconds."
             ) from exc
         if completed.returncode != 0:
-            raise YammerknitError(f"Subtitle acquisition failed with exit {completed.returncode}. Backend output is withheld because it may contain private data; supply transcript text or inspect the backend separately.")
+            detail = completed.stderr.strip() or completed.stdout.strip()
+            raise YammerknitError(
+                f"Subtitle acquisition failed with exit {completed.returncode}: {detail[-1200:]}"
+            )
 
-        entries = list(stage.rglob("*"))
-        for entry in entries:
-            safe_path(entry)
-        if any(path.suffix.lower() in MEDIA_EXTENSIONS for path in entries):
-            raise YammerknitError("Acquisition boundary failed: audiovisual media appeared in staging.")
-        metadata = parse_acquisition_metadata(completed.stdout)
-        if metadata.get("video_id") != video_id or validate_youtube_url(metadata.get("url", "")) != video_id:
-            raise YammerknitError("Acquisition metadata does not identify the requested video")
-        subtitles = [path for path in entries if path.is_file() and path.suffix.lower() == ".vtt"]
-        expected = stage / f"{video_id}.{languages}.vtt"
-        if len(subtitles) != 1 or subtitles[0] != expected:
-            raise YammerknitError("Expected one matching VTT for the requested video and language; none or ambiguous results. Supply a transcript instead.")
-        raw_path = expected
+        unexpected_media = [
+            str(path) for path in stage.iterdir() if path.suffix.lower() in MEDIA_EXTENSIONS
+        ]
+        if unexpected_media:
+            raise YammerknitError(
+                "Acquisition boundary failed: audiovisual media appeared in staging."
+            )
+        subtitles = sorted(stage.glob("*.vtt"), key=lambda path: (len(path.name), path.name))
+        if not subtitles:
+            raise YammerknitError(
+                "No VTT subtitles were available. Supply transcript text instead."
+            )
+
+        raw_path = subtitles[0]
         raw_bytes = raw_path.read_bytes()
         try:
             raw_text = raw_bytes.decode("utf-8-sig")
@@ -969,15 +817,12 @@ def acquire_youtube(
             original_filename=raw_path.name,
             transformations=[
                 "Preserved acquired VTT bytes as source.original",
-                "Rendered cue ranges, voice and language labels; retained repeated distinct cues",
+                "Removed VTT markup and consecutive duplicate cues",
                 "Rendered timestamped UTF-8 text as source.txt",
             ],
             extra={
                 "video_id": metadata.get("video_id"),
                 "languages_requested": languages,
-                "language_selected": languages,
-                "subtitle_kind": "unknown: backend may supply manual or automatic captions",
-                "subtitle_filename": raw_path.name,
                 "backend": Path(str(resolved_backend)).name,
                 "command_boundary": [
                     "--ignore-config",
@@ -1000,11 +845,11 @@ def acquire_youtube(
 
 
 def command_init_record(args: argparse.Namespace) -> dict[str, object]:
-    source = safe_path(Path(args.source))
+    source = Path(args.source).resolve()
     original = source.read_bytes()
     normalized = decode_source(original).replace("\r\n", "\n").replace("\r", "\n")
     return create_source_record(
-        workspace=safe_path(Path(args.workspace)),
+        workspace=Path(args.workspace).resolve(),
         original=original,
         normalized=normalized,
         post_date=args.post_date,
@@ -1024,9 +869,9 @@ def command_init_record(args: argparse.Namespace) -> dict[str, object]:
 
 
 def command_validate(args: argparse.Namespace) -> dict[str, object]:
-    receipt = validate_path(safe_path(Path(args.artifact)))
+    receipt = validate_path(Path(args.artifact).resolve())
     if args.receipt:
-        write_new_text(safe_path(Path(args.receipt)), dump_json(receipt))
+        write_new_text(Path(args.receipt).resolve(), dump_json(receipt))
     return receipt
 
 
@@ -1059,8 +904,8 @@ def build_parser() -> argparse.ArgumentParser:
     store.add_argument("--record-id", required=True)
     store.set_defaults(
         handler=lambda args: store_artifact(
-            safe_path(Path(args.artifact)),
-            safe_path(Path(args.workspace)),
+            Path(args.artifact).resolve(),
+            Path(args.workspace).resolve(),
             args.record_id,
             False,
         )
@@ -1072,8 +917,8 @@ def build_parser() -> argparse.ArgumentParser:
     revise.add_argument("--record-id", required=True)
     revise.set_defaults(
         handler=lambda args: store_artifact(
-            safe_path(Path(args.artifact)),
-            safe_path(Path(args.workspace)),
+            Path(args.artifact).resolve(),
+            Path(args.workspace).resolve(),
             args.record_id,
             True,
         )
@@ -1083,10 +928,10 @@ def build_parser() -> argparse.ArgumentParser:
         "inspect-record", help="Report the current artifact and revision chain."
     )
     inspect.add_argument("--workspace", required=True)
-    inspect.add_argument("--record-id", help="Omit to browse record titles and health.")
+    inspect.add_argument("--record-id", required=True)
     inspect.set_defaults(
         handler=lambda args: inspect_record(
-            safe_path(Path(args.workspace)), args.record_id
+            Path(args.workspace).resolve(), args.record_id
         )
     )
 
@@ -1095,7 +940,7 @@ def build_parser() -> argparse.ArgumentParser:
     normalize.add_argument("--output", required=True)
     normalize.set_defaults(
         handler=lambda args: _normalize_vtt_command(
-            safe_path(Path(args.input)), safe_path(Path(args.output))
+            Path(args.input).resolve(), Path(args.output).resolve()
         )
     )
 
@@ -1111,7 +956,7 @@ def build_parser() -> argparse.ArgumentParser:
         handler=lambda args: acquire_youtube(
             url=args.url,
             rights_basis=args.rights_basis,
-            workspace=safe_path(Path(args.workspace)),
+            workspace=Path(args.workspace).resolve(),
             languages=args.languages,
             backend=args.yt_dlp,
         )

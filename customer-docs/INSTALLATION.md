@@ -1,35 +1,95 @@
 # Install Yammerknit
 
-Extract `Yammerknit-v0.1.0.zip` to a stable folder. The customer root is `yammerknit-v0.1.0`. Keep your sources and workspaces elsewhere. The kit includes both host distributions; choose one for the host you use.
+The customer ZIP contains both supported host distributions. Extract `Yammerknit-v0.1.0.zip` first; the resulting folder is `yammerknit-v0.1.0`.
 
 ## Install the Codex plugin
 
-With Codex plugin support available, run these commands from the extracted customer root:
+Prerequisites:
+
+- Codex with plugin support.
+- Permission to add a local personal marketplace plugin.
+
+1. Copy `codex-plugin/yammerknit` from the customer kit to:
+
+   ```text
+   %USERPROFILE%\plugins\yammerknit
+   ```
+
+2. Open `%USERPROFILE%\.agents\plugins\marketplace.json`.
+3. Preserve the existing object and unrelated plugin entries. Ensure its `plugins` array contains:
+
+   ```json
+   {
+     "name": "yammerknit",
+     "source": {
+       "source": "local",
+       "path": "./plugins/yammerknit"
+     },
+     "policy": {
+       "installation": "AVAILABLE",
+       "authentication": "ON_INSTALL"
+     },
+     "category": "Productivity"
+   }
+   ```
+
+4. Run `codex plugin add yammerknit@personal`.
+5. Run `codex plugin list`.
+
+The package is installed and enabled only when `yammerknit@personal` reports `installed, enabled`. Start a new Codex task, then verify discovery with:
 
 ```text
-codex plugin marketplace add .
-codex plugin add yammerknit@yammerknit-local
-codex plugin list
+Use $yammerknit to explain what source material you need and what a complete Yammerknit contains. Do not create an artifact yet.
 ```
 
-The included `.agents/plugins/marketplace.json` points to `./codex-plugin/yammerknit` relative to this customer root. Keep that root in place. This route does not require editing another personal marketplace or replacing unrelated entries. If the marketplace name already exists, inspect `codex plugin marketplace list` and use the existing intended root or remove only that old Yammerknit marketplace registration before adding this one. Preserve workspaces and unrelated plugins.
+A successful verification names the required source, codefenced artifact, insight clusters, relational mesh, prompt seeds, sigil lexicon, provenance boundary, and the distinction between a prepared mesh and an operating vector-RAG system. A generic summary is not proof of discovery.
 
-Start a fresh task after installation. Ask: “Use $yammerknit with the included fictional cooling-pilot source. Explain what the 15-to-12 comparison establishes and what it does not, then create the full artifact.” Confirm the host actually loaded Yammerknit and compare the result with [the worked example](../skills/yammerknit/examples/README.md). Merely listing vocabulary is not proof that source constraints survived.
+If your personal marketplace uses another name, use that name after `@`.
 
 ## Install the Claude skill
 
-For Claude Code, extract the single `yammerknit` folder from `claude/yammerknit-v0.1.0.zip` into `~/.claude/skills/`. The resulting `~/.claude/skills/yammerknit/SKILL.md` must exist directly. Keep every sibling folder. Start a fresh session and check skill discovery. [Claude Code skill documentation](https://code.claude.com/docs/en/skills).
+Use `claude/yammerknit-v0.1.0.zip` from the customer kit.
 
-For Claude chat, enable code execution and file creation if available, open **Customize > Skills**, choose **+ Create skill**, then **Upload a skill**. Upload the nested `claude/yammerknit-v0.1.0.zip`, not the whole customer kit, and enable it. Organization policy may control availability. [Claude skill instructions](https://support.claude.com/en/articles/12512180-use-skills-in-claude).
+### Claude Code
 
-Use the same worked-source request to check the task, not just discovery. This repair verifies the package's structure; fresh Claude activation is not claimed.
+Extract its single `yammerknit` folder into:
+
+```text
+~/.claude/skills/yammerknit/
+```
+
+On Windows:
+
+```text
+%USERPROFILE%\.claude\skills\yammerknit\
+```
+
+The installed folder must contain `SKILL.md` directly. Start a new Claude conversation or restart the host when its skill catalog does not refresh.
+
+### Claude chat
+
+Enable **Code execution and file creation**, then open **Customize > Skills**. Choose **Create skill > Upload a skill**, upload `yammerknit-v0.1.0.zip` without extracting it, and enable Yammerknit in the skills list.
+
+For either Claude host, make the same discovery-only request shown for Codex. Verify the response names the complete structure and evidence boundary before supplying private source material. Package structure is verified; live Claude activation is not claimed by this repository.
+
+Anthropic's current references:
+
+- [Use skills in Claude](https://support.claude.com/en/articles/12512180-use-skills-in-claude)
+- [Extend Claude Code with skills](https://code.claude.com/docs/en/skills)
 
 ## Use another capable agent
 
-Give it the complete skill folder from either distribution and point it to `SKILL.md`. If skills are not supported, attach the source plus the active skill and its referenced method files in a normal conversation, explicitly requesting a full Yammerknit. The no-Python fallback is an inline artifact with source locators; it cannot claim a saved workspace or mechanical validation. Do not paste the historical persona alone and assume it contains the active custody and fidelity guidance.
+Give the host the complete `yammerknit` skill folder from either distribution. Keep `SKILL.md` and every sibling subfolder together. The host must support its own skill discovery; Python execution is required only for persistence, validation, revision, inspection, and subtitle helpers. Verify discovery with the same discovery-only request. Host-specific activation remains unverified unless that host is exercised directly.
 
-## Update, remove and recover
+## Update Yammerknit
 
-Keep user workspaces outside the runtime. For an update, preserve a copy of the old kit, select the new complete kit, reinstall the intended plugin/skill through the same host route and start a fresh task. Do not merge runtime folders. A same-version repair is distinguished by its package digest, not by the displayed version alone.
+Preserve workspaces outside the installed package. Replace only the installed plugin or skill folder with the newer distribution, start a new task or conversation, confirm the reported version, and repeat the discovery-only verification. Do not merge old and new runtime folders.
 
-For Codex removal use `codex plugin remove yammerknit@yammerknit-local`; optionally remove that marketplace registration with `codex plugin marketplace remove yammerknit-local` when no longer needed. For Claude Code remove only the exact installed Yammerknit skill directory; in Claude chat disable or delete that skill. Package removal leaves separately stored records intact. Before deleting any workspace, choose the exact data and keep required backups. See [recovery](TROUBLESHOOTING.md) if installation or inspection fails.
+## Remove Yammerknit and clean up data
+
+- Codex: run `codex plugin remove yammerknit@personal`, then remove `%USERPROFILE%\plugins\yammerknit` only after confirming it is the intended plugin directory.
+- Claude Code: remove only `~/.claude/skills/yammerknit/` or `%USERPROFILE%\.claude\skills\yammerknit\` after confirming the final path.
+- Claude chat: disable or delete Yammerknit from **Customize > Skills**.
+- Other hosts: use that host's removal mechanism, then remove only the installed Yammerknit skill folder.
+
+Removal does not delete workspaces, source records, artifacts, revisions, receipts, downloaded customer ZIPs, or extracted kits stored elsewhere. Review those separately under your retention policy; back up anything required, then delete only explicitly selected paths. Yammerknit has no cloud account, telemetry store, or vendor-side data store to purge.

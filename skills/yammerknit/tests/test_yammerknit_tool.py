@@ -213,9 +213,9 @@ Priming Worthiness:
         receipt = tool.validate_text(scaffold)
         self.assertFalse(receipt["valid"])
         self.assertIn("metadata_post_date", receipt["errors"])
-        self.assertIn("cluster_cluster_title", receipt["errors"])
+        self.assertIn("at_least_two_clusters", receipt["errors"])
         self.assertIn(
-            "executive_terrain_present", receipt["errors"]
+            "executive_terrain_five_to_eight_sentences", receipt["errors"]
         )
 
     def test_windows_invalid_header_is_rejected(self) -> None:
@@ -354,9 +354,8 @@ Custody &amp; retrieval cooperate.
         normalized = tool.normalize_vtt_text(vtt)
         self.assertEqual(
             normalized,
-            "[00:00:01.000 --> 00:00:03.000] Gravity 🕸️ gathers meaning.\n"
-            "[00:00:03.500 --> 00:00:05.000] Gravity 🕸️ gathers meaning.\n"
-            "[00:00:05.000 --> 00:00:08.000] Custody & retrieval cooperate.\n",
+            "[00:00:01.000] Gravity 🕸️ gathers meaning.\n"
+            "[00:00:05.000] Custody & retrieval cooperate.\n",
         )
 
 

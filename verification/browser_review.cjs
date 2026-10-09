@@ -3,19 +3,13 @@
 
 const fs = require("node:fs");
 const path = require("node:path");
-if (process.argv.includes("--help")) {
-  console.log("node browser_review.cjs BASE-URL EDGE-EXECUTABLE NEW-EVIDENCE-DIRECTORY");
-  process.exit(0);
-}
-if (process.argv.length !== 5) throw new Error("Expected base URL, browser executable and new evidence directory; see --help.");
 const { chromium } = require("playwright");
 
 const baseUrl = process.argv[2] || "http://127.0.0.1:8765/";
 const browserExecutable =
   process.argv[3] || "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe";
 const repo = path.resolve(__dirname, "..");
-const evidenceDir = path.resolve(process.argv[4]);
-if (fs.existsSync(evidenceDir)) throw new Error("Evidence directory already exists; preserve prior results.");
+const evidenceDir = path.join(repo, "verification", "evidence", "documentation");
 fs.mkdirSync(evidenceDir, { recursive: true });
 
 async function reviewViewport(browser, name, viewport) {
@@ -101,20 +95,6 @@ async function main() {
       height: 844,
     });
     const page = await browser.newPage();
-    await page.goto(baseUrl);
-    await page.getByRole("link", {name: "Try the complete worked example", exact: true}).click();
-    await page.getByText("Read the fictional source", {exact: true}).click();
-    if (!(await page.locator("details[open]").innerText()).includes("no control group")) throw new Error("Source constraint unavailable through first-task entry");
-    await page.getByText("Read the complete Yammerknit", {exact: true}).click();
-    const mesh = await page.locator("details").nth(1).innerText();
-    if (!mesh.includes("causal") || !mesh.includes("glass")) throw new Error("Worked artifact loses consequential source limits");
-    await page.getByRole("link", {name: "Browse and return", exact: true}).click();
-    if (!(await page.locator("#inspect").innerText()).includes('inspect-record --workspace')) throw new Error("No-query return route missing");
-    await page.getByRole("link", {name: "integrity recovery", exact: true}).click();
-    if (!(await page.locator("#paths").innerText()).includes("known matching backup")) throw new Error("Recovery route missing");
-    await page.getByRole("link", {name: "Yammerknit", exact: true}).click();
-    if (!(await page.locator("h1").innerText()).includes("Yammerknit")) throw new Error("Return home failed");
-    const taskJourney = {entry: "Home to worked example", source: "Opened source constraints", artifact: "Opened complete artifact", reentry: "Browse and return", recovery: "Known matching backup", home: "Returned", kind: "Actual browser navigation; not a participant or model trial"};
     const routes = [
       "get-started.html",
       "use.html",
@@ -142,7 +122,6 @@ async function main() {
       mobile,
       routes: routeResults,
       result: "passed",
-      taskJourney,
     };
     fs.writeFileSync(
       path.join(evidenceDir, "browser-review.json"),

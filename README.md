@@ -1,8 +1,8 @@
 # Yammerknit
 
-Yammerknit turns a transcript or document into a reusable semantic mesh for embedding and retrieval in a vector-RAG system. The active source-grounding adapter applies Rupert Giles's stewardship and Sam Walker's preserved SOP while keeping creative notation distinct from measured retrieval benefits.
+Yammerknit turns a transcript or document into a reusable semantic mesh for embedding and retrieval in a vector-RAG system. Rupert Giles governs source custody and document integrity; Sam Walker's canonical Yammerknit SOP governs the artifact itself.
 
-This is the public, source-available repository for Yammerknit. [Read the complete documentation](https://stunspot.github.io/yammerknit/) or download the ready-to-use product as one file: [Yammerknit-v0.1.0.zip](https://github.com/Stunspot/yammerknit/raw/refs/heads/main/release/current/Yammerknit-v0.1.0.zip).
+This is the public, source-available repository for Yammerknit. [Read the complete documentation](https://stunspot.github.io/yammerknit/) or download the ready-to-use product as one file: [Yammerknit-v0.1.0.zip](https://github.com/Stunspot/yammerknit/raw/refs/heads/main/release/0.1.0/Yammerknit-v0.1.0.zip).
 
 [![Yammerknit turns source material into a governed semantic mesh](assets/yammerknit-readme-hero.png)](https://stunspot.github.io/yammerknit/)
 
@@ -33,16 +33,14 @@ Yammerknit does not include a vector store, embedding model, or retrieval servic
 - `customer-docs/` — source for the packaged customer journey.
 - `docs/` — the accessible public documentation site and sharecard.
 - `verification/` — build and verification machinery.
-- `release/0.1.0/` — the preserved accepted historical customer kit.
-- `release-candidates/` — separately frozen repair candidates until acceptance.
-- The repaired customer kit includes `source/` for a deterministic bounded rebuild; see its validation guide.
+- `release/0.1.0/` — the extracted customer kit and canonical customer ZIP.
 
 ## Build and verify
 
-Choose a new, nonexistent output directory; the builder deliberately refuses to overwrite an existing release object.
+Choose an empty output directory; the builder deliberately refuses to overwrite an existing release object.
 
 ```text
-python -X utf8 verification/build_release.py --output-dir "NEW-OUTPUT-DIRECTORY"
+python -X utf8 verification/build_release.py --output-dir <EMPTY-DIRECTORY>
 python -X utf8 -m unittest discover -s skills/yammerknit/tests -v
 python -X utf8 -m unittest verification/test_release.py -v
 python -X utf8 -m unittest verification/test_site.py -v

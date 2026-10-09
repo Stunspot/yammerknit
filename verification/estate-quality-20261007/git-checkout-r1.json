@@ -1,9 +1,0 @@
-{
-  "maintained_files": 89,
-  "git_filtered_exact": true,
-  "fresh_checkout_exact": true,
-  "rebuild_exact": true,
-  "candidate_sha256": "97ad4f45dfa6443dd9aa8d73bc6dbf4c31e424b068c6de58b0ae963359c67d75",
-  "issues": [],
-  "scope": "Isolated Git index/checkout; canonical repository index and history unchanged."
-}

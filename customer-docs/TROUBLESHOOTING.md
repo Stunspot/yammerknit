@@ -1,29 +1,52 @@
-# Recover from an observable failure
+# Troubleshoot Yammerknit
 
-## The host cannot find Yammerknit
+## Codex reports the plugin as available but not installed
 
-Follow [the host-specific installation route](INSTALLATION.md). In Codex, check `codex plugin marketplace list` and `codex plugin list`; the included marketplace must resolve to the extracted customer root containing `codex-plugin/yammerknit/.codex-plugin/plugin.json`. In Claude Code the directory must end in `yammerknit/SKILL.md` without an extra nested folder. Start a fresh task after installation. If the host has no skill support, use the documented manual-context fallback.
+Run:
 
-## Python or yt-dlp is unavailable
+```text
+codex plugin add yammerknit@personal
+codex plugin list
+```
 
-Without Python, the agent can return the full artifact in chat but cannot claim native validation or saved records. Python 3.10+ is required for helpers. Run `python scripts/yammerknit_tool.py --help` from the complete skill folder, or use its absolute script path. Do not run an old kit's similarly named helper by accident.
+Confirm the marketplace entry points to `./plugins/yammerknit` and that the target folder contains `.codex-plugin/plugin.json`. Start a new task after the status becomes `installed, enabled`.
 
-If yt-dlp is missing, supply transcript text or install the optional backend through your normal environment process. No automatic upgrade is required. If acquisition fails, use the reported exit/timeout and the [subtitle guide](../skills/yammerknit/references/youtube-transcripts.md). The helper does not fall back to audio downloads. A language request must name one exact language code; mismatched or ambiguous files are rejected.
+## Claude cannot find the skill
 
-## Structure fails or the answer misrepresents the source
+Confirm the installed path ends in:
 
-Read the `errors` array from `validate`. Correct the named structural defect in a separate draft, then validate again. For source fidelity, compare each consequential claim and qualifier with the actual locator, including conflicting passages. A structural pass cannot settle that review. Save a corrected artifact as a revision rather than overwriting the base.
+```text
+yammerknit/SKILL.md
+```
 
-## A file changed, disappeared or moved
+An extra directory level prevents discovery. Restart the host when the skills directory was created after the current session began.
 
-Inspect the record before reuse. Restore a missing/changed file only from a known matching backup; otherwise preserve the damaged record as unverified and create a new source record for intentional new content. Do not regenerate manifests to bless changed bytes. Complete workspaces use relative references and can move without rewriting manifests. If an older unsupported record contains absolute links, retain it and reconstruct a new record from known original evidence, preserving the historical record separately.
+## Python or the helper script is not available
 
-## A revision fork, cycle or unknown parent appears
+Core inline artifact creation is model work and can continue without Python. Persistence, validation, revision, inspection, and subtitle acquisition require Python plus the complete skill folder. Run helper commands from that folder, or use its absolute `scripts/yammerknit_tool.py` path. Do not call a similarly named script from an old extracted kit.
 
-No artifact is selected current. Preserve the branches and compare their claims and parents. Reconcile in a complete copied workspace using [the detailed recovery procedure](../skills/yammerknit/references/data-handling.md#recover-without-rewriting-history). The latest timestamp is not evidence that a branch is authoritative.
+## `yt-dlp is not available`
 
-## Overwrite, linked path or busy record is refused
+Install it separately:
 
-For an existing base use `revise-artifact`; for changed source content use `init-record` to create a distinct record. IDs are single portable path components, not directory paths. Linked/junction directories are unsupported: use the physical directory or a complete ordinary copy. For a busy/interrupted record, the error names a lock with its process ID. Confirm the writer is no longer running before removing only that lock. Staging is never a current artifact.
+```text
+python -m pip install -U yt-dlp
+```
 
-For support, include version, package digest, host, exact command/error and failure stage. Remove private source text, credentials and unrelated metadata. [Support routes](../SUPPORT.md).
+If installation is unavailable, provide transcript text directly. Yammerknit creation does not otherwise depend on `yt-dlp`.
+
+## No VTT subtitles were available
+
+The video may have no accessible human or automatic subtitles. Provide an authorized transcript or another source document. The helper does not fall back to downloading or transcribing audio.
+
+## The artifact fails validation
+
+Read the `errors` array in `validation.json`. Ask the agent to repair only those structural failures, then validate the complete artifact again. A structural pass does not prove semantic quality; Giles must still inspect the mesh and source fidelity.
+
+## Yammerknit refuses to overwrite a record
+
+Keep the existing source and base artifact. Store the changed artifact as a revision or create a distinct record when the source itself changed.
+
+## A moved workspace contains stale absolute paths
+
+Version 0.1.0 manifests are designed to use relative internal links. If absolute paths appear inside a record produced by an earlier prerelease build, preserve the files and regenerate the manifests with the current helper rather than editing source or artifact bytes.

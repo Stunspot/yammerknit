@@ -3,13 +3,6 @@
 
 const fs = require("node:fs");
 const path = require("node:path");
-if (process.argv.includes("--help")) {
-  console.log("node render_site_assets.cjs SUPPLIED-IMAGE NEW-PREVIEW-DIRECTORY\nResizes/composites an existing image; does not generate artwork or replace accepted assets.");
-  process.exit(0);
-}
-if (!process.argv[3]) throw new Error("Choose an explicit new preview directory; current assets are preserved.");
-const output = path.resolve(process.argv[3]);
-if (fs.existsSync(output)) throw new Error("Preview destination exists; refusing overwrite.");
 const sharp = require("sharp");
 
 const repo = path.resolve(__dirname, "..");
@@ -18,7 +11,7 @@ if (!sourceArt || !fs.existsSync(sourceArt)) {
   throw new Error("Pass the generated hero artwork path as the first argument.");
 }
 
-const assets = output;
+const assets = path.join(repo, "docs", "assets");
 fs.mkdirSync(assets, { recursive: true });
 
 const escapeXml = (value) =>
