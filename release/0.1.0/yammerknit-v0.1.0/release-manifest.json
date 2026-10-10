@@ -10,12 +10,12 @@
     "codex_plugin": {
       "path": "codex-plugin/yammerknit",
       "file_count": 17,
-      "tree_sha256": "16ec8d51dd57b7f23362aa94a75b1a3242d46ade57a7c6f9edf43f4a28b2189c"
+      "tree_sha256": "30dd7529cb947983b978e2bc6478451f47ef43cab55953352a8b7dea5862a88d"
     },
     "claude_skill": {
       "path": "claude/yammerknit-v0.1.0.zip",
-      "bytes": 21747,
-      "sha256": "9bfb8f82f299939066a322526eb7848771289113e4e03f51424e7cf95addfe0d"
+      "bytes": 21741,
+      "sha256": "24a8ec263e4d49af05f59ff830fb2a881104b629f318681c10c34c56c1b8dff1"
     }
   },
   "files": [
@@ -36,13 +36,13 @@
     },
     {
       "path": "claude/yammerknit-v0.1.0.zip",
-      "bytes": 21747,
-      "sha256": "9bfb8f82f299939066a322526eb7848771289113e4e03f51424e7cf95addfe0d"
+      "bytes": 21741,
+      "sha256": "24a8ec263e4d49af05f59ff830fb2a881104b629f318681c10c34c56c1b8dff1"
     },
     {
       "path": "codex-plugin/yammerknit/.codex-plugin/plugin.json",
-      "bytes": 1582,
-      "sha256": "7b9e1538441976acc5b00506ccc0afd27b231864ddac2cd8a80da0b2e956ea8f"
+      "bytes": 1614,
+      "sha256": "ed4b4741d1cbbade9e91d418494488a994b12315c65de34b4c5172fcfca7a7cf"
     },
     {
       "path": "codex-plugin/yammerknit/assets/icon.png",
@@ -76,8 +76,8 @@
     },
     {
       "path": "codex-plugin/yammerknit/skills/yammerknit/agents/openai.yaml",
-      "bytes": 268,
-      "sha256": "15b709eff8b30b56e762aa08132be33d36528d5193305b761b5d9d4242335887"
+      "bytes": 255,
+      "sha256": "85b1ebba26a6ee4cdcad1c6cae25f1ce0a6f2e66f16aed3b244f8e79de05cdc3"
     },
     {
       "path": "codex-plugin/yammerknit/skills/yammerknit/personas/canonical-rupert-giles-document-guardian.txt",
@@ -111,8 +111,8 @@
     },
     {
       "path": "codex-plugin/yammerknit/skills/yammerknit/SKILL.md",
-      "bytes": 3492,
-      "sha256": "eae3c01bebed0d019359a5c2fd330f9dd5af231291223a3e0ab0a9e6d22159b5"
+      "bytes": 3479,
+      "sha256": "91ce1af18d30299b86d8745546eb0f4dc557aaa8d85e733d10e710b410cba65c"
     },
     {
       "path": "codex-plugin/yammerknit/SUPPORT.md",
@@ -177,7 +177,7 @@
     {
       "path": "SHA256SUMS.txt",
       "bytes": 186,
-      "sha256": "a859c03861be5eb9a3d479c28d44de6282ff31fcf554c4a70374e8c14605e5c3"
+      "sha256": "ed6ccebf1dacd5478cb4942ff9c5697d1485ff0095f1d3234f25a41c28a7c8a4"
     },
     {
       "path": "START-HERE.md",

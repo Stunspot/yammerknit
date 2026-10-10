@@ -19,7 +19,7 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Yammerknit",
-    "shortDescription": "Semantic meshes for vector RAG",
+    "shortDescription": "🕸️ Thoughtbase/RAG architecture from source intelligence.",
     "longDescription": "Create, inspect, repair, and organize source-grounded Yammerknits under Rupert Giles's knowledge stewardship.",
     "developerName": "Stunspot Prompting",
     "category": "Productivity",

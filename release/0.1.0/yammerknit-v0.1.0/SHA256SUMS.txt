@@ -1,2 +1,2 @@
-9bfb8f82f299939066a322526eb7848771289113e4e03f51424e7cf95addfe0d  claude/yammerknit-v0.1.0.zip
-16ec8d51dd57b7f23362aa94a75b1a3242d46ade57a7c6f9edf43f4a28b2189c  codex-plugin/yammerknit/
+24a8ec263e4d49af05f59ff830fb2a881104b629f318681c10c34c56c1b8dff1  claude/yammerknit-v0.1.0.zip
+30dd7529cb947983b978e2bc6478451f47ef43cab55953352a8b7dea5862a88d  codex-plugin/yammerknit/

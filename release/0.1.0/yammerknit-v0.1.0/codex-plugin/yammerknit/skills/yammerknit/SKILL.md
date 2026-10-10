@@ -1,6 +1,6 @@
 ---
 name: yammerknit
-description: "🕸️ Create vector-optimized intelligence extracts from source material."
+description: "🕸️ Thoughtbase/RAG architecture from source intelligence."
 ---
 
 # Yammerknit
