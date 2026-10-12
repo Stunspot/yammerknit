@@ -1,29 +1,9 @@
-# Start here
+# Start here: build a thoughtbase you can think with
 
-Yammerknit turns a transcript or document into a structured semantic mesh that another AI system can embed and retrieve later.
+Yammerknit turns source material into reusable cognitive architecture. A thoughtbase carries ways to compare, reframe and reason, together with the source evidence and its limits. Begin with [installation](customer-docs/INSTALLATION.md), or follow [the complete worked example](skills/yammerknit/examples/README.md) from one source to a thoughtbase and then into a different problem.
 
-Choose your host:
+After installation, supply your material and ask: “Build a Yammerknit thoughtbase from this source. Follow its conceptual gravity, construct the keystone bridges, and give me reasoning seeds I can use elsewhere.” Add an intended use when you have one. Name a workspace only when you want durable records.
 
-- **Codex:** follow [Install the Codex plugin](customer-docs/INSTALLATION.md#install-the-codex-plugin).
-- **Claude:** follow [Install the Claude skill](customer-docs/INSTALLATION.md#install-the-claude-skill).
-- **Another agent:** give the host the complete `yammerknit` skill folder from
-  either distribution. Keep `SKILL.md` and every sibling subfolder together.
+Open a cluster, follow its bridge and try the linked reasoning seed on a new question. The useful result is a thought structure you can work with; a recap or a row of topic labels is insufficient. Keep source claims, interpretations and proposed transfers distinguishable as you explore.
 
-Then try the shortest useful request:
-
-```text
-Turn this transcript into a Yammerknit. Return the complete codefenced artifact.
-```
-
-If you want source and revision records saved, add:
-
-```text
-Preserve the source and organize the result in <workspace>.
-```
-
-Continue with:
-
-- [Use Yammerknit](customer-docs/USE-YAMMERKNIT.md)
-- [Understand its files and data handling](customer-docs/DATA-AND-PRIVACY.md)
-- [Recover from installation or transcript problems](customer-docs/TROUBLESHOOTING.md)
-- [See what was and was not verified](customer-docs/VALIDATION-AND-LIMITS.md)
+Follow [create, save, browse and return](customer-docs/USE-YAMMERKNIT.md) for the working journey. Use [data and portability](customer-docs/DATA-AND-PRIVACY.md) to move the complete record, [recovery](customer-docs/TROUBLESHOOTING.md) for a failure, and [validation and limits](customer-docs/VALIDATION-AND-LIMITS.md) to interpret a pass or reproduce the kit. The separate retrieval system performs any embedding and ingestion; saving a thoughtbase does not perform those operations.

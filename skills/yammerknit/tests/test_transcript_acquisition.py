@@ -19,7 +19,7 @@ class TranscriptBoundaryTests(unittest.TestCase):
     def test_command_is_subtitle_only_and_credential_free(self) -> None:
         command = tool.yt_dlp_command(
             "yt-dlp",
-            "https://www.youtube.com/watch?v=test123",
+            "https://www.youtube.com/watch?v=test1234567",
             Path("stage"),
             "en",
         )
@@ -48,7 +48,7 @@ class TranscriptBoundaryTests(unittest.TestCase):
 
     def test_non_youtube_url_is_rejected(self) -> None:
         with self.assertRaises(tool.YammerknitError):
-            tool.validate_youtube_url("https://example.com/watch?v=test123")
+            tool.validate_youtube_url("https://example.com/watch?v=test1234567")
 
     def test_fake_backend_creates_governed_source_record(self) -> None:
         observed_command: list[str] = []
@@ -56,7 +56,7 @@ class TranscriptBoundaryTests(unittest.TestCase):
         def fake_run(command: list[str], **_: object) -> SimpleNamespace:
             observed_command.extend(command)
             output_template = Path(command[command.index("--output") + 1])
-            subtitle = Path(str(output_template).replace("%(id)s", "test123").replace("%(ext)s", "en.vtt"))
+            subtitle = Path(str(output_template).replace("%(id)s", "test1234567").replace("%(ext)s", "en.vtt"))
             subtitle.parent.mkdir(parents=True, exist_ok=True)
             subtitle.write_text(
                 "WEBVTT\n\n00:00:01.000 --> 00:00:03.000\nA semantic mesh 🕸️.\n",
@@ -65,8 +65,8 @@ class TranscriptBoundaryTests(unittest.TestCase):
             return SimpleNamespace(
                 returncode=0,
                 stdout=(
-                    "YAMMERKNIT_META\ttest123\tTest Channel\t20260729\t"
-                    "A Semantic Mesh\thttps://www.youtube.com/watch?v=test123\n"
+                    "YAMMERKNIT_META\ttest1234567\tTest Channel\t20260729\t"
+                    "A Semantic Mesh\thttps://www.youtube.com/watch?v=test1234567\n"
                 ),
                 stderr="",
             )
@@ -76,7 +76,7 @@ class TranscriptBoundaryTests(unittest.TestCase):
                 tool.subprocess, "run", side_effect=fake_run
             ):
                 result = tool.acquire_youtube(
-                    url="https://www.youtube.com/watch?v=test123",
+                    url="https://www.youtube.com/watch?v=test1234567",
                     rights_basis=None,
                     workspace=Path(temp),
                     languages="en",
@@ -91,7 +91,7 @@ class TranscriptBoundaryTests(unittest.TestCase):
             self.assertIsNone(manifest["rights_basis"])
             self.assertEqual(manifest["acquisition"]["backend"], "yt-dlp")
             normalized = (source_dir / "source.txt").read_text(encoding="utf-8")
-            self.assertEqual(normalized, "[00:00:01.000] A semantic mesh 🕸️.\n")
+            self.assertEqual(normalized, "[00:00:01.000 --> 00:00:03.000] A semantic mesh 🕸️.\n")
             self.assertIn("--skip-download", observed_command)
             self.assertNotIn("--cookies-from-browser", observed_command)
 

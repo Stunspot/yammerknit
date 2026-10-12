@@ -1,8 +1,8 @@
 # Yammerknit
 
-Yammerknit turns a transcript or document into a reusable semantic mesh for embedding and retrieval in a vector-RAG system. Rupert Giles governs source custody and document integrity; Sam Walker's canonical Yammerknit SOP governs the artifact itself.
+Yammerknit builds thoughtbases: reusable cognitive architecture from transcripts and documents. Sam Walker's canonical SOP governs the work, with Rupert Giles as document guardian and information architect. Insight clusters, ordered sigil stacks, latent functions and relational bridges help a later model make new comparisons, reframe a problem and pursue useful questions. Source custody keeps that creative reuse connected to its origins.
 
-This is the public, source-available repository for Yammerknit. [Read the complete documentation](https://stunspot.github.io/yammerknit/) or download the ready-to-use product as one file: [Yammerknit-v0.1.0.zip](https://github.com/Stunspot/yammerknit/raw/refs/heads/main/release/0.1.0/Yammerknit-v0.1.0.zip).
+This is the public, source-available repository for Yammerknit. [Read the complete documentation](https://stunspot.github.io/yammerknit/) or download the ready-to-use product as one file: [Yammerknit-v0.1.0.zip](https://github.com/Stunspot/yammerknit/raw/refs/heads/main/release/current/Yammerknit-v0.1.0.zip).
 
 [![Yammerknit turns source material into a governed semantic mesh](assets/yammerknit-readme-hero.png)](https://stunspot.github.io/yammerknit/)
 
@@ -18,7 +18,7 @@ The kit contains both host distributions. The individual host packages are compo
 
 ## What Yammerknit does
 
-- Creates the canonical codefenced Yammerknit from supplied source material.
+- Constructs the canonical codefenced thoughtbase: meaning-nodes, keystone bridges, echo shards and seeds for new reasoning.
 - Inspects, explains, and minimally repairs existing Yammerknits.
 - Preserves source bytes, normalized text, artifacts, revisions, hashes, and provenance when the user chooses a workspace.
 - Acquires publicly accessible YouTube subtitles when the optional `yt-dlp` dependency is available.
@@ -33,14 +33,15 @@ Yammerknit does not include a vector store, embedding model, or retrieval servic
 - `customer-docs/` — source for the packaged customer journey.
 - `docs/` — the accessible public documentation site and sharecard.
 - `verification/` — build and verification machinery.
-- `release/0.1.0/` — the extracted customer kit and canonical customer ZIP.
+- `release/0.1.0/` — the preserved accepted historical customer kit.
+- `release-candidates/` — separately frozen repair candidates until acceptance.
 
-## Build and verify
+## Build and verify from a repository checkout
 
-Choose an empty output directory; the builder deliberately refuses to overwrite an existing release object.
+Choose a new, nonexistent output directory; the builder deliberately refuses to overwrite an existing release object.
 
 ```text
-python -X utf8 verification/build_release.py --output-dir <EMPTY-DIRECTORY>
+python -X utf8 verification/build_release.py --output-dir "NEW-OUTPUT-DIRECTORY"
 python -X utf8 -m unittest discover -s skills/yammerknit/tests -v
 python -X utf8 -m unittest verification/test_release.py -v
 python -X utf8 -m unittest verification/test_site.py -v

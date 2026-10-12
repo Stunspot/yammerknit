@@ -1,0 +1,13 @@
+# Cooling checklist pilot — fictional teaching source
+
+P1. This invented memo exists only to teach faithful extraction. No real organization, study or performance result is represented.
+
+P2. During the first week, the workshop recorded 15 damaged units among 100 inspected units. During the second week, after introducing a cooling checklist, it recorded 12 damaged units among 100 inspected units. These were different batches, not repeated measurements of the same units.
+
+P3. The second week also used a new supplier and fewer novice operators. There was no control group or randomized assignment. The memo cannot identify which change caused the difference.
+
+P4. The difference is 3 percentage points in observed damage rate (15% to 12%), or a 20% relative reduction from the first week's rate. The memo does not provide uncertainty estimates or evidence of a sustained effect.
+
+P5. The checklist is a candidate for a controlled follow-up, not an approved universal instruction. In the workshop's stated procedure, fragile glass units must not be cooled using this checklist until the separate glass protocol has been reviewed. The pilot used metal units only.
+
+P6. A manager's slide repeats the same 15-to-12 comparison from this memo. The slide is not a second study. The memo contains no evidence about costs, other workshops or long-term failure rates.
