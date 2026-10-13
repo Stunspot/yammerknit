@@ -9,8 +9,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
-ROOT = REPO / "release" / "0.1.0" / "yammerknit-v0.1.0"
-OUTPUT = Path(__file__).with_name("release-audit.json")
+from build_release import VERSION, PRODUCT_ROOT
+ROOT = REPO / "release" / VERSION / PRODUCT_ROOT
+OUTPUT = Path(__file__).with_name(f"release-audit-v{VERSION}.json")
 
 
 def sha256(path: Path) -> str:

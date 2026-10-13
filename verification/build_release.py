@@ -12,7 +12,7 @@ import tempfile
 import zipfile
 from pathlib import Path
 
-VERSION = "0.1.0"
+VERSION = "0.1.1"
 PRODUCT_ROOT = f"yammerknit-v{VERSION}"
 CUSTOMER_ZIP = f"Yammerknit-v{VERSION}.zip"
 CUSTOMER_SHA256 = f"Yammerknit-v{VERSION}.sha256"
@@ -167,17 +167,23 @@ def build_customer_tree(repo: Path, customer_root: Path) -> dict[str, object]:
         if name == "START-HERE.md":
             start_here = (repo / name).read_text(encoding="utf-8")
             (customer_root / name).write_text(
-                start_here.replace("customer-docs/", "docs/"),
+                start_here.replace("customer-docs/", "docs/").replace("](skills/yammerknit/", "](codex-plugin/yammerknit/skills/yammerknit/"),
                 encoding="utf-8",
                 newline="\n",
             )
         else:
             copy_file(repo / name, customer_root / name)
     for path in files_beneath(repo / "customer-docs"):
-        copy_file(
-            path,
-            customer_root / "docs" / path.relative_to(repo / "customer-docs"),
-        )
+        destination = customer_root / "docs" / path.relative_to(repo / "customer-docs")
+        if path.suffix.lower() == ".md":
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            destination.write_text(
+                path.read_text(encoding="utf-8").replace(
+                    "](../skills/yammerknit/", "](../codex-plugin/yammerknit/skills/yammerknit/"
+                ), encoding="utf-8", newline="\n"
+            )
+        else:
+            copy_file(path, destination)
     for name in ("icon.png", "Stunspot Icon.ico", "yammerknit-readme-hero.png"):
         copy_file(repo / "assets" / name, customer_root / "assets" / name)
 

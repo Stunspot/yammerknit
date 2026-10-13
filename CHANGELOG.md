@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.1
+
+Owner-required release identity and current installation/download path update, carrying accepted helper and creative-purpose restoration forward. Runtime, original persona/SOP, glyph teaching, artwork and qualification are unchanged. No new vector store, embedding service, model demonstration or host activation is claimed.
+
 ## 0.1.0 purpose restoration — 2026-10-08
 
 Restores the original thoughtbase purpose and operative canonical SOP/Document Guardian role. Sigil stacks, latent functions, echo shards and keystone bridges again govern the active method. The worked example now demonstrates cross-domain reasoning while preserving the same fictional source and its limits. Retains the earlier corruption, ancestry, path, subtitle and packaging repairs. This corrects the prior adapter’s narrowing; it does not claim measured embedding or retrieval improvement.

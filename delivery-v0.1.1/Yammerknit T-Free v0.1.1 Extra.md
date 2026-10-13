@@ -14,6 +14,8 @@ Public GitHub Repo: [yammerknit](https://github.com/Stunspot/yammerknit)
 
 # Changelog
 
+v0.1.1 - Carries accepted helper and purpose restoration forward under the owner-required current release identity; updates install/download paths while preserving runtime, original sources, artwork and qualification.
+
 v0.1.0 - Init.
 
 # Tags

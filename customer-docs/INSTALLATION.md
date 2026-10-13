@@ -1,6 +1,6 @@
 # Install Yammerknit
 
-The customer ZIP contains both supported host distributions. Extract `Yammerknit-v0.1.0.zip` first; the resulting folder is `yammerknit-v0.1.0`.
+The customer ZIP contains both supported host distributions. Extract `Yammerknit-v0.1.1.zip` first; the resulting folder is `yammerknit-v0.1.1`.
 
 ## Install the Codex plugin
 
@@ -48,7 +48,7 @@ If your personal marketplace uses another name, use that name after `@`.
 
 ## Install the Claude skill
 
-Use `claude/yammerknit-v0.1.0.zip` from the customer kit.
+Use `claude/yammerknit-v0.1.1.zip` from the customer kit.
 
 ### Claude Code
 
@@ -68,7 +68,7 @@ The installed folder must contain `SKILL.md` directly. Start a new Claude conver
 
 ### Claude chat
 
-Enable **Code execution and file creation**, then open **Customize > Skills**. Choose **Create skill > Upload a skill**, upload `yammerknit-v0.1.0.zip` without extracting it, and enable Yammerknit in the skills list.
+Enable **Code execution and file creation**, then open **Customize > Skills**. Choose **Create skill > Upload a skill**, upload `yammerknit-v0.1.1.zip` without extracting it, and enable Yammerknit in the skills list.
 
 For either Claude host, make the same discovery-only request shown for Codex. Verify the response names the complete structure and evidence boundary before supplying private source material. Package structure is verified; live Claude activation is not claimed by this repository.
 

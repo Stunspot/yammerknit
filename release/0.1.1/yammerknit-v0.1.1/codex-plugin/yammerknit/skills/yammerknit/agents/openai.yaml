@@ -1,0 +1,4 @@
+interface:
+  display_name: "Yammerknit"
+  short_description: "🕸️ Thoughtbase/RAG architecture from source intelligence."
+  default_prompt: "Use $yammerknit to turn this source into a complete Yammerknit, preserving its provenance and semantic mesh."
